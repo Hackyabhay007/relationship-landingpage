@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORUPhones Crash Analytics - v243</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+
+    <!-- Other Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen">
+        <header class="bg-white shadow-sm">
+            <div class="container mx-auto px-4 py-6">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-3xl font-bold text-gray-900">ORUPhones Crash Analytics</h1>
+                    <div class="text-sm text-gray-600">Version: 243</div>
+                </div>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-4 py-8">
+            <!-- Loading State -->
+            <div id="loadingIndicator" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <div class="flex items-center space-x-3">
+                        <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                        <p>Loading crash data...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-sm font-medium text-gray-500">Total Crashes</h3>
+                    <p id="totalCrashes" class="mt-2 text-3xl font-semibold text-gray-900">-</p>
+                    <p id="crashTrend" class="text-sm text-gray-500"></p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-sm font-medium text-gray-500">Affected Devices</h3>
+                    <p id="affectedDevices" class="mt-2 text-3xl font-semibold text-gray-900">-</p>
+                    <p id="deviceTrend" class="text-sm text-gray-500"></p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-sm font-medium text-gray-500">Most Common Crash</h3>
+                    <p id="commonCrash" class="mt-2 text-lg font-semibold text-gray-900">-</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-sm font-medium text-gray-500">Most Affected Model</h3>
+                    <p id="affectedModel" class="mt-2 text-lg font-semibold text-gray-900">-</p>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold">Filters</h2>
+                    <div class="flex space-x-2">
+                        <button id="clearFilters" class="px-3 py-1 text-sm text-gray-600 hover:text-gray-800">
+                            Clear Filters
+                        </button>
+                        <button id="saveFilters" class="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">
+                            Save Filters
+                        </button>
+                    </div>
+                </div>
+                
+                <form id="filterForm" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Device Make</label>
+                        <select id="makeFilter" class="w-full rounded border-gray-300 shadow-sm">
+                            <option value="">All Makes</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Device Model</label>
+                        <select id="modelFilter" class="w-full rounded border-gray-300 shadow-sm">
+                            <option value="">All Models</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Android Version</label>
+                        <select id="androidVersionFilter" class="w-full rounded border-gray-300 shadow-sm">
+                            <option value="">All Versions</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Build Type</label>
+                        <select id="buildTypeFilter" class="w-full rounded border-gray-300 shadow-sm">
+                            <option value="">All Types</option>
+                            <option value="prod">Production</option>
+                            <option value="debug">Debug</option>
+                        </select>
+                    </div>
+                    <div class="lg:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="date" id="startDate" class="w-full rounded border-gray-300 shadow-sm">
+                            <input type="date" id="endDate" class="w-full rounded border-gray-300 shadow-sm">
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 flex items-end">
+                        <button type="submit" class="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                            Apply Filters
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold mb-4">Crashes by Android Version</h3>
+                    <div class="h-64">
+                        <canvas id="androidVersionChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold mb-4">Crashes by Device Make</h3>
+                    <div class="h-64">
+                        <canvas id="deviceMakeChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold mb-4">Daily Crash Trend</h3>
+                    <div class="h-64">
+                        <canvas id="crashTrendChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold mb-4">Error Types Distribution</h3>
+                    <div class="h-64">
+                        <canvas id="errorTypesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crash Logs Table -->
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <div class="p-4 border-b flex justify-between items-center">
+                    <h2 class="text-lg font-semibold">Crash Logs</h2>
+                    <button id="exportData" class="px-4 py-2 text-sm bg-green-600 text-white rounded hover:bg-green-700">
+                        Export to CSV
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Timestamp
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Device
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Android
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Build
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Error
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="crashLogsTableBody" class="bg-white divide-y divide-gray-200">
+                        </tbody>
+                    </table>
+                </div>
+                <div id="pagination" class="px-6 py-4 flex items-center justify-between border-t">
+                    <div class="flex space-x-2">
+                        <button id="prevPage" class="px-3 py-1 border rounded text-sm disabled:opacity-50">Previous</button>
+                        <button id="nextPage" class="px-3 py-1 border rounded text-sm disabled:opacity-50">Next</button>
+                    </div>
+                    <span class="text-sm text-gray-700">
+                        Page <span id="currentPage">1</span> of <span id="totalPages">1</span>
+                    </span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Crash Details Modal -->
+    <div id="crashModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto m-4">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <h2 class="text-xl font-semibold">Crash Details</h2>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-gray-500">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                <div id="crashModalContent"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+function showLoading() {
+        const loader = document.getElementById('loadingIndicator');
+        if (loader) {
+            loader.classList.remove('hidden');
+        }
+    }
+
+    function hideLoading() {
+        const loader = document.getElementById('loadingIndicator');
+        if (loader) {
+            loader.classList.add('hidden');
+        }
+    }
+
+    function formatTimestamp(timestamp) {
+        if (!timestamp) return 'N/A';
+        if (timestamp.seconds) {
+            return new Date(timestamp.seconds * 1000).toLocaleString();
+        }
+        return new Date(timestamp).toLocaleString();
+    }
+
+    function showNotification(message, type = 'success') {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg ${
+            type === 'success' ? 'bg-green-500' : 'bg-red-500'
+        } text-white z-50`;
+        notification.textContent = message;
+
+        // Add to document
+        document.body.appendChild(notification);
+
+        // Remove after 3 seconds
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDkScL3YbS_2UTsz6oZVm3CtOLuunceg4g",
+            authDomain: "oru-phones.firebaseapp.com",
+            databaseURL: "https://oru-phones-default-rtdb.firebaseio.com",
+            projectId: "oru-phones",
+            storageBucket: "oru-phones.firebasestorage.app",
+            messagingSenderId: "510935460380",
+            appId: "1:510935460380:web:a479e894b98db7af56cdd9",
+            measurementId: "G-53QDJTVN1E"
+        };
+    
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    
+        // Constants
+        const VERSION_CODE = "243";
+        const ITEMS_PER_PAGE = 20;
+        const FILTERS_STORAGE_KEY = 'crashAnalytics_filters_v243';
+    
+        // Global State
+        let currentPage = 1;
+        let totalPages = 1;
+        let lastDoc = null;
+        let firstDoc = null;
+        let allCrashData = [];
+        let charts = {};
+        let currentFilters = {
+            versionCode: VERSION_CODE // Default version filter
+        };
+    
+        // Load saved filters from localStorage
+        function loadSavedFilters() {
+            const savedFilters = localStorage.getItem(FILTERS_STORAGE_KEY);
+            if (savedFilters) {
+                try {
+                    const parsedFilters = JSON.parse(savedFilters);
+                    currentFilters = { ...parsedFilters, versionCode: VERSION_CODE };
+                    // Apply saved filters to form
+                    Object.entries(currentFilters).forEach(([key, value]) => {
+                        const element = document.getElementById(`${key}Filter`);
+                        if (element) element.value = value;
+                    });
+                    return true;
+                } catch (e) {
+                    console.error('Error loading saved filters:', e);
+                    return false;
+                }
+            }
+            return false;
+        }
+    
+        // Save current filters to localStorage
+        function saveCurrentFilters() {
+            try {
+                localStorage.setItem(FILTERS_STORAGE_KEY, JSON.stringify(currentFilters));
+                showNotification('Filters saved successfully');
+            } catch (e) {
+                console.error('Error saving filters:', e);
+                showNotification('Error saving filters', 'error');
+            }
+        }
+    
+        // Notification helper
+        function showNotification(message, type = 'success') {
+            // Implementation of notification system
+            alert(message); // Replace with better notification system
+        }
+    
+        // Initialize Charts
+        function initializeCharts() {
+            const defaultOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            };
+    
+            // Android Version Chart
+            charts.androidVersion = new Chart(
+                document.getElementById('androidVersionChart').getContext('2d'),
+                {
+                    type: 'pie',
+                    data: {
+                        labels: [],
+                        datasets: [{
+                            data: [],
+                            backgroundColor: [
+                                '#4F46E5', '#10B981', '#F59E0B', '#EF4444',
+                                '#6366F1', '#8B5CF6', '#EC4899', '#14B8A6'
+                            ]
+                        }]
+                    },
+                    options: defaultOptions
+                }
+            );
+    
+            // Device Make Chart
+            charts.deviceMake = new Chart(
+                document.getElementById('deviceMakeChart').getContext('2d'),
+                {
+                    type: 'bar',
+                    data: {
+                        labels: [],
+                        datasets: [{
+                            label: 'Crashes',
+                            data: [],
+                            backgroundColor: '#4F46E5'
+                        }]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                }
+            );
+    
+            // Crash Trend Chart
+            charts.crashTrend = new Chart(
+                document.getElementById('crashTrendChart').getContext('2d'),
+                {
+                    type: 'line',
+                    data: {
+                        labels: [],
+                        datasets: [{
+                            label: 'Daily Crashes',
+                            data: [],
+                            borderColor: '#4F46E5',
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                }
+            );
+    
+            // Error Types Chart
+            charts.errorTypes = new Chart(
+                document.getElementById('errorTypesChart').getContext('2d'),
+                {
+                    type: 'doughnut',
+                    data: {
+                        labels: [],
+                        datasets: [{
+                            data: [],
+                            backgroundColor: [
+                                '#EF4444', '#F59E0B', '#10B981', '#6366F1',
+                                '#8B5CF6', '#EC4899', '#14B8A6', '#4F46E5'
+                            ]
+                        }]
+                    },
+                    options: defaultOptions
+                }
+            );
+        }
+    
+        // Data Processing Functions
+        async function fetchInitialData() {
+            showLoading();
+            try {
+                const query = db.collection('crash_logs')
+                               .where('appDetails.versionCode', '==', VERSION_CODE)
+                               .orderBy('timestamp', 'desc')
+                               .limit(1000); // Fetch more initial data for better analytics
+    
+                const snapshot = await query.get();
+                allCrashData = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+    
+                // Process and populate filters
+                populateFiltersFromData(allCrashData);
+                // Load saved filters if any
+                if (loadSavedFilters()) {
+                    applyCurrentFilters();
+                }
+                
+                updateAnalytics(allCrashData);
+                updateCharts(allCrashData);
+                await fetchAndRenderCrashLogs(); // This will apply pagination
+            } catch (error) {
+                console.error('Error fetching initial data:', error);
+                showNotification('Error loading crash data', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+    
+        function populateFiltersFromData(data) {
+            const filters = {
+                makes: new Set(),
+                models: new Set(),
+                androidVersions: new Set(),
+                buildTypes: new Set()
+            };
+    
+            data.forEach(log => {
+                if (log.deviceDetails?.make) filters.makes.add(log.deviceDetails.make);
+                if (log.deviceDetails?.model) filters.models.add(log.deviceDetails.model);
+                if (log.deviceDetails?.androidVersion) filters.androidVersions.add(log.deviceDetails.androidVersion);
+                if (log.appDetails?.buildType) filters.buildTypes.add(log.appDetails.buildType);
+            });
+    
+            // Populate dropdowns
+            populateSelect('makeFilter', filters.makes);
+            populateSelect('modelFilter', filters.models);
+            populateSelect('androidVersionFilter', filters.androidVersions);
+            populateSelect('buildTypeFilter', filters.buildTypes);
+        }
+    
+        function populateSelect(elementId, values) {
+            const select = document.getElementById(elementId);
+            const currentValue = select.value;
+            select.innerHTML = '<option value="">All</option>';
+            Array.from(values).sort().forEach(value => {
+                const option = document.createElement('option');
+                option.value = value;
+                option.textContent = value;
+                if (value === currentValue) option.selected = true;
+                select.appendChild(option);
+            });
+        }
+    
+        function applyCurrentFilters() {
+            const filteredData = allCrashData.filter(log => {
+                return Object.entries(currentFilters).every(([key, value]) => {
+                    if (!value) return true;
+                    switch(key) {
+                        case 'make':
+                            return log.deviceDetails?.make === value;
+                        case 'model':
+                            return log.deviceDetails?.model === value;
+                        case 'androidVersion':
+                            return log.deviceDetails?.androidVersion === value;
+                        case 'buildType':
+                            return log.appDetails?.buildType === value;
+                        case 'startDate':
+                            return new Date(log.timestamp) >= new Date(value);
+                        case 'endDate':
+                            return new Date(log.timestamp) <= new Date(value);
+                        default:
+                            return true;
+                    }
+                });
+            });
+    
+            updateAnalytics(filteredData);
+            updateCharts(filteredData);
+            renderCrashLogsTable(filteredData);
+        }
+    
+        // Event Listeners
+        document.getElementById('filterForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            currentFilters = {
+                versionCode: VERSION_CODE,
+                make: document.getElementById('makeFilter').value,
+                model: document.getElementById('modelFilter').value,
+                androidVersion: document.getElementById('androidVersionFilter').value,
+                buildType: document.getElementById('buildTypeFilter').value,
+                startDate: document.getElementById('startDate').value,
+                endDate: document.getElementById('endDate').value
+            };
+            applyCurrentFilters();
+        });
+    
+        document.getElementById('saveFilters').addEventListener('click', saveCurrentFilters);
+    
+        document.getElementById('clearFilters').addEventListener('click', () => {
+            document.getElementById('filterForm').reset();
+            currentFilters = { versionCode: VERSION_CODE };
+            localStorage.removeItem(FILTERS_STORAGE_KEY);
+            applyCurrentFilters();
+        });
+    
+       // document.getElementById('exportData').addEventListener('click', exportToCSV);
+    
+        // Initialize the dashboard
+        async function initialize() {
+            initializeCharts();
+            await fetchInitialData();
+        }
+    
+        // Start the application
+        initialize();
+    </script>
+    </body>
+    </html>
+    
