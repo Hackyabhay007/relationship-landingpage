@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Rug Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #ffffff;
+        }
+        
+        .custom-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .shape-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .shape-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .preview-container {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .active-shape {
+            background: #000000 !important;
+            color: #ffffff !important;
+        }
+
+        .custom-size-inputs {
+            display: none;
+        }
+
+        .custom-size-inputs.active {
+            display: flex;
+        }
+
+        .upload-area {
+            transition: all 0.3s ease;
+        }
+
+        .premium-input {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid #e5e5e5;
+        }
+
+        .premium-input:focus {
+            border-bottom-color: #000000;
+            outline: none;
+        }
+
+        /* Add these new styles for shapes */
+    .shape-preview {
+        transition: all 0.3s ease;
+        background: transparent;
+    }
+
+    .shape-card:hover .shape-preview {
+        transform: scale(1.1);
+    }
+
+    .active-shape .shape-preview {
+        background: #f3f4f6;
+        border-color: #000000;
+    }
+
+        @media (max-width: 768px) {
+            .shape-card {
+                padding: 0.75rem !important;
+            }
+            
+            .shape-preview {
+                width: 3rem !important;
+                height: 3rem !important;
+            }
+
+            .preview-container {
+                height: 300px !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen text-gray-800">
+    <div class="container mx-auto px-4 py-4 md:py-8 max-w-6xl">
+        <!-- Header -->
+        <h1 class="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-16 animate__animated animate__fadeIn">
+            Custom Rug Designer
+            <span class="block text-xs md:text-sm font-normal mt-2 text-gray-500">Create your perfect rug design</span>
+        </h1>
+
+        <div class="grid md:grid-cols-2 gap-6 md:gap-12">
+            <!-- Left Column -->
+            <div class="space-y-6 md:space-y-8" id="designControls">
+                <!-- Upload Design -->
+                <div id="uploadSection" class="bg-white p-4 md:p-8 rounded-xl custom-shadow animate__animated animate__fadeInLeft">
+                    <h2 class="text-xl md:text-2xl font-semibold mb-4 md:mb-6 flex items-center">
+                        <i class="ri-upload-cloud-line mr-2"></i>
+                        Upload Design
+                    </h2>
+                    <div class="upload-area border-2 border-dashed border-gray-200 rounded-xl p-4 md:p-8 text-center cursor-pointer">
+                        <input type="file" id="design-upload" class="hidden" accept="image/*">
+                        <label for="design-upload" class="cursor-pointer">
+                            <i class="ri-image-add-line text-3xl md:text-4xl text-gray-400 mb-2 md:mb-4"></i>
+                            <p class="text-gray-500 text-sm md:text-base">Drag and drop your design here or click to browse</p>
+                            <p class="text-xs md:text-sm text-gray-400 mt-2">Supported formats: PNG, JPG, SVG</p>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Shape Selection -->
+                <div class="bg-white p-4 md:p-8 rounded-xl custom-shadow animate__animated animate__fadeInLeft">
+                    <h2 class="text-xl md:text-2xl font-semibold mb-4 md:mb-6 flex items-center">
+                        <i class="ri-shape-line mr-2"></i>
+                        Select Shape
+                    </h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
+                        <!-- Circle -->
+                        <div class="shape-card bg-gray-50 p-4 md:p-6 rounded-xl cursor-pointer" data-shape="circle">
+                            <div class="shape-preview w-12 h-12 md:w-20 md:h-20 mx-auto border-2 border-gray-300 rounded-full"></div>
+                            <p class="text-center mt-2 md:mt-3 text-sm md:text-base font-medium">Round</p>
+                        </div>
+                
+                        <!-- Square -->
+                        <div class="shape-card bg-gray-50 p-4 md:p-6 rounded-xl cursor-pointer" data-shape="square">
+                            <div class="shape-preview w-12 h-12 md:w-20 md:h-20 mx-auto border-2 border-gray-300"></div>
+                            <p class="text-center mt-2 md:mt-3 text-sm md:text-base font-medium">Square</p>
+                        </div>
+                
+                        <!-- Hexagon -->
+                        <div class="shape-card bg-gray-50 p-4 md:p-6 rounded-xl cursor-pointer" data-shape="hexagon">
+                            <div class="shape-preview w-12 h-12 md:w-20 md:h-20 mx-auto border-2 border-gray-300" 
+                                 style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
+                            </div>
+                            <p class="text-center mt-2 md:mt-3 text-sm md:text-base font-medium">Hexagon</p>
+                        </div>
+                
+                        <!-- Oval -->
+                        <div class="shape-card bg-gray-50 p-4 md:p-6 rounded-xl cursor-pointer" data-shape="oval">
+                            <div class="shape-preview w-16 h-12 md:w-24 md:h-20 mx-auto border-2 border-gray-300 rounded-full"></div>
+                            <p class="text-center mt-2 md:mt-3 text-sm md:text-base font-medium">Oval</p>
+                        </div>
+                
+                        <!-- Triangle -->
+                        <div class="shape-card bg-gray-50 p-4 md:p-6 rounded-xl cursor-pointer" data-shape="triangle">
+                            <div class="shape-preview w-12 h-12 md:w-20 md:h-20 mx-auto" 
+                                 style="clip-path: polygon(50% 0%, 100% 100%, 0% 100%); border: 2px solid #d1d5db;">
+                            </div>
+                            <p class="text-center mt-2 md:mt-3 text-sm md:text-base font-medium">Triangle</p>
+                        </div>
+                
+                        <!-- Star -->
+                        <div class="shape-card bg-gray-50 p-4 md:p-6 rounded-xl cursor-pointer" data-shape="star">
+                            <div class="shape-preview w-12 h-12 md:w-20 md:h-20 mx-auto" 
+                                 style="clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); border: 2px solid #d1d5db;">
+                            </div>
+                            <p class="text-center mt-2 md:mt-3 text-sm md:text-base font-medium">Star</p>
+                        </div>
+                
+                        <!-- Heart -->
+                        <div class="shape-card bg-gray-50 p-4 md:p-6 rounded-xl cursor-pointer" data-shape="heart">
+                            <div class="shape-preview w-12 h-12 md:w-20 md:h-20 mx-auto"
+                                 style="clip-path: path('M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181'); border: 2px solid #d1d5db;">
+                            </div>
+                            <p class="text-center mt-2 md:mt-3 text-sm md:text-base font-medium">Heart</p>
+                        </div>
+                
+                        <!-- Diamond -->
+                        <div class="shape-card bg-gray-50 p-4 md:p-6 rounded-xl cursor-pointer" data-shape="diamond">
+                            <div class="shape-preview w-12 h-12 md:w-20 md:h-20 mx-auto" 
+                                 style="clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); border: 2px solid #d1d5db;">
+                            </div>
+                            <p class="text-center mt-2 md:mt-3 text-sm md:text-base font-medium">Diamond</p>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <!-- Size Selection -->
+                <div class="bg-white p-4 md:p-8 rounded-xl custom-shadow animate__animated animate__fadeInLeft">
+                    <h2 class="text-xl md:text-2xl font-semibold mb-4 md:mb-6 flex items-center">
+                        <i class="ri-ruler-line mr-2"></i>
+                        Select Size
+                    </h2>
+                    <div class="flex flex-wrap gap-2 md:gap-3 mb-4 md:mb-6">
+                        <button class="size-btn text-sm md:text-base px-4 md:px-6 py-2 md:py-3 rounded-lg bg-gray-50 hover:bg-black hover:text-white transition-colors" data-size="4x6">
+                            4' x 6'
+                        </button>
+                        <button class="size-btn text-sm md:text-base px-4 md:px-6 py-2 md:py-3 rounded-lg bg-gray-50 hover:bg-black hover:text-white transition-colors" data-size="5x8">
+                            5' x 8'
+                        </button>
+                        <button class="size-btn text-sm md:text-base px-4 md:px-6 py-2 md:py-3 rounded-lg bg-gray-50 hover:bg-black hover:text-white transition-colors" data-size="8x10">
+                            8' x 10'
+                        </button>
+                        <button class="size-btn text-sm md:text-base px-4 md:px-6 py-2 md:py-3 rounded-lg bg-gray-50 hover:bg-black hover:text-white transition-colors" data-size="custom">
+                            Custom
+                        </button>
+                    </div>
+
+                    <!-- Custom Size Inputs -->
+                    <div class="custom-size-inputs gap-4 flex-col md:flex-row">
+                        <div class="flex-1 mb-4 md:mb-0">
+                            <label class="text-xs md:text-sm text-gray-500">Width (feet)</label>
+                            <input type="number" class="premium-input w-full bg-transparent py-2 px-1 text-sm md:text-base" id="customWidth">
+                        </div>
+                        <div class="flex-1">
+                            <label class="text-xs md:text-sm text-gray-500">Length (feet)</label>
+                            <input type="number" class="premium-input w-full bg-transparent py-2 px-1 text-sm md:text-base" id="customLength">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Column -->
+            <div class="space-y-6 md:space-y-8">
+                <!-- Preview Area -->
+                <div class="bg-white p-4 md:p-8 rounded-xl custom-shadow animate__animated animate__fadeInRight">
+                    <h2 class="text-xl md:text-2xl font-semibold mb-4 md:mb-6 flex items-center justify-between">
+                        <span class="flex items-center">
+                            <i class="ri-eye-line mr-2"></i>
+                            Live Preview
+                        </span>
+                        <button id="resetBtn" class="text-xs md:text-sm px-3 md:px-4 py-1.5 md:py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors hidden">
+                            <i class="ri-restart-line mr-1"></i>
+                            Reset
+                        </button>
+                    </h2>
+                    <div class="border-2 border-gray-100 rounded-xl h-[300px] md:h-[480px] flex items-center justify-center preview-container bg-gray-50">
+                        <div id="preview-content" class="w-full h-full flex items-center justify-center p-4 md:p-8">
+                            <div class="text-center text-gray-400">
+                                <i class="ri-image-line text-3xl md:text-5xl mb-2 md:mb-4"></i>
+                                <p class="text-sm md:text-base">Upload a design to see preview</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Design Details -->
+                <div class="bg-white p-4 md:p-8 rounded-xl custom-shadow animate__animated animate__fadeInRight hidden" id="designDetails">
+                    <h2 class="text-xl md:text-2xl font-semibold mb-4 md:mb-6 flex items-center">
+                        <i class="ri-file-list-line mr-2"></i>
+                        Design Details
+                    </h2>
+                    <div class="grid grid-cols-2 gap-4 md:gap-6">
+                        <div>
+                            <p class="text-gray-500 text-xs md:text-sm">Selected Shape</p>
+                            <p class="font-semibold mt-1 text-sm md:text-base" id="selectedShape">-</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-xs md:text-sm">Dimensions</p>
+                            <p class="font-semibold mt-1 text-sm md:text-base" id="selectedSize">-</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex gap-3 md:gap-4 animate__animated animate__fadeInUp">
+                    <button id="submitDesign" disabled 
+                            class="flex-1 bg-black text-white hover:bg-gray-800 font-bold py-3 md:py-4 px-4 md:px-6 rounded-xl transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed text-sm md:text-base">
+                        <i class="ri-check-line mr-2"></i>
+                        <span class="hidden md:inline">Submit Design</span>
+                        <span class="md:hidden">Submit</span>
+                    </button>
+                    <button id="connectRep" 
+                            class="flex-1 border-2 border-black hover:bg-black hover:text-white text-black font-bold py-3 md:py-4 px-4 md:px-6 rounded-xl transition-colors flex items-center justify-center text-sm md:text-base">
+                        <i class="ri-customer-service-2-line mr-2"></i>
+                        <span class="hidden md:inline">Connect to Representative</span>
+                        <span class="md:hidden">Connect</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentShape = null;
+        let currentSize = null;
+        let uploadedImage = null;
+
+        const designControls = document.getElementById('designControls');
+        const uploadSection = document.getElementById('uploadSection');
+        const resetBtn = document.getElementById('resetBtn');
+        const designDetails = document.getElementById('designDetails');
+        const submitDesign = document.getElementById('submitDesign');
+        const customSizeInputs = document.querySelector('.custom-size-inputs');
+        const previewContent = document.getElementById('preview-content');
+
+        // File Upload Handler with Mobile Support
+        document.getElementById('design-upload').addEventListener('change', handleFileSelect);
+        
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (file) {
+                if (file.size > 5000000) { // 5MB limit
+                    alert('File size too large. Please select an image under 5MB.');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImage = e.target.result;
+                    showDesignInterface();
+                    updatePreview();
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function showDesignInterface() {
+            uploadSection.classList.add('hidden');
+            resetBtn.classList.remove('hidden');
+            designDetails.classList.remove('hidden');
+            submitDesign.removeAttribute('disabled');
+        }
+
+        // Reset Design
+        resetBtn.addEventListener('click', function() {
+            uploadedImage = null;
+            currentShape = null;
+            currentSize = null;
+            uploadSection.classList.remove('hidden');
+            resetBtn.classList.add('hidden');
+            designDetails.classList.add('hidden');
+            submitDesign.setAttribute('disabled', 'true');
+            document.querySelectorAll('.shape-card').forEach(c => c.classList.remove('active-shape'));
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active-shape'));
+            customSizeInputs.classList.remove('active');
+            updatePreview();
+        });
+
+        // Shape Selection with Touch Support
+        document.querySelectorAll('.shape-card').forEach(card => {
+            ['click', 'touchend'].forEach(evt => 
+                card.addEventListener(evt, function(e) {
+                    e.preventDefault();
+                    selectShape(this);
+                })
+            );
+        });
+
+        function selectShape(card) {
+            document.querySelectorAll('.shape-card').forEach(c => 
+                c.classList.remove('active-shape'));
+            card.classList.add('active-shape');
+            currentShape = card.dataset.shape;
+            document.getElementById('selectedShape').textContent = 
+                card.querySelector('p').textContent;
+            updatePreview();
+        }
+
+        // Size Selection with Touch Support
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            ['click', 'touchend'].forEach(evt => 
+                btn.addEventListener(evt, function(e) {
+                    e.preventDefault();
+                    selectSize(this);
+                })
+            );
+        });
+
+        function selectSize(btn) {
+            document.querySelectorAll('.size-btn').forEach(b => 
+                b.classList.remove('active-shape'));
+            btn.classList.add('active-shape');
+            currentSize = btn.dataset.size;
+            
+            if (currentSize === 'custom') {
+                customSizeInputs.classList.add('active');
+            } else {
+                customSizeInputs.classList.remove('active');
+                document.getElementById('selectedSize').textContent = btn.textContent.trim();
+            }
+            updatePreview();
+        }
+
+        // Custom Size Inputs with Mobile Support
+        const customWidth = document.getElementById('customWidth');
+        const customLength = document.getElementById('customLength');
+
+        [customWidth, customLength].forEach(input => {
+            input.addEventListener('input', updateCustomSize);
+            input.addEventListener('blur', validateSize);
+        });
+
+        function updateCustomSize() {
+            if (customWidth.value && customLength.value) {
+                document.getElementById('selectedSize').textContent = 
+                    `${customWidth.value}' x ${customLength.value}'`;
+                updatePreview();
+            }
+        }
+
+        function validateSize() {
+            const value = parseFloat(this.value);
+            if (value < 2) this.value = 2;
+            if (value > 20) this.value = 20;
+            updateCustomSize();
+        }
+
+        function updatePreview() {
+        if (!uploadedImage) {
+            previewContent.innerHTML = `
+                <div class="text-center text-gray-400">
+                    <i class="ri-image-line text-3xl md:text-5xl mb-2 md:mb-4"></i>
+                    <p class="text-sm md:text-base">Upload a design to see preview</p>
+                </div>`;
+            return;
+        }
+
+        let style = 'max-width: 90%; max-height: 90%; object-fit: contain;';
+
+        switch(currentShape) {
+            case 'circle':
+                style += 'border-radius: 50%;';
+                break;
+            case 'oval':
+                style += 'border-radius: 50%; aspect-ratio: 1.5;';
+                break;
+            case 'hexagon':
+                style += 'clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);';
+                break;
+            case 'triangle':
+                style += 'clip-path: polygon(50% 0%, 100% 100%, 0% 100%);';
+                break;
+            case 'star':
+                style += 'clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);';
+                break;
+            case 'heart':
+                style += `clip-path: path('M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181');`;
+                break;
+            case 'diamond':
+                style += 'clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);';
+                break;
+        }
+
+        previewContent.innerHTML = `
+            <div class="relative w-full h-full flex items-center justify-center">
+                <img src="${uploadedImage}" 
+                     style="${style}"
+                     class="preview-image border-2 border-gray-200 animate__animated animate__fadeIn">
+            </div>
+        `;
+    }
+
+        // Mobile-friendly drag and drop
+        const uploadArea = document.querySelector('.upload-area');
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, () => 
+                uploadArea.classList.add('border-black'));
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, () => 
+                uploadArea.classList.remove('border-black'));
+        });
+
+        uploadArea.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            document.getElementById('design-upload').files = files;
+            handleFileSelect({target: {files: files}});
+        }
+
+        // Action Buttons with Touch Support
+        document.getElementById('connectRep').addEventListener('click', function() {
+            alert('Connecting to representative...');
+            // Add your connection logic here
+        });
+
+        document.getElementById('submitDesign').addEventListener('click', function() {
+            if (!this.disabled) {
+                alert('Design submitted successfully!');
+                // Add your submission logic here
+            }
+        });
+    </script>
+</body>
+</html>

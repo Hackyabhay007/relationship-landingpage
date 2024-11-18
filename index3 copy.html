@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Love Guidance | Cosmic Connection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #B2A4FF, #FFB4B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 1s ease-out;
+        }
+        .section-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .parallax-card {
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+        }
+        .card-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body class="bg-[#0A0A1B] text-white overflow-x-hidden">
+
+<!-- Navbar -->
+<nav class="fixed w-full z-50 bg-[#0A0A1B]/80 backdrop-blur-xl border-b border-[#B2A4FF]/20">
+    <div class="container mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#B2A4FF] to-[#FFB4B4] flex items-center justify-center">
+                    <i class="fas fa-infinity text-white"></i>
+                </div>
+                <span class="text-2xl font-bold gradient-text">CosmicLove</span>
+            </div>
+            <button class="bg-gradient-to-r from-[#B2A4FF] to-[#FFB4B4] px-6 py-2 rounded-full text-sm hover:scale-105 transition-all">
+                Book 1:1 Session
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="min-h-screen relative overflow-hidden flex items-center pt-20">
+    <div class="absolute inset-0">
+        <img src="https://images.unsplash.com/photo-1534796636912-3b95b3ab5986" 
+             class="w-full h-full object-cover opacity-20">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0A0A1B] via-transparent to-[#0A0A1B]"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <h1 class="text-6xl font-bold leading-tight">
+                    <span class="gradient-text">Situationship or Dating?</span>
+                    <span class="block mt-2">Seeking Love & Togetherness?</span>
+                </h1>
+                <p class="text-xl text-[#FFDEB4] leading-relaxed">
+                    Take your chance. Attract Cosmically! Make it Stay! Love is the Only Door for happiness & Commitment.
+                </p>
+                <div class="flex space-x-4">
+                    <button class="bg-gradient-to-r from-[#B2A4FF] to-[#FFB4B4] px-8 py-4 rounded-full text-lg font-bold hover:scale-105 transition-all">
+                        Start Your Journey
+                    </button>
+                </div>
+            </div>
+            
+            <div class="relative hidden md:block">
+                <div class="absolute -top-20 -left-20 w-40 h-40 bg-[#B2A4FF] rounded-full blur-3xl opacity-20"></div>
+                <div class="absolute -bottom-20 -right-20 w-40 h-40 bg-[#FFB4B4] rounded-full blur-3xl opacity-20"></div>
+                <img src="https://images.unsplash.com/photo-1632765854612-9b02b6ec2b15" 
+                     class="rounded-3xl card-float shadow-2xl shadow-[#B2A4FF]/20 relative z-10"
+                     alt="Modern Love">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GenZ Dating Challenges Section -->
+<section class="py-20 relative overflow-hidden section-reveal">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Modern Dating Reality</h2>
+        
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="bg-white/5 backdrop-blur-xl rounded-3xl p-8 hover:transform hover:scale-105 transition-all duration-500">
+                <h3 class="text-2xl font-bold mb-6 text-[#FFB4B4]">The GenZ Approach</h3>
+                <p class="text-gray-300 leading-relaxed">
+                    The Dating among GenZ shows a clear casual approach towards love and Physical intimacy, but break-ups, 
+                    trauma, lowering self-worth, stress, inconsistent emotions, abuse and toxication are data-backed results.
+                </p>
+            </div>
+            
+            <div class="bg-white/5 backdrop-blur-xl rounded-3xl p-8 hover:transform hover:scale-105 transition-all duration-500">
+                <h3 class="text-2xl font-bold mb-6 text-[#FFDEB4]">Our Solution</h3>
+                <p class="text-gray-300 leading-relaxed">
+                    We use Pragmatic Solutions with Relationship Psychology, Mind Sciences, Hypnotic Principles, 
+                    Human Behavior Science, Advanced Astrology & Numerology for aligning you with love, happiness & personal magnetism.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GenZ & Alpha Section with 3D Cards -->
+<section class="py-20 relative overflow-hidden section-reveal" <sup className="inline select-none [&>a]:rounded-2xl [&>a]:border [&>a]:px-1.5 [&>a]:py-0.5 [&>a]:transition-colors shadow [&>a]:bg-ds-bg-subtle [&>a]:text-xs [&>svg]:w-4 [&>svg]:h-4 relative -top-[2px]">1</sup>>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#B2A4FF]/10 to-[#FFB4B4]/10 skew-y-3"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl font-bold mb-16 gradient-text text-center">
+                Hey GenZ & Alpha: Wanna Escape "Linear Relationship Escalator"?
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="bg-white/5 backdrop-blur-xl rounded-3xl p-8 transform hover:scale-105 transition-all hover:rotate-1">
+                        <h3 class="text-xl font-bold mb-4 text-[#FFB4B4]">Your Feelings Matter</h3>
+                        <p class="text-gray-300">
+                            Your feelings are important because if hurt they are not easily repairable. In today's competitive world, 
+                            romance often takes a backseat to fast-paced living.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white/5 backdrop-blur-xl rounded-3xl p-8 transform hover:scale-105 transition-all hover:-rotate-1">
+                        <h3 class="text-xl font-bold mb-4 text-[#FFDEB4]">Modern Love Navigation</h3>
+                        <p class="text-gray-300">
+                            We help daters navigate relationships with ease, providing psychological and cosmic energy guidance 
+                            for your best shot at love while protecting your emotional well-being.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-[#B2A4FF] rounded-full blur-3xl opacity-20"></div>
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9" 
+                         class="rounded-3xl transform hover:rotate-3 transition-all duration-500 shadow-2xl"
+                         alt="Modern Dating">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Compatibility Section with Floating Elements -->
+<section class="py-20 relative overflow-hidden section-reveal" <sup className="inline select-none [&>a]:rounded-2xl [&>a]:border [&>a]:px-1.5 [&>a]:py-0.5 [&>a]:transition-colors shadow [&>a]:bg-ds-bg-subtle [&>a]:text-xs [&>svg]:w-4 [&>svg]:h-4 relative -top-[2px]">2</sup>>
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16">
+            <span class="gradient-text">Compatibility is Key!</span>
+        </h2>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="bg-white/5 backdrop-blur-xl rounded-3xl p-8 hover:transform hover:scale-105 transition-all duration-500 card-float">
+                <div class="text-4xl text-[#B2A4FF] mb-6"><i class="fas fa-heart"></i></div>
+                <h3 class="text-xl font-bold mb-4">Face Challenges Together</h3>
+                <p class="text-gray-300">
+                    Building stability, care & affection as the foundation of your relationship through expert guidance and understanding.
+                </p>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="bg-white/5 backdrop-blur-xl rounded-3xl p-8 hover:transform hover:scale-105 transition-all duration-500 card-float" style="animation-delay: 0.2s">
+                <div class="text-4xl text-[#FFB4B4] mb-6"><i class="fas fa-brain"></i></div>
+                <h3 class="text-xl font-bold mb-4">Deep Understanding</h3>
+                <p class="text-gray-300">
+                    Expert analysis through practical science of mind psychology and human relationships for deeper connection.
+                </p>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="bg-white/5 backdrop-blur-xl rounded-3xl p-8 hover:transform hover:scale-105 transition-all duration-500 card-float" style="animation-delay: 0.4s">
+                <div class="text-4xl text-[#FFDEB4] mb-6"><i class="fas fa-infinity"></i></div>
+                <h3 class="text-xl font-bold mb-4">Energy Alignment</h3>
+                <p class="text-gray-300">
+                    Using astrology and numerology to sync with your partner's energy and manifest fulfilling sacred connections.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Marriage Guidance Section -->
+<section class="py-20 relative overflow-hidden section-reveal" <sup className="inline select-none [&>a]:rounded-2xl [&>a]:border [&>a]:px-1.5 [&>a]:py-0.5 [&>a]:transition-colors shadow [&>a]:bg-ds-bg-subtle [&>a]:text-xs [&>svg]:w-4 [&>svg]:h-4 relative -top-[2px]">3</sup>>
+    <div class="absolute inset-0">
+        <div class="absolute w-full h-full bg-gradient-to-b from-transparent via-[#B2A4FF]/10 to-transparent"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16">
+                <span class="gradient-text">Modern Marriage Harmony</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-[#FFB4B4]">Beyond Traditional Matching</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        We've researched countless marriage scenarios and combined ancient wisdom with modern science. 
+                        Our approach considers 50+ parameters for optimal compatibility and relationship success.
+                    </p>
+                    
+                    <div class="bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-[#B2A4FF]/20">
+                        <h4 class="text-lg font-bold mb-4 text-[#FFDEB4]">Comprehensive Analysis</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start space-x-3">
+                                <i class="fas fa-star text-[#B2A4FF] mt-1"></i>
+                                <span class="text-gray-300">Cosmic coordinates alignment</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <i class="fas fa-star text-[#B2A4FF] mt-1"></i>
+                                <span class="text-gray-300">Energy and karmic level assessment</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <i class="fas fa-star text-[#B2A4FF] mt-1"></i>
+                                <span class="text-gray-300">Personality compatibility metrics</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-[#FFB4B4] rounded-full blur-3xl opacity-20"></div>
+                    <img src="https://images.unsplash.com/photo-1516589091380-5d8259fe5b0c" 
+                         class="rounded-3xl transform hover:-rotate-3 transition-all duration-500 shadow-2xl"
+                         alt="Marriage Harmony">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Unique Approach Section -->
+<section class="py-20 relative overflow-hidden section-reveal" <sup className="inline select-none [&>a]:rounded-2xl [&>a]:border [&>a]:px-1.5 [&>a]:py-0.5 [&>a]:transition-colors shadow [&>a]:bg-ds-bg-subtle [&>a]:text-xs [&>svg]:w-4 [&>svg]:h-4 relative -top-[2px]">1</sup>>
+    <div class="absolute inset-0">
+        <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc" 
+             class="w-full h-full object-cover opacity-5 parallax">
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <h2 class="text-4xl font-bold text-center mb-16">
+            <span class="gradient-text">Why Choose Our Guidance</span>
+        </h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Feature Cards with 3D Hover -->
+            <div class="feature-card bg-white/5 backdrop-blur-xl rounded-3xl p-8 transform transition-all duration-500 hover:z-10"
+                 onmousemove="handleMouseMove(event)" onmouseleave="handleMouseLeave(event)">
+                <div class="text-3xl text-[#B2A4FF] mb-6"><i class="fas fa-mirror"></i></div>
+                <h3 class="text-xl font-bold mb-4">True Reflection</h3>
+                <p class="text-gray-300">We mirror the best way forward through authentic guidance and self-reflection.</p>
+            </div>
+
+            <div class="feature-card bg-white/5 backdrop-blur-xl rounded-3xl p-8 transform transition-all duration-500 hover:z-10"
+                 onmousemove="handleMouseMove(event)" onmouseleave="handleMouseLeave(event)">
+                <div class="text-3xl text-[#FFB4B4] mb-6"><i class="fas fa-dharmachakra"></i></div>
+                <h3 class="text-xl font-bold mb-4">Karmic Analysis</h3>
+                <p class="text-gray-300">Incorporating karmic effects analyzed through astrology and numerology.</p>
+            </div>
+
+            <div class="feature-card bg-white/5 backdrop-blur-xl rounded-3xl p-8 transform transition-all duration-500 hover:z-10"
+                 onmousemove="handleMouseMove(event)" onmouseleave="handleMouseLeave(event)">
+                <div class="text-3xl text-[#FFDEB4] mb-6"><i class="fas fa-brain"></i></div>
+                <h3 class="text-xl font-bold mb-4">Modern Psychology</h3>
+                <p class="text-gray-300">Analyzing psychological and behavioral patterns in current environments.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Protection & Guidance Section -->
+<section class="py-20 relative overflow-hidden section-reveal" <sup className="inline select-none [&>a]:rounded-2xl [&>a]:border [&>a]:px-1.5 [&>a]:py-0.5 [&>a]:transition-colors shadow [&>a]:bg-ds-bg-subtle [&>a]:text-xs [&>svg]:w-4 [&>svg]:h-4 relative -top-[2px]">2</sup>>
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <h2 class="text-3xl font-bold gradient-text">Emotional Protection & Growth</h2>
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-[#B2A4FF]/20 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-shield-heart text-[#B2A4FF]"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Narcissistic Behavior Detection</h3>
+                            <p class="text-gray-300">Understanding and protection from toxic relationship patterns.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-[#FFB4B4]/20 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-heart-pulse text-[#FFB4B4]"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Loyalty Index</h3>
+                            <p class="text-gray-300">Early detection of trust issues and relationship red flags.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-[#FDF7C3] rounded-full blur-3xl opacity-20"></div>
+                <img src="https://images.unsplash.com/photo-1522556189639-b150ed9c4330" 
+                     class="rounded-3xl transform hover:rotate-2 transition-all duration-500 shadow-2xl"
+                     alt="Emotional Protection">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="py-20 relative overflow-hidden section-reveal" <sup className="inline select-none [&>a]:rounded-2xl [&>a]:border [&>a]:px-1.5 [&>a]:py-0.5 [&>a]:transition-colors shadow [&>a]:bg-ds-bg-subtle [&>a]:text-xs [&>svg]:w-4 [&>svg]:h-4 relative -top-[2px]">3</sup>>
+    <div class="container mx-auto px-4 max-w-4xl">
+        <div class="bg-gradient-to-r from-[#B2A4FF]/20 to-[#FFB4B4]/20 backdrop-blur-xl rounded-3xl p-12 border border-white/10">
+            <div class="text-center space-y-6">
+                <h2 class="text-4xl font-bold gradient-text">Begin Your Journey to True Love</h2>
+                <p class="text-xl text-gray-300">Transform your approach to relationships with cosmic guidance</p>
+                <button class="bg-gradient-to-r from-[#B2A4FF] to-[#FFB4B4] px-8 py-4 rounded-full text-lg font-bold hover:scale-105 transition-all">
+                    Book Your 1:1 Session
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Interactive Contact Section -->
+<section class="py-20 relative overflow-hidden" <sup className="inline select-none [&>a]:rounded-2xl [&>a]:border [&>a]:px-1.5 [&>a]:py-0.5 [&>a]:transition-colors shadow [&>a]:bg-ds-bg-subtle [&>a]:text-xs [&>svg]:w-4 [&>svg]:h-4 relative -top-[2px]">2</sup>>
+    <div class="absolute inset-0">
+        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba" 
+             class="w-full h-full object-cover opacity-20 parallax">
+    </div>
+    
+    <div class="container mx-auto px-4 max-w-4xl relative z-10">
+        <div class="bg-white/5 backdrop-blur-xl rounded-3xl p-12 border border-cosmic-purple/20">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Begin Your Love Journey</h2>
+            
+            <form class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-sm text-cosmic-yellow">Your Name</label>
+                        <input type="text" 
+                               class="w-full bg-white/10 rounded-xl px-6 py-4 outline-none focus:ring-2 focus:ring-cosmic-pink border border-cosmic-purple/20"
+                               placeholder="Enter your name">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm text-cosmic-yellow">Email Address</label>
+                        <input type="email" 
+                               class="w-full bg-white/10 rounded-xl px-6 py-4 outline-none focus:ring-2 focus:ring-cosmic-pink border border-cosmic-purple/20"
+                               placeholder="Enter your email">
+                    </div>
+                </div>
+                
+                <div class="space-y-2">
+                    <label class="text-sm text-cosmic-yellow">Choose Service</label>
+                    <select class="w-full bg-white/10 rounded-xl px-6 py-4 outline-none focus:ring-2 focus:ring-cosmic-pink border border-cosmic-purple/20">
+                        <option>Love Reading Session</option>
+                        <option>Compatibility Analysis</option>
+                        <option>Marriage Guidance</option>
+                    </select>
+                </div>
+                
+                <div class="space-y-2">
+                    <label class="text-sm text-cosmic-yellow">Your Message</label>
+                    <textarea rows="4" 
+                              class="w-full bg-white/10 rounded-xl px-6 py-4 outline-none focus:ring-2 focus:ring-cosmic-pink border border-cosmic-purple/20"
+                              placeholder="Share your story..."></textarea>
+                </div>
+                
+                <button class="w-full bg-gradient-to-r from-cosmic-purple to-cosmic-pink py-4 rounded-xl font-bold hover:opacity-90 transition-all">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 relative overflow-hidden" <sup className="inline select-none [&>a]:rounded-2xl [&>a]:border [&>a]:px-1.5 [&>a]:py-0.5 [&>a]:transition-colors shadow [&>a]:bg-ds-bg-subtle [&>a]:text-xs [&>svg]:w-4 [&>svg]:h-4 relative -top-[2px]">4</sup>>
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-3 gap-12">
+            <div class="space-y-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#B2A4FF] to-[#FFB4B4] flex items-center justify-center">
+                        <i class="fas fa-infinity text-white"></i>
+                    </div>
+                    <span class="text-2xl font-bold gradient-text">CosmicLove</span>
+                </div>
+                <p class="text-gray-400">Guiding souls to their divine connections through cosmic wisdom.</p>
+            </div>
+
+            <div class="space-y-4">
+                <h3 class="text-lg font-bold text-[#FFB4B4]">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-[#FFB4B4] transition-colors">About Us</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-[#FFB4B4] transition-colors">Services</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-[#FFB4B4] transition-colors">Book Session</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-4">
+                <h3 class="text-lg font-bold text-[#FFDEB4]">Connect</h3>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#B2A4FF]/20 transition-all">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#B2A4FF]/20 transition-all">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+// 3D Card Effect
+function handleMouseMove(event) {
+    const card = event.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = (y - centerY) / 10;
+    const rotateY = (centerX - x) / 10;
+    
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+}
+
+function handleMouseLeave(event) {
+    const card = event.currentTarget;
+    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+}
+
+// Scroll Reveal Animation
+const observerOptions = {
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('opacity-100', 'translate-y-0');
+            entry.target.classList.remove('opacity-0', 'translate-y-10');
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.section-reveal').forEach(section => {
+    section.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-1000');
+    observer.observe(section);
+});
+
+// Parallax Effect
+window.addEventListener('scroll', () => {
+    const parallaxElements = document.querySelectorAll('.parallax');
+    parallaxElements.forEach(element => {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * 0.5;
+        element.style.transform = `translate3d(0, ${rate}px, 0)`;
+    });
+});
+</script>
+</body>
+</html>

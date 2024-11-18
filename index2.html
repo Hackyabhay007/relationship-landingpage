@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relationship Solutions | Find Your Path to Love</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .custom-shadow {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-card {
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+        
+        .question-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .form-progress {
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+        }
+    </style>
+
+
+<!-- about -->
+<style>
+    /* Add these styles */
+    .feature-card {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        border: 1px solid rgba(249, 250, 251, 0.8);
+    }
+    
+    .feature-card:hover .icon-wrapper {
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+    }
+    
+    .stat-card {
+        transition: all 0.3s ease;
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    </style>
+    
+
+    <!-- services -->
+         
+    <style>
+        .solution-card {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .solution-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        </style>
+
+
+<!-- faq -->
+
+<style>
+.faq-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.faq-answer:not(.hidden) {
+    animation: slideDown 0.3s ease-out;
+}
+</style>
+</head>
+<body class="overflow-x-hidden bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-effect">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-orange-400">
+                    LoveSpace™
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="font-medium hover:text-pink-600 transition-all">About</a>
+                    <a href="#services" class="font-medium hover:text-pink-600 transition-all">Services</a>
+                    <a href="#testimonials" class="font-medium hover:text-pink-600 transition-all">Success Stories</a>
+                    <button onclick="startAssessment()" class="px-6 py-2 bg-gradient-to-r from-pink-600 to-orange-400 text-white rounded-full hover:shadow-lg transition-all">
+                        Start Assessment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen relative overflow-hidden bg-gradient-to-br from-pink-50 to-white">
+        <div class="container mx-auto px-8 pt-32">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <span class="px-4 py-2 bg-pink-100 text-pink-600 rounded-full text-sm font-medium">
+                        Trusted by 10,000+ Couples
+                    </span>
+                    <h1 class="text-6xl font-bold leading-tight">
+                        Your Journey to <span class="text-pink-600">Lasting Love</span> Starts Here
+                    </h1>
+                    <p class="text-xl text-gray-600">
+                        Whether you're single, dating, or married, our personalized approach helps you build stronger, more meaningful relationships.
+                    </p>
+                    <button onclick="startAssessment()" class="px-8 py-4 bg-gradient-to-r from-pink-600 to-orange-400 text-white rounded-lg hover:shadow-xl transition-all">
+                        Take Free Assessment
+                    </button>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex -space-x-4">
+                            <!-- Add real testimonial images here -->
+                            <img src="https://randomuser.me/api/portraits/women/1.jpg" class="w-10 h-10 rounded-full border-2 border-white">
+                            <img src="https://randomuser.me/api/portraits/men/1.jpg" class="w-10 h-10 rounded-full border-2 border-white">
+                            <img src="https://randomuser.me/api/portraits/women/2.jpg" class="w-10 h-10 rounded-full border-2 border-white">
+                        </div>
+                        <p class="text-gray-600">
+                            Joined by <span class="font-bold text-pink-600">10,000+</span> happy couples
+                        </p>
+                    </div>
+                </div>
+                <div class="relative hidden md:block">
+                    <div class="absolute inset-0 bg-gradient-to-r from-pink-600 to-orange-400 rounded-full opacity-20 blur-3xl"></div>
+                    <img src="https://storage.googleapis.com/dall-e-images/Ggeb419KU0cskE81o6hTTvy7NKx1%2F55c03bc3-5d01-4e0f-96db-b902165d6ddf.png" alt="Happy Couple" class="relative rounded-lg shadow-xl floating">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Section (Initially Hidden) -->
+    <section id="assessmentSection" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50">
+        <div class="container mx-auto px-4 h-full flex items-center justify-center">
+            <div class="bg-white rounded-xl shadow-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <!-- Progress Bar -->
+                <div class="w-full bg-gray-200 rounded-full h-2 mb-8">
+                    <div class="form-progress bg-pink-600 h-2 rounded-full" id="formProgress"></div>
+                </div>
+
+                <!-- Question Container -->
+                <div id="questionContainer">
+                    <!-- Initial Choices -->
+                    <div id="initialChoices">
+                        <h2 class="text-3xl font-bold text-center mb-8">Let's understand your situation better</h2>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <!-- Relationship Status Cards -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative overflow-hidden">
+        <!-- Background Design Elements -->
+        <div class="absolute inset-0 bg-gradient-to-br from-pink-50 to-orange-50 opacity-50"></div>
+        
+        <div class="container mx-auto px-8 relative">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-block">
+                    <span class="text-pink-600 font-medium px-4 py-2 bg-pink-50 rounded-full">Why Choose Us</span>
+                </div>
+                <h2 class="text-5xl font-bold mt-6 mb-4 bg-gradient-to-r from-pink-600 to-orange-400 text-transparent bg-clip-text">
+                    Expert Guidance for Every Stage
+                </h2>
+                <p class="text-gray-600 text-lg">
+                    Our approach combines modern psychology with practical relationship advice
+                </p>
+            </div>
+    
+            <!-- Feature Cards Grid -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature Card 1 -->
+                <div class="feature-card bg-white rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                    <div class="icon-wrapper w-16 h-16 rounded-xl bg-gradient-to-r from-pink-600 to-orange-400 flex items-center justify-center text-white mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Personalized Approach</h3>
+                    <p class="text-gray-600 mb-6">Tailored advice based on your unique relationship situation</p>
+                    <div class="flex items-center text-pink-600">
+                        <span class="font-medium">Learn More</span>
+                        <svg class="w-5 h-5 ml-2 transition-transform duration-300 transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </div>
+                </div>
+    
+                <!-- Feature Card 2 -->
+                <div class="feature-card bg-white rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                    <div class="icon-wrapper w-16 h-16 rounded-xl bg-gradient-to-r from-pink-600 to-orange-400 flex items-center justify-center text-white mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Expert Counselors</h3>
+                    <p class="text-gray-600 mb-6">Access to certified relationship experts with proven success</p>
+                    <div class="flex items-center text-pink-600">
+                        <span class="font-medium">Meet Our Team</span>
+                        <svg class="w-5 h-5 ml-2 transition-transform duration-300 transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </div>
+                </div>
+    
+                <!-- Feature Card 3 -->
+                <div class="feature-card bg-white rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                    <div class="icon-wrapper w-16 h-16 rounded-xl bg-gradient-to-r from-pink-600 to-orange-400 flex items-center justify-center text-white mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Proven Methods</h3>
+                    <p class="text-gray-600 mb-6">Research-backed techniques with high success rates</p>
+                    <div class="flex items-center text-pink-600">
+                        <span class="font-medium">View Success Stories</span>
+                        <svg class="w-5 h-5 ml-2 transition-transform duration-300 transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Statistics Strip -->
+            <div class="mt-16 grid md:grid-cols-4 gap-8 text-center">
+                <div class="stat-card bg-white p-6 rounded-xl shadow-sm">
+                    <div class="text-4xl font-bold text-pink-600">95%</div>
+                    <p class="text-gray-600 mt-2">Success Rate</p>
+                </div>
+                <div class="stat-card bg-white p-6 rounded-xl shadow-sm">
+                    <div class="text-4xl font-bold text-pink-600">10K+</div>
+                    <p class="text-gray-600 mt-2">Happy Couples</p>
+                </div>
+                <div class="stat-card bg-white p-6 rounded-xl shadow-sm">
+                    <div class="text-4xl font-bold text-pink-600">15+</div>
+                    <p class="text-gray-600 mt-2">Years Experience</p>
+                </div>
+                <div class="stat-card bg-white p-6 rounded-xl shadow-sm">
+                    <div class="text-4xl font-bold text-pink-600">24/7</div>
+                    <p class="text-gray-600 mt-2">Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    
+    
+    <!-- Services Section -->
+    <section id="chat-assessment" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-50 to-pink-50"></div>
+        <div class="container mx-auto px-8 max-w-2xl relative">
+            
+            <!-- Chat Header -->
+            <div class="text-center mb-10">
+                <span class="inline-block px-4 py-2 bg-pink-50 text-pink-600 rounded-full text-sm font-semibold">
+                    Quick Relationship Check
+                </span>
+                <h2 class="text-3xl font-bold mt-4 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                    Let's Talk About Your Relationship
+                </h2>
+            </div>
+    
+            <!-- Chat Interface -->
+            <div class="bg-white rounded-2xl shadow-xl p-6">
+                <!-- Chat Messages -->
+                <div class="space-y-4 mb-6">
+                    <!-- Bot Message -->
+                    <div class="flex items-start">
+                        <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center mr-3">
+                            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                            </svg>
+                        </div>
+                        <div class="bg-gray-100 rounded-2xl p-4 max-w-md">
+                            <p class="text-gray-800">Hi there! I'm here to help you understand your relationship better. Please select the question that resonates most with your current situation:</p>
+                        </div>
+                    </div>
+    
+                    <!-- Question Options -->
+                    <div class="space-y-3 ml-13">
+                        <button class="w-full text-left p-4 bg-white border border-gray-200 rounded-xl hover:bg-pink-50 hover:border-pink-200 transition-all duration-300">
+                            "I feel disconnected from my partner lately. How can we rebuild our emotional intimacy?"
+                        </button>
+                        
+                        <button class="w-full text-left p-4 bg-white border border-gray-200 rounded-xl hover:bg-pink-50 hover:border-pink-200 transition-all duration-300">
+                            "We keep having the same arguments over and over. How do we break this cycle?"
+                        </button>
+                        
+                        <button class="w-full text-left p-4 bg-white border border-gray-200 rounded-xl hover:bg-pink-50 hover:border-pink-200 transition-all duration-300">
+                            "I'm considering ending my relationship. How do I know if it's the right decision?"
+                        </button>
+                        
+                        <button class="w-full text-left p-4 bg-white border border-gray-200 rounded-xl hover:bg-pink-50 hover:border-pink-200 transition-all duration-300">
+                            "Trust has been broken in our relationship. Is there hope for rebuilding it?"
+                        </button>
+                        
+                        <button class="w-full text-left p-4 bg-white border border-gray-200 rounded-xl hover:bg-pink-50 hover:border-pink-200 transition-all duration-300">
+                            "How can we improve our communication and feel heard by each other?"
+                        </button>
+                    </div>
+                </div>
+    
+                <!-- Chat Input -->
+                <div class="mt-6 text-center">
+                    <p class="text-sm text-gray-500 mb-4">Select a question or start your free assessment for personalized guidance</p>
+                    <button onclick="startAssessment()" class="w-full py-4 px-6 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-xl font-semibold hover:opacity-90 transition-all">
+                        Start Free Assessment
+                    </button>
+                </div>
+            </div>
+    
+            <!-- Trust Indicators -->
+            <div class="flex items-center justify-center mt-6 space-x-4 text-sm text-gray-600">
+                <span>✓ 100% Confidential</span>
+                <span>✓ Expert-Backed</span>
+                <span>✓ Free Analysis</span>
+            </div>
+        </div>
+    </section>
+    
+
+    
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="container mx-auto px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold">Success Stories</h2>
+                <p class="text-gray-600 mt-4">Real stories from couples who transformed their relationships</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial Cards -->
+                <div class="testimonial-card bg-white rounded-xl shadow-lg p-8">
+                    <div class="flex items-center mb-6">
+                        <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Client" class="w-14 h-14 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Sarah & John</h4>
+                            <p class="text-gray-600">Married 3 years</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"The assessment helped us identify our communication patterns. Now we understand each other better than ever."</p>
+                    <div class="flex text-yellow-400">
+                        ★★★★★
+                    </div>
+                </div>
+                <!-- Add more testimonial cards -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Relationship Tips Section -->
+<section id="tips" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-8">
+        <div class="text-center mb-16">
+            <span class="text-pink-600 font-medium">FREE RESOURCES</span>
+            <h2 class="text-4xl font-bold mt-2">Relationship Tips & Advice</h2>
+            <p class="text-gray-600 mt-4">Expert insights for every relationship stage</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Relationship Stage: Single -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="relative">
+                    <img src="https://source.unsplash.com/random/800x600/?single-person" alt="Single Life" class="w-full h-48 object-cover">
+                    <div class="absolute top-4 left-4 px-3 py-1 bg-pink-600 text-white rounded-full text-sm">
+                        Single Life
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-4">Building Self-Love</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-pink-600 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Understanding your worth and values</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-pink-600 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Setting healthy boundaries</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-pink-600 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Identifying relationship patterns</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Relationship Stage: Dating -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="relative">
+                    <img src="https://source.unsplash.com/random/800x600/?couple-dating" alt="Dating" class="w-full h-48 object-cover">
+                    <div class="absolute top-4 left-4 px-3 py-1 bg-pink-600 text-white rounded-full text-sm">
+                        Dating
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-4">Building Strong Foundations</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-pink-600 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Effective communication strategies</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-pink-600 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Understanding attachment styles</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-pink-600 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Building trust and intimacy</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Relationship Stage: Marriage -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="relative">
+                    <img src="https://source.unsplash.com/random/800x600/?wedding" alt="Marriage" class="w-full h-48 object-cover">
+                    <div class="absolute top-4 left-4 px-3 py-1 bg-pink-600 text-white rounded-full text-sm">
+                        Marriage
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-4">Maintaining Long-term Love</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-pink-600 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Keeping the spark alive</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-pink-600 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Navigating life changes together</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-pink-600 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Growing stronger as a couple</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!-- Comprehensive FAQ Section -->
+<section id="faq" class="py-24 relative overflow-hidden">
+    <!-- Decorative Elements -->
+    <div class="absolute inset-0 bg-gradient-to-br from-gray-50 to-pink-50/30"></div>
+    <div class="absolute right-0 top-0 w-96 h-96 bg-pink-100/20 rounded-full filter blur-3xl"></div>
+    <div class="absolute left-0 bottom-0 w-96 h-96 bg-purple-100/20 rounded-full filter blur-3xl"></div>
+
+    <div class="container mx-auto px-8 relative">
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="inline-block px-4 py-2 bg-pink-50 text-pink-600 rounded-full text-sm font-semibold mb-4">
+                Got Questions?
+            </span>
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                Frequently Asked Questions
+            </h2>
+            <p class="text-gray-600 text-lg">
+                Find answers to common questions about our relationship transformation journey
+            </p>
+        </div>
+
+        <!-- FAQ Grid -->
+        <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <!-- Left Column -->
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
+                    <button class="w-full px-6 py-4 text-left focus:outline-none" onclick="toggleFAQ(this)">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold text-gray-800">How long does the journey take?</span>
+                            <div class="flex-shrink-0 ml-4">
+                                <div class="faq-icon w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center transition-transform duration-300">
+                                    <svg class="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                    <div class="faq-answer hidden">
+                        <div class="px-6 pb-4">
+                            <div class="pt-4 border-t">
+                                <p class="text-gray-600">
+                                    Every relationship is unique, but typically clients see significant improvements within 8-12 sessions. We create a personalized timeline based on:
+                                </p>
+                                <ul class="mt-4 space-y-2">
+                                    <li class="flex items-center text-gray-600">
+                                        <svg class="w-4 h-4 text-pink-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        Your specific goals and challenges
+                                    </li>
+                                    <li class="flex items-center text-gray-600">
+                                        <svg class="w-4 h-4 text-pink-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        Current relationship stage
+                                    </li>
+                                    <li class="flex items-center text-gray-600">
+                                        <svg class="w-4 h-4 text-pink-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        Commitment to the process
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more FAQ items for left column -->
+            </div>
+
+            <!-- Right Column -->
+            <div class="space-y-4">
+                <!-- More FAQ items -->
+            </div>
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="mt-16 text-center">
+            <div class="inline-block p-8 bg-white rounded-2xl shadow-lg max-w-2xl">
+                <h3 class="text-2xl font-bold mb-4">Still have questions?</h3>
+                <p class="text-gray-600 mb-6">We're here to help you on your journey to a stronger relationship</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="inline-flex items-center justify-center px-6 py-3 bg-pink-600 text-white rounded-xl hover:bg-pink-700 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                        Chat with Us
+                    </button>
+                    <button class="inline-flex items-center justify-center px-6 py-3 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        Email Support
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-8">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-8">Ready to Transform Your Relationship?</h2>
+                <p class="mb-8">Take the first step towards a stronger connection</p>
+                <button onclick="startAssessment()" class="px-8 py-4 bg-white text-pink-600 rounded-lg hover:shadow-xl transition-all">
+                    Start Free Assessment
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">LoveSpace™</h3>
+                    <p class="text-gray-400">Building stronger relationships through understanding and growth.</p>
+                </div>
+                <!-- Add more footer content -->
+            </div>
+        </div>
+    </footer>
+    
+
+
+    <!-- faq -->
+
+    <script>
+        function toggleFAQ(button) {
+            const item = button.closest('.faq-item');
+            const answer = item.querySelector('.faq-answer');
+            const icon = item.querySelector('.faq-icon');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-answer').forEach(el => {
+                if (el !== answer) {
+                    el.classList.add('hidden');
+                    el.closest('.faq-item').querySelector('.faq-icon').classList.remove('rotate-180');
+                }
+            });
+        
+            // Toggle current FAQ
+            answer.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+        
+        // Add intersection observer for animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.faq-item').forEach(item => {
+            observer.observe(item);
+        });
+        </script>
+
+    <script>
+
+        // Add to your existing script section
+
+// Statistics Animation
+const stats = {
+    clients: 0,
+    sessions: 0,
+    success: 0,
+    years: 0
+};
+
+gsap.to(stats, {
+    scrollTrigger: {
+        trigger: "#impact",
+        start: "top center"
+    },
+    clients: 10000,
+    sessions: 50000,
+    success: 95,
+    years: 15,
+    duration: 2,
+    onUpdate: () => {
+        document.getElementById("statClients").textContent = Math.round(stats.clients).toLocaleString();
+        document.getElementById("statSessions").textContent = Math.round(stats.sessions).toLocaleString();
+        document.getElementById("statSuccess").textContent = Math.round(stats.success) + "%";
+        document.getElementById("statYears").textContent = Math.round(stats.years);
+    }
+});
+
+// FAQ Toggle Function
+function toggleFAQ(element) {
+    const content = element.nextElementSibling;
+    const arrow = element.querySelector('svg');
+    content.classList.toggle('hidden');
+    arrow.classList.toggle('rotate-180');
+}
+
+// Expert Cards Animation
+gsap.from("#experts .group", {
+    scrollTrigger: {
+        trigger: "#experts",
+        start: "top center"
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    stagger: 0.2
+});
+
+
+        // Questions Database
+        const questions = {
+            single: [
+                {
+                    id: 1,
+                    question: "What's your primary goal in relationships?",
+                    options: [
+                        "Finding a long-term partner",
+                        "Building self-confidence in dating",
+                        "Healing from past relationships",
+                        "Understanding relationship patterns"
+                    ],
+                    image: "https://source.unsplash.com/random/800x600/?single-person"
+                },
+                {
+                    id: 2,
+                    question: "What's your biggest challenge in dating?",
+                    options: [
+                        "Meeting compatible partners",
+                        "Building emotional connections",
+                        "Trust issues from past experiences",
+                        "Maintaining boundaries"
+                    ],
+                    image: "https://source.unsplash.com/random/800x600/?dating"
+                },
+                {
+                    id: 3,
+                    question: "How do you typically meet potential partners?",
+                    options: [
+                        "Dating apps",
+                        "Through friends",
+                        "Social events",
+                        "Haven't been actively dating"
+                    ],
+                    image: "https://source.unsplash.com/random/800x600/?social-gathering"
+                }
+            ],
+            relationship: [
+                {
+                    id: 1,
+                    question: "How long have you been in your current relationship?",
+                    options: [
+                        "Less than 6 months",
+                        "6 months to 1 year",
+                        "1-3 years",
+                        "More than 3 years"
+                    ],
+                    image: "https://source.unsplash.com/random/800x600/?couple"
+                },
+                {
+                    id: 2,
+                    question: "What's your main relationship concern?",
+                    options: [
+                        "Communication issues",
+                        "Trust and security",
+                        "Growing apart",
+                        "Different life goals"
+                    ],
+                    image: "https://source.unsplash.com/random/800x600/?couple-talking"
+                },
+                {
+                    id: 3,
+                    question: "How often do you have meaningful conversations with your partner?",
+                    options: [
+                        "Daily",
+                        "Few times a week",
+                        "Once a week",
+                        "Rarely"
+                    ],
+                    image: "https://source.unsplash.com/random/800x600/?couple-intimate"
+                }
+            ],
+            married: [
+                {
+                    id: 1,
+                    question: "How long have you been married?",
+                    options: [
+                        "Less than 2 years",
+                        "2-5 years",
+                        "5-10 years",
+                        "More than 10 years"
+                    ],
+                    image: "https://source.unsplash.com/random/800x600/?wedding"
+                },
+                {
+                    id: 2,
+                    question: "What aspect of marriage would you like to improve?",
+                    options: [
+                        "Emotional intimacy",
+                        "Physical intimacy",
+                        "Financial harmony",
+                        "Work-life balance"
+                    ],
+                    image: "https://source.unsplash.com/random/800x600/?married-couple"
+                },
+                {
+                    id: 3,
+                    question: "How do you handle conflicts in your marriage?",
+                    options: [
+                        "Open discussion",
+                        "Avoid confrontation",
+                        "Seek counseling",
+                        "Take time to cool off"
+                    ],
+                    image: "https://source.unsplash.com/random/800x600/?couple-talking"
+                }
+            ]
+        };
+
+        let currentPath = '';
+        let currentQuestion = 0;
+        let answers = [];
+
+        function startAssessment() {
+            document.getElementById('assessmentSection').classList.remove('hidden');
+            showInitialChoices();
+        }
+
+        function showInitialChoices() {
+            const template = `
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold">Let's understand your situation better</h2>
+                    <p class="text-gray-600 mt-2">Select what best describes you</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="question-card bg-white p-8 rounded-xl shadow-lg cursor-pointer" onclick="selectPath('single')">
+                        <img src="https://source.unsplash.com/random/400x300/?single-person" alt="Single" class="w-full h-48 object-cover rounded-lg mb-4">
+                        <h3 class="text-xl font-bold mb-2">Single</h3>
+                        <p class="text-gray-600">Looking for meaningful connections</p>
+                    </div>
+                    <div class="question-card bg-white p-8 rounded-xl shadow-lg cursor-pointer" onclick="selectPath('relationship')">
+                        <img src="https://source.unsplash.com/random/400x300/?couple" alt="In Relationship" class="w-full h-48 object-cover rounded-lg mb-4">
+                        <h3 class="text-xl font-bold mb-2">In a Relationship</h3>
+                        <p class="text-gray-600">Strengthen your bond</p>
+                    </div>
+                    <div class="question-card bg-white p-8 rounded-xl shadow-lg cursor-pointer" onclick="selectPath('married')">
+                        <img src="https://source.unsplash.com/random/400x300/?wedding" alt="Married" class="w-full h-48 object-cover rounded-lg mb-4">
+                        <h3 class="text-xl font-bold mb-2">Married</h3>
+                        <p class="text-gray-600">Enhance your marriage</p>
+                    </div>
+                </div>
+            `;
+            document.getElementById('questionContainer').innerHTML = template;
+        }
+
+        function selectPath(path) {
+            currentPath = path;
+            currentQuestion = 0;
+            answers = [];
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const questionSet = questions[currentPath];
+            if (currentQuestion >= questionSet.length) {
+                showFinalForm();
+                return;
+            }
+
+            const question = questionSet[currentQuestion];
+            const progress = ((currentQuestion + 1) / (questionSet.length + 1)) * 100;
+            document.getElementById('formProgress').style.width = `${progress}%`;
+
+            const template = `
+                <div class="space-y-6">
+                    <img src="${question.image}" alt="Question Image" class="w-full h-64 object-cover rounded-lg">
+                    <h3 class="text-2xl font-bold">${question.question}</h3>
+                    <div class="grid gap-4">
+                        ${question.options.map((option, index) => `
+                            <button 
+                                onclick="answerQuestion('${option}')" 
+                                class="p-4 text-left rounded-lg border-2 border-gray-200 hover:border-pink-600 hover:bg-pink-50 transition-all">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('questionContainer').innerHTML = template;
+        }
+
+        function answerQuestion(answer) {
+            answers.push({
+                question: questions[currentPath][currentQuestion].question,
+                answer: answer
+            });
+            currentQuestion++;
+            showQuestion();
+        }
+
+        function showFinalForm() {
+            const template = `
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold">Get Your Personalized Relationship Plan</h3>
+                    <p class="text-gray-600">Based on your answers, we'll create a customized plan for your relationship success.</p>
+                    <form onsubmit="submitForm(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Your Name</label>
+                            <input type="text" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Email Address</label>
+                            <input type="email" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent">
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-pink-600 to-orange-400 text-white rounded-lg hover:shadow-lg transition-all">
+                            Get My Free Plan
+                        </button>
+                        <p class="text-sm text-gray-600 text-center">
+                            We respect your privacy. Your information is safe with us.
+                        </p>
+                    </form>
+                </div>
+            `;
+
+            document.getElementById('questionContainer').innerHTML = template;
+            document.getElementById('formProgress').style.width = '100%';
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const leadData = {
+                path: currentPath,
+                answers: answers,
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone')
+            };
+            
+            // Handle form submission (add your API endpoint)
+            console.log('Lead Data:', leadData);
+            
+            // Show success message
+            document.getElementById('questionContainer').innerHTML = `
+                <div class="text-center py-8">
+                    <svg class="w-20 h-20 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <h3 class="text-2xl font-bold text-green-600 mb-4">Thank You!</h3>
+                    <p class="text-gray-600">Your personalized relationship plan is on its way to your inbox.</p>
+                    <button onclick="closeAssessment()" class="mt-6 px-6 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-all">
+                        Close
+                    </button>
+                </div>
+            `;
+        }
+
+        function closeAssessment() {
+            document.getElementById('assessmentSection').classList.add('hidden');
+        }
+
+        // Initialize GSAP animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate sections on scroll
+        gsap.utils.toArray('section').forEach(section => {
+            gsap.from(section.querySelectorAll('h2, p, .grid'), {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%"
+                }
+            });
+        });
+    </script>
+</body>
+</html>
