@@ -4,22 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ORUPhones Crash Analytics - v243</title>
-    <!-- Firebase SDK -->
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
-
-    <!-- Other Dependencies -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 </head>
 <body class="bg-gray-100">
     <div class="min-h-screen">
         <header class="bg-white shadow-sm">
             <div class="container mx-auto px-4 py-6">
                 <div class="flex justify-between items-center">
-                    <h1 class="text-3xl font-bold text-gray-900">ORUPhones Crash Analytics</h1>
+                    <h1 class="text-3xl font-bold text-gray-900">Crash Analytics</h1>
                     <div class="text-sm text-gray-600">Version: 243</div>
                 </div>
             </div>
@@ -37,16 +35,14 @@
             </div>
 
             <!-- Quick Stats -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                 <div class="bg-white rounded-lg shadow p-6">
                     <h3 class="text-sm font-medium text-gray-500">Total Crashes</h3>
-                    <p id="totalCrashes" class="mt-2 text-3xl font-semibold text-gray-900">-</p>
-                    <p id="crashTrend" class="text-sm text-gray-500"></p>
+                    <p id="totalCrashes" class="mt-2 text-3xl font-bold text-gray-900">0</p>
                 </div>
                 <div class="bg-white rounded-lg shadow p-6">
                     <h3 class="text-sm font-medium text-gray-500">Affected Devices</h3>
-                    <p id="affectedDevices" class="mt-2 text-3xl font-semibold text-gray-900">-</p>
-                    <p id="deviceTrend" class="text-sm text-gray-500"></p>
+                    <p id="affectedDevices" class="mt-2 text-3xl font-bold text-gray-900">0</p>
                 </div>
                 <div class="bg-white rounded-lg shadow p-6">
                     <h3 class="text-sm font-medium text-gray-500">Most Common Crash</h3>
@@ -71,43 +67,40 @@
                         </button>
                     </div>
                 </div>
-                
-                <form id="filterForm" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <form id="filterForm" class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Device Make</label>
-                        <select id="makeFilter" class="w-full rounded border-gray-300 shadow-sm">
+                        <label class="block text-sm font-medium text-gray-700">Make</label>
+                        <select id="makeFilter" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                             <option value="">All Makes</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Device Model</label>
-                        <select id="modelFilter" class="w-full rounded border-gray-300 shadow-sm">
+                        <label class="block text-sm font-medium text-gray-700">Model</label>
+                        <select id="modelFilter" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                             <option value="">All Models</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Android Version</label>
-                        <select id="androidVersionFilter" class="w-full rounded border-gray-300 shadow-sm">
+                        <label class="block text-sm font-medium text-gray-700">Android Version</label>
+                        <select id="androidVersionFilter" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                             <option value="">All Versions</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Build Type</label>
-                        <select id="buildTypeFilter" class="w-full rounded border-gray-300 shadow-sm">
+                        <label class="block text-sm font-medium text-gray-700">Build Type</label>
+                        <select id="buildTypeFilter" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                             <option value="">All Types</option>
-                            <option value="prod">Production</option>
-                            <option value="debug">Debug</option>
                         </select>
                     </div>
-                    <div class="lg:col-span-2">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
-                        <div class="grid grid-cols-2 gap-2">
-                            <input type="date" id="startDate" class="w-full rounded border-gray-300 shadow-sm">
-                            <input type="date" id="endDate" class="w-full rounded border-gray-300 shadow-sm">
+                    <div class="col-span-2">
+                        <label class="block text-sm font-medium text-gray-700">Date Range</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <input type="date" id="startDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                            <input type="date" id="endDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                         </div>
                     </div>
-                    <div class="lg:col-span-2 flex items-end">
-                        <button type="submit" class="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                    <div class="col-span-3">
+                        <button type="submit" class="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
                             Apply Filters
                         </button>
                     </div>
@@ -135,7 +128,7 @@
                     </div>
                 </div>
                 <div class="bg-white rounded-lg shadow p-6">
-                    <h3 class="text-lg font-semibold mb-4">Error Types Distribution</h3>
+                    <h3 class="text-lg font-semibold mb-4">Error Types</h3>
                     <div class="h-64">
                         <canvas id="errorTypesChart"></canvas>
                     </div>
@@ -144,9 +137,9 @@
 
             <!-- Crash Logs Table -->
             <div class="bg-white rounded-lg shadow overflow-hidden">
-                <div class="p-4 border-b flex justify-between items-center">
+                <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                     <h2 class="text-lg font-semibold">Crash Logs</h2>
-                    <button id="exportData" class="px-4 py-2 text-sm bg-green-600 text-white rounded hover:bg-green-700">
+                    <button id="exportData" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
                         Export to CSV
                     </button>
                 </div>
@@ -154,38 +147,28 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Timestamp
-                                </th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Device
-                                </th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Android
-                                </th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Build
-                                </th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Error
-                                </th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Actions
-                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Timestamp</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Device</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Android</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Build</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Error</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Action</th>
                             </tr>
                         </thead>
                         <tbody id="crashLogsTableBody" class="bg-white divide-y divide-gray-200">
                         </tbody>
                     </table>
                 </div>
-                <div id="pagination" class="px-6 py-4 flex items-center justify-between border-t">
-                    <div class="flex space-x-2">
-                        <button id="prevPage" class="px-3 py-1 border rounded text-sm disabled:opacity-50">Previous</button>
-                        <button id="nextPage" class="px-3 py-1 border rounded text-sm disabled:opacity-50">Next</button>
+                <div class="px-6 py-4 border-t border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <div class="flex space-x-2">
+                            <button id="prevPage" class="px-3 py-1 border rounded text-sm">Previous</button>
+                            <button id="nextPage" class="px-3 py-1 border rounded text-sm">Next</button>
+                        </div>
+                        <div>
+                            Page <span id="currentPage">1</span> of <span id="totalPages">1</span>
+                        </div>
                     </div>
-                    <span class="text-sm text-gray-700">
-                        Page <span id="currentPage">1</span> of <span id="totalPages">1</span>
-                    </span>
                 </div>
             </div>
         </main>
@@ -193,7 +176,7 @@
 
     <!-- Crash Details Modal -->
     <div id="crashModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto m-4">
+        <div class="bg-white rounded-lg max-w-4xl w-full m-4 max-h-[90vh] overflow-y-auto">
             <div class="p-6">
                 <div class="flex justify-between items-start mb-4">
                     <h2 class="text-xl font-semibold">Crash Details</h2>
@@ -208,46 +191,6 @@
         </div>
     </div>
     <script>
-
-function showLoading() {
-        const loader = document.getElementById('loadingIndicator');
-        if (loader) {
-            loader.classList.remove('hidden');
-        }
-    }
-
-    function hideLoading() {
-        const loader = document.getElementById('loadingIndicator');
-        if (loader) {
-            loader.classList.add('hidden');
-        }
-    }
-
-    function formatTimestamp(timestamp) {
-        if (!timestamp) return 'N/A';
-        if (timestamp.seconds) {
-            return new Date(timestamp.seconds * 1000).toLocaleString();
-        }
-        return new Date(timestamp).toLocaleString();
-    }
-
-    function showNotification(message, type = 'success') {
-        // Create notification element
-        const notification = document.createElement('div');
-        notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg ${
-            type === 'success' ? 'bg-green-500' : 'bg-red-500'
-        } text-white z-50`;
-        notification.textContent = message;
-
-        // Add to document
-        document.body.appendChild(notification);
-
-        // Remove after 3 seconds
-        setTimeout(() => {
-            notification.remove();
-        }, 3000);
-    }
-
         // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyDkScL3YbS_2UTsz6oZVm3CtOLuunceg4g",
@@ -255,8 +198,8 @@ function showLoading() {
             databaseURL: "https://oru-phones-default-rtdb.firebaseio.com",
             projectId: "oru-phones",
             storageBucket: "oru-phones.firebasestorage.app",
-            messagingSenderId: "510935460380",
-            appId: "1:510935460380:web:a479e894b98db7af56cdd9",
+            messagingSenderId: "510935460460",
+            appId: "1:510935460460:web:a479e894b98db7af56cdd9",
             measurementId: "G-53QDJTVN1E"
         };
     
@@ -264,290 +207,405 @@ function showLoading() {
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
     
-        // Constants
-        const VERSION_CODE = "243";
-        const ITEMS_PER_PAGE = 20;
-        const FILTERS_STORAGE_KEY = 'crashAnalytics_filters_v243';
-    
-        // Global State
-        let currentPage = 1;
-        let totalPages = 1;
-        let lastDoc = null;
-        let firstDoc = null;
         let allCrashData = [];
-        let charts = {};
-        let currentFilters = {
-            versionCode: VERSION_CODE // Default version filter
+        let currentPage = 1;
+        const ITEMS_PER_PAGE = 20;
+        let filters = {
+            make: '',
+            model: '',
+            androidVersion: '',
+            buildType: '',
+            startDate: '',
+            endDate: ''
         };
     
-        // Load saved filters from localStorage
-        function loadSavedFilters() {
-            const savedFilters = localStorage.getItem(FILTERS_STORAGE_KEY);
-            if (savedFilters) {
-                try {
-                    const parsedFilters = JSON.parse(savedFilters);
-                    currentFilters = { ...parsedFilters, versionCode: VERSION_CODE };
-                    // Apply saved filters to form
-                    Object.entries(currentFilters).forEach(([key, value]) => {
-                        const element = document.getElementById(`${key}Filter`);
-                        if (element) element.value = value;
-                    });
-                    return true;
-                } catch (e) {
-                    console.error('Error loading saved filters:', e);
-                    return false;
-                }
-            }
-            return false;
-        }
+        window.onload = function() {
+            fetchCrashData();
+            document.getElementById('filterForm').onsubmit = applyFilters;
+            document.getElementById('clearFilters').onclick = clearFilters;
+            document.getElementById('nextPage').onclick = nextPage;
+            document.getElementById('prevPage').onclick = prevPage;
+        };
     
-        // Save current filters to localStorage
-        function saveCurrentFilters() {
-            try {
-                localStorage.setItem(FILTERS_STORAGE_KEY, JSON.stringify(currentFilters));
-                showNotification('Filters saved successfully');
-            } catch (e) {
-                console.error('Error saving filters:', e);
-                showNotification('Error saving filters', 'error');
-            }
-        }
-    
-        // Notification helper
-        function showNotification(message, type = 'success') {
-            // Implementation of notification system
-            alert(message); // Replace with better notification system
-        }
-    
-        // Initialize Charts
-        function initializeCharts() {
-            const defaultOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'right'
-                    }
-                }
-            };
-    
-            // Android Version Chart
-            charts.androidVersion = new Chart(
-                document.getElementById('androidVersionChart').getContext('2d'),
-                {
-                    type: 'pie',
-                    data: {
-                        labels: [],
-                        datasets: [{
-                            data: [],
-                            backgroundColor: [
-                                '#4F46E5', '#10B981', '#F59E0B', '#EF4444',
-                                '#6366F1', '#8B5CF6', '#EC4899', '#14B8A6'
-                            ]
-                        }]
-                    },
-                    options: defaultOptions
-                }
-            );
-    
-            // Device Make Chart
-            charts.deviceMake = new Chart(
-                document.getElementById('deviceMakeChart').getContext('2d'),
-                {
-                    type: 'bar',
-                    data: {
-                        labels: [],
-                        datasets: [{
-                            label: 'Crashes',
-                            data: [],
-                            backgroundColor: '#4F46E5'
-                        }]
-                    },
-                    options: {
-                        ...defaultOptions,
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                }
-            );
-    
-            // Crash Trend Chart
-            charts.crashTrend = new Chart(
-                document.getElementById('crashTrendChart').getContext('2d'),
-                {
-                    type: 'line',
-                    data: {
-                        labels: [],
-                        datasets: [{
-                            label: 'Daily Crashes',
-                            data: [],
-                            borderColor: '#4F46E5',
-                            tension: 0.1
-                        }]
-                    },
-                    options: {
-                        ...defaultOptions,
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                }
-            );
-    
-            // Error Types Chart
-            charts.errorTypes = new Chart(
-                document.getElementById('errorTypesChart').getContext('2d'),
-                {
-                    type: 'doughnut',
-                    data: {
-                        labels: [],
-                        datasets: [{
-                            data: [],
-                            backgroundColor: [
-                                '#EF4444', '#F59E0B', '#10B981', '#6366F1',
-                                '#8B5CF6', '#EC4899', '#14B8A6', '#4F46E5'
-                            ]
-                        }]
-                    },
-                    options: defaultOptions
-                }
-            );
-        }
-    
-        // Data Processing Functions
-        async function fetchInitialData() {
+        async function fetchCrashData() {
             showLoading();
             try {
-                const query = db.collection('crash_logs')
-                               .where('appDetails.versionCode', '==', VERSION_CODE)
-                               .orderBy('timestamp', 'desc')
-                               .limit(1000); // Fetch more initial data for better analytics
-    
-                const snapshot = await query.get();
-                allCrashData = snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                }));
-    
-                // Process and populate filters
-                populateFiltersFromData(allCrashData);
-                // Load saved filters if any
-                if (loadSavedFilters()) {
-                    applyCurrentFilters();
-                }
-                
-                updateAnalytics(allCrashData);
-                updateCharts(allCrashData);
-                await fetchAndRenderCrashLogs(); // This will apply pagination
+                const snapshot = await db.collection('crash_logs').get();
+                allCrashData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                populateFilterOptions();
+                updateDashboard();
             } catch (error) {
-                console.error('Error fetching initial data:', error);
-                showNotification('Error loading crash data', 'error');
+                console.error("Error fetching data:", error);
+                alert("Error loading crash data.");
             } finally {
                 hideLoading();
             }
         }
     
-        function populateFiltersFromData(data) {
-            const filters = {
-                makes: new Set(),
-                models: new Set(),
-                androidVersions: new Set(),
-                buildTypes: new Set()
-            };
+        function populateFilterOptions() {
+            const makes = new Set(allCrashData.map(log => log.deviceDetails?.make).filter(make => make));
+            const models = new Set(allCrashData.map(log => log.deviceDetails?.model).filter(model => model));
+            const androidVersions = new Set(allCrashData.map(log => log.deviceDetails?.androidVersion).filter(version => version));
+            const buildTypes = new Set(allCrashData.map(log => log.appDetails?.buildType).filter(type => type));
     
-            data.forEach(log => {
-                if (log.deviceDetails?.make) filters.makes.add(log.deviceDetails.make);
-                if (log.deviceDetails?.model) filters.models.add(log.deviceDetails.model);
-                if (log.deviceDetails?.androidVersion) filters.androidVersions.add(log.deviceDetails.androidVersion);
-                if (log.appDetails?.buildType) filters.buildTypes.add(log.appDetails.buildType);
-            });
-    
-            // Populate dropdowns
-            populateSelect('makeFilter', filters.makes);
-            populateSelect('modelFilter', filters.models);
-            populateSelect('androidVersionFilter', filters.androidVersions);
-            populateSelect('buildTypeFilter', filters.buildTypes);
+            fillSelectOptions('makeFilter', makes);
+            fillSelectOptions('modelFilter', models);
+            fillSelectOptions('androidVersionFilter', androidVersions);
+            fillSelectOptions('buildTypeFilter', buildTypes);
         }
     
-        function populateSelect(elementId, values) {
-            const select = document.getElementById(elementId);
-            const currentValue = select.value;
+        function fillSelectOptions(selectId, options) {
+            const select = document.getElementById(selectId);
             select.innerHTML = '<option value="">All</option>';
-            Array.from(values).sort().forEach(value => {
-                const option = document.createElement('option');
-                option.value = value;
-                option.textContent = value;
-                if (value === currentValue) option.selected = true;
-                select.appendChild(option);
+            options.forEach(option => {
+                select.innerHTML += `<option value="${option}">${option}</option>`;
             });
         }
     
-        function applyCurrentFilters() {
-            const filteredData = allCrashData.filter(log => {
-                return Object.entries(currentFilters).every(([key, value]) => {
-                    if (!value) return true;
-                    switch(key) {
-                        case 'make':
-                            return log.deviceDetails?.make === value;
-                        case 'model':
-                            return log.deviceDetails?.model === value;
-                        case 'androidVersion':
-                            return log.deviceDetails?.androidVersion === value;
-                        case 'buildType':
-                            return log.appDetails?.buildType === value;
-                        case 'startDate':
-                            return new Date(log.timestamp) >= new Date(value);
-                        case 'endDate':
-                            return new Date(log.timestamp) <= new Date(value);
-                        default:
-                            return true;
-                    }
-                });
-            });
-    
-            updateAnalytics(filteredData);
-            updateCharts(filteredData);
-            renderCrashLogsTable(filteredData);
-        }
-    
-        // Event Listeners
-        document.getElementById('filterForm').addEventListener('submit', (e) => {
+        function applyFilters(e) {
             e.preventDefault();
-            currentFilters = {
-                versionCode: VERSION_CODE,
-                make: document.getElementById('makeFilter').value,
-                model: document.getElementById('modelFilter').value,
-                androidVersion: document.getElementById('androidVersionFilter').value,
-                buildType: document.getElementById('buildTypeFilter').value,
-                startDate: document.getElementById('startDate').value,
-                endDate: document.getElementById('endDate').value
-            };
-            applyCurrentFilters();
-        });
-    
-        document.getElementById('saveFilters').addEventListener('click', saveCurrentFilters);
-    
-        document.getElementById('clearFilters').addEventListener('click', () => {
-            document.getElementById('filterForm').reset();
-            currentFilters = { versionCode: VERSION_CODE };
-            localStorage.removeItem(FILTERS_STORAGE_KEY);
-            applyCurrentFilters();
-        });
-    
-       // document.getElementById('exportData').addEventListener('click', exportToCSV);
-    
-        // Initialize the dashboard
-        async function initialize() {
-            initializeCharts();
-            await fetchInitialData();
+            filters.make = document.getElementById('makeFilter').value;
+            filters.model = document.getElementById('modelFilter').value;
+            filters.androidVersion = document.getElementById('androidVersionFilter').value;
+            filters.buildType = document.getElementById('buildTypeFilter').value;
+            filters.startDate = document.getElementById('startDate').value;
+            filters.endDate = document.getElementById('endDate').value;
+            currentPage = 1;
+            updateDashboard();
         }
     
-        // Start the application
-        initialize();
+        function clearFilters() {
+            document.getElementById('filterForm').reset();
+            filters.make = '';
+            filters.model = '';
+            filters.androidVersion = '';
+            filters.buildType = '';
+            filters.startDate = '';
+            filters.endDate = '';
+            updateDashboard();
+        }
+    
+        function updateDashboard() {
+            const filteredData = applyFilter(allCrashData);
+            renderCrashTable(filteredData);
+            updateStatistics(filteredData);
+            updateCharts(filteredData);
+        }
+    
+        function applyFilter(data) {
+            return data.filter(log => {
+                const matchesMake = filters.make ? log.deviceDetails?.make === filters.make : true;
+                const matchesModel = filters.model ? log.deviceDetails?.model === filters.model : true;
+                const matchesAndroidVersion = filters.androidVersion ? log.deviceDetails?.androidVersion === filters.androidVersion : true;
+                const matchesBuildType = filters.buildType ? log.appDetails?.buildType === filters.buildType : true;
+    
+                const logDate = log.timestamp?.seconds ? new Date(log.timestamp.seconds * 1000) : new Date(log.timestamp);
+                const withinStartDate = filters.startDate ? logDate >= new Date(filters.startDate) : true;
+                const withinEndDate = filters.endDate ? logDate <= new Date(filters.endDate) : true;
+    
+                return matchesMake && matchesModel && matchesAndroidVersion && matchesBuildType && withinStartDate && withinEndDate;
+            });
+        }
+    
+        function renderCrashTable(data) {
+            const tbody = document.getElementById('crashLogsTableBody');
+            tbody.innerHTML = '';
+    
+            const start = (currentPage - 1) * ITEMS_PER_PAGE;
+            const end = start + ITEMS_PER_PAGE;
+            const pageData = data.slice(start, end);
+    
+            pageData.forEach(crash => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap">${formatDate(crash.timestamp)}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">${crash.deviceDetails?.make} ${crash.deviceDetails?.model}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">${crash.deviceDetails?.androidVersion || 'N/A'}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">${crash.appDetails?.buildType}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">${crash.crashDetails?.type || 'Unknown'}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <button onclick="showCrashDetails('${crash.id}')" class="text-blue-600 hover:text-blue-900">
+                            View
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+    
+            updatePagination(data.length);
+        }
+    
+        function updatePagination(totalItems) {
+            const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+            document.getElementById('currentPage').textContent = currentPage;
+            document.getElementById('totalPages').textContent = totalPages;
+    
+            document.getElementById('prevPage').disabled = currentPage === 1;
+            document.getElementById('nextPage').disabled = currentPage === totalPages;
+        }
+    
+        function formatDate(timestamp) {
+            if (!timestamp) return 'N/A';
+            const date = timestamp.seconds ? new Date(timestamp.seconds * 1000) : new Date(timestamp);
+            return date.toLocaleString();
+        }
+    
+        function nextPage() {
+            const totalPages = Math.ceil(allCrashData.length / ITEMS_PER_PAGE);
+            if (currentPage < totalPages) {
+                currentPage++;
+                updateDashboard();
+            }
+        }
+    
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                updateDashboard();
+            }
+        }
+    
+        function showCrashDetails(id) {
+            const crash = allCrashData.find(log => log.id === id);
+            if (crash) {
+                const modalContent = `
+                    <div>
+                        <h3 class="text-lg font-semibold">Crash Information</h3>
+                        <p><strong>Timestamp:</strong> ${formatDate(crash.timestamp)}</p>
+                        <p><strong>Device:</strong> ${crash.deviceDetails?.make} ${crash.deviceDetails?.model}</p>
+                        <p><strong>Android Version:</strong> ${crash.deviceDetails?.androidVersion}</p>
+                        <p><strong>Build Type:</strong> ${crash.appDetails?.buildType}</p>
+                        <p><strong>Error Type:</strong> ${crash.crashDetails?.type}</p>
+                    </div>
+                `;
+                document.getElementById('crashModalContent').innerHTML = modalContent;
+                document.getElementById('crashModal').classList.remove('hidden');
+            }
+        }
+    
+        function closeModal() {
+            document.getElementById('crashModal').classList.add('hidden');
+        }
+    
+        function updateCharts(data) {
+            // Update charts based on the filtered data
+            // Implementation here can use Chart.js to populate charts
+        }
+    
+        function showLoading() {
+            document.getElementById('loadingIndicator').classList.remove('hidden');
+        }
+    
+        function hideLoading() {
+            document.getElementById('loadingIndicator').classList.add('hidden');
+        }
+    
+        // Here, you can implement the CSV export function if necessary.
+        function exportToCSV() {
+            // Implementation for exporting data to CSV
+        }
+
+        // Add this function to your existing JavaScript
+function updateStatistics(data) {
+    // Update total crashes
+    document.getElementById('totalCrashes').textContent = data.length;
+
+    // Update affected devices count
+    const uniqueDevices = new Set(
+        data.map(log => `${log.deviceDetails?.make || ''} ${log.deviceDetails?.model || ''}`.trim())
+            .filter(device => device)
+    );
+    document.getElementById('affectedDevices').textContent = uniqueDevices.size;
+
+    // Find most common crash type
+    const crashTypes = data.reduce((acc, log) => {
+        const type = log.crashDetails?.type || 'Unknown';
+        acc[type] = (acc[type] || 0) + 1;
+        return acc;
+    }, {});
+    const mostCommonCrash = Object.entries(crashTypes)
+        .sort((a, b) => b[1] - a[1])[0];
+    document.getElementById('commonCrash').textContent = 
+        mostCommonCrash ? `${mostCommonCrash[0]} (${mostCommonCrash[1]})` : 'None';
+
+    // Find most affected model
+    const modelCounts = data.reduce((acc, log) => {
+        const model = `${log.deviceDetails?.make || ''} ${log.deviceDetails?.model || ''}`.trim();
+        if (model) {
+            acc[model] = (acc[model] || 0) + 1;
+        }
+        return acc;
+    }, {});
+    const mostAffectedModel = Object.entries(modelCounts)
+        .sort((a, b) => b[1] - a[1])[0];
+    document.getElementById('affectedModel').textContent = 
+        mostAffectedModel ? `${mostAffectedModel[0]} (${mostAffectedModel[1]})` : 'None';
+}
+
+// Update the charts function with actual implementation
+function updateCharts(data) {
+    // Android Version Distribution
+    const androidVersions = data.reduce((acc, log) => {
+        const version = log.deviceDetails?.androidVersion || 'Unknown';
+        acc[version] = (acc[version] || 0) + 1;
+        return acc;
+    }, {});
+
+    const androidVersionChart = new Chart(
+        document.getElementById('androidVersionChart').getContext('2d'),
+        {
+            type: 'pie',
+            data: {
+                labels: Object.keys(androidVersions),
+                datasets: [{
+                    data: Object.values(androidVersions),
+                    backgroundColor: [
+                        '#4F46E5', '#10B981', '#F59E0B', '#EF4444',
+                        '#6366F1', '#8B5CF6', '#EC4899', '#14B8A6'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    }
+                }
+            }
+        }
+    );
+
+    // Device Make Distribution
+    const deviceMakes = data.reduce((acc, log) => {
+        const make = log.deviceDetails?.make || 'Unknown';
+        acc[make] = (acc[make] || 0) + 1;
+        return acc;
+    }, {});
+
+    const deviceMakeChart = new Chart(
+        document.getElementById('deviceMakeChart').getContext('2d'),
+        {
+            type: 'bar',
+            data: {
+                labels: Object.keys(deviceMakes),
+                datasets: [{
+                    label: 'Crashes by Device Make',
+                    data: Object.values(deviceMakes),
+                    backgroundColor: '#4F46E5'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        }
+    );
+
+    // Crash Trend Over Time
+    const crashesByDate = data.reduce((acc, log) => {
+        const date = new Date(log.timestamp?.seconds * 1000 || log.timestamp)
+            .toISOString().split('T')[0];
+        acc[date] = (acc[date] || 0) + 1;
+        return acc;
+    }, {});
+
+    const sortedDates = Object.keys(crashesByDate).sort();
+
+    const crashTrendChart = new Chart(
+        document.getElementById('crashTrendChart').getContext('2d'),
+        {
+            type: 'line',
+            data: {
+                labels: sortedDates,
+                datasets: [{
+                    label: 'Daily Crashes',
+                    data: sortedDates.map(date => crashesByDate[date]),
+                    borderColor: '#4F46E5',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        }
+    );
+
+    // Error Types Distribution
+    const errorTypes = data.reduce((acc, log) => {
+        const type = log.crashDetails?.type || 'Unknown';
+        acc[type] = (acc[type] || 0) + 1;
+        return acc;
+    }, {});
+
+    const errorTypesChart = new Chart(
+        document.getElementById('errorTypesChart').getContext('2d'),
+        {
+            type: 'doughnut',
+            data: {
+                labels: Object.keys(errorTypes),
+                datasets: [{
+                    data: Object.values(errorTypes),
+                    backgroundColor: [
+                        '#EF4444', '#F59E0B', '#10B981', '#6366F1',
+                        '#8B5CF6', '#EC4899', '#14B8A6', '#4F46E5'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            }
+        }
+    );
+}
+
+// Update the updateDashboard function
+function updateDashboard() {
+    const filteredData = applyFilter(allCrashData);
+    updateStatistics(filteredData);
+    renderCrashTable(filteredData);
+    updateCharts(filteredData);
+}
+
+// Add CSV export functionality
+function exportToCSV() {
+    const filteredData = applyFilter(allCrashData);
+    const csvContent = [
+        // CSV Headers
+        ['Timestamp', 'Device Make', 'Device Model', 'Android Version', 'Build Type', 'Error Type', 'Stack Trace'].join(','),
+        // CSV Data
+        ...filteredData.map(log => [
+            formatDate(log.timestamp),
+            log.deviceDetails?.make || '',
+            log.deviceDetails?.model || '',
+            log.deviceDetails?.androidVersion || '',
+            log.appDetails?.buildType || '',
+            log.crashDetails?.type || '',
+            `"${(log.crashDetails?.stackTrace || '').replace(/"/g, '""')}"` // Escape quotes in stack trace
+        ].join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `crash_logs_export_${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+}
+
     </script>
     </body>
     </html>
