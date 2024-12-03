@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Journey - Personalized Relationship Guide</title>
+    
+    <!-- Dependencies -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <style>
+        /* Core Variables */
+        :root {
+            --primary: #FF3366;
+            --secondary: #7209B7;
+            --dating-primary: #FF3366;
+            --married-primary: #4CAF50;
+            --relationship-primary: #2196F3;
+            --dating-gradient: linear-gradient(45deg, #FF3366, #FF6B6B);
+            --married-gradient: linear-gradient(45deg, #4CAF50, #69F0AE);
+            --relationship-gradient: linear-gradient(45deg, #2196F3, #64B5F6);
+            --bg-dark: #0a0a0a;
+            --text-light: rgba(255, 255, 255, 0.9);
+            --text-muted: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Utilities */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .text-gradient {
+            background: var(--dating-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--dating-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--dating-gradient);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Status Selection Modal */
+        .status-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .status-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .status-modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .status-btn {
+            width: 100%;
+            padding: 1.2rem;
+            margin: 0.8rem 0;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .status-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .status-btn:hover::before {
+            left: 100%;
+        }
+
+        .status-btn.dating { background: var(--dating-gradient); }
+        .status-btn.married { background: var(--married-gradient); }
+        .status-btn.relationship { background: var(--relationship-gradient); }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 2rem;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(0,0,0,0.8), transparent);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.7s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Journey Section */
+        .journey-section {
+            padding: 6rem 0;
+            background: linear-gradient(180deg, var(--bg-dark), #12121f);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--dating-gradient);
+        }
+
+        .journey-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .journey-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .journey-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+        }
+
+        .loader-content {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .journey-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="pageLoader">
+        <div class="loader-content"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="mainNav">
+        <div class="container nav-content">
+            <a href="#" class="nav-logo">Love Journey</a>
+            <div class="nav-links">
+                <a href="#journey" class="nav-link">Journey</a>
+                <a href="#compatibility" class="nav-link">Compatibility</a>
+                <a href="#growth" class="nav-link">Growth</a>
+                <a href="#stories" class="nav-link">Stories</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Status Modal -->
+    <div class="status-modal" id="statusModal">
+        <div class="modal-content">
+            <h2 class="text-gradient text-center text-3xl font-bold mb-6">Welcome to Love Journey</h2>
+            <p class="text-center text-gray-300 mb-8">Choose your relationship status to begin</p>
+            
+            <button class="status-btn dating" onclick="setStatus('dating')">
+                <i class="fas fa-heart"></i>
+                I AM DATING
+            </button>
+            
+            <button class="status-btn married" onclick="setStatus('married')">
+                <i class="fas fa-rings-wedding"></i>
+                I AM MARRIED
+            </button>
+            
+            <button class="status-btn relationship" onclick="setStatus('relationship')">
+                <i class="fas fa-infinity"></i>
+                I AM IN A RELATIONSHIP
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1 class="hero-title text-gradient">Transform Your Love Journey</h1>
+            <p class="hero-subtitle">Navigate relationships with confidence and clarity</p>
+            <button class="status-btn dating" onclick="document.getElementById('statusModal').classList.add('active')">
+                Begin Your Journey
+            </button>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section class="journey-section" id="journey">
+        <div class="container">
+            <h2 class="section-title text-gradient">Your Journey</h2>
+            <div class="journey-grid" id="journeyGrid">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+    </section>
+    <!-- Compatibility Section -->
+    <section class="compatibility-section" id="compatibility">
+        <div class="container">
+            <h2 class="section-title text-gradient">Relationship Compatibility</h2>
+            <div class="swiper compatibility-slider">
+                <div class="swiper-wrapper" id="compatibilityContent">
+                    <!-- Dynamic slides will be inserted here -->
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Growth Section -->
+    <section class="growth-section" id="growth">
+        <div class="container">
+            <h2 class="section-title text-gradient">Personal Growth</h2>
+            <div class="growth-timeline" id="growthTimeline">
+                <!-- Dynamic timeline items will be inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Stories Section -->
+    <section class="stories-section" id="stories">
+        <div class="container">
+            <h2 class="section-title text-gradient">Success Stories</h2>
+            <div class="stories-grid" id="storiesGrid">
+                <!-- Dynamic story cards will be inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title text-gradient">Start Your Journey</h2>
+            <div class="contact-container">
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="status-btn dating">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo text-gradient">Love Journey</div>
+                <div class="footer-links">
+                    <a href="#journey">Journey</a>
+                    <a href="#compatibility">Compatibility</a>
+                    <a href="#growth">Growth</a>
+                    <a href="#stories">Stories</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        /* Additional Sections Styling */
+        .compatibility-section,
+        .growth-section,
+        .stories-section,
+        .contact-section {
+            padding: 6rem 0;
+            background: linear-gradient(180deg, #12121f, var(--bg-dark));
+            position: relative;
+        }
+
+        /* Compatibility Slider */
+        .compatibility-slider {
+            padding: 2rem 0;
+        }
+
+        .compatibility-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        /* Growth Timeline */
+        .growth-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 2rem;
+            margin: 2rem 0;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Stories Grid */
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .story-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            padding: 4rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-social a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--primary);
+        }
+    </style>
+
+    <script>
+        // Dynamic Content Configuration
+        const contentConfig = {
+            dating: {
+                theme: 'var(--dating-primary)',
+                gradient: 'var(--dating-gradient)',
+                hero: {
+                    title: 'Navigate Your Dating Journey',
+                    subtitle: 'Discover meaningful connections and build strong foundations',
+                    background: 'dating-bg.jpg'
+                },
+                journey: [
+                    {
+                        title: 'First Impressions',
+                        icon: 'fa-heart',
+                        description: 'Master the art of authentic connections'
+                    },
+                    {
+                        title: 'Building Trust',
+                        icon: 'fa-shield-heart',
+                        description: 'Create lasting bonds through trust'
+                    },
+                    {
+                        title: 'Communication',
+                        icon: 'fa-comments',
+                        description: 'Develop effective communication patterns'
+                    }
+                ],
+                compatibility: [
+                    {
+                        title: 'Values Alignment',
+                        description: 'Understand core values and beliefs'
+                    },
+                    {
+                        title: 'Communication Styles',
+                        description: 'Learn to speak each other\'s language'
+                    },
+                    {
+                        title: 'Future Vision',
+                        description: 'Align your life goals and dreams'
+                    }
+                ]
+            },
+            // Add similar configurations for 'married' and 'relationship' statuses
+        };
+
+        // Initialize Components
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+
+            // Initialize Swiper
+            const swiper = new Swiper('.compatibility-slider', {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 2
+                    },
+                    1024: {
+                        slidesPerView: 3
+                    }
+                }
+            });
+
+            // Check for stored status
+            const status = localStorage.getItem('relationshipStatus');
+            if (status) {
+                updateContent(status);
+            } else {
+                document.getElementById('statusModal').classList.add('active');
+            }
+
+            // Hide loader
+            setTimeout(() => {
+                document.getElementById('pageLoader').style.display = 'none';
+            }, 1000);
+        });
+
+        // Update Content Based on Status
+        function updateContent(status) {
+            const config = contentConfig[status];
+            
+            // Update theme colors
+            document.documentElement.style.setProperty('--primary', config.theme);
+            
+            // Update hero section
+            document.querySelector('.hero-title').textContent = config.hero.title;
+            document.querySelector('.hero-subtitle').textContent = config.hero.subtitle;
+            
+            // Update journey cards
+            const journeyGrid = document.getElementById('journeyGrid');
+            journeyGrid.innerHTML = config.journey.map(item => `
+                <div class="journey-card" data-aos="fade-up">
+                    <i class="fas ${item.icon} fa-2x mb-4"></i>
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                </div>
+            `).join('');
+
+            // Update other sections similarly
+        }
+
+        // Status Selection Handler
+        function setStatus(status) {
+            localStorage.setItem('relationshipStatus', status);
+            document.getElementById('statusModal').classList.remove('active');
+            updateContent(status);
+            showToast(`Welcome to your ${status} journey!`);
+        }
+
+        // Toast Notification
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Scroll Handler
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('Message sent successfully!');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLY Your Tech - Invoice</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-navy': '#0A0B2E',
+                        'brand-purple': '#A855F7',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-effect {
+            backdrop-filter: blur(10px);
+        }
+        .hover-scale {
+            transition: transform 0.2s;
+        }
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-brand-navy to-brand-navy/95 min-h-screen py-8">
+    <!-- Main Container -->
+    <div class="max-w-4xl mx-auto p-4 mt-16">
+        <!-- Invoice Card -->
+        <div class="bg-white/10 glass-effect rounded-xl p-8 text-white shadow-2xl hover-scale">
+            <!-- Header Section -->
+            <div class="flex justify-between items-center border-b border-white/20 pb-6">
+                <div class="flex items-center space-x-4">
+                    <img src="path-to-your-logo.png" alt="FYT Logo" class="h-12">
+                    <div>
+                        <h1 class="text-2xl font-bold text-brand-purple">INVOICE</h1>
+                        <p class="text-sm text-gray-300">#INV-2024-112</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-300">Generated Date</p>
+                    <p class="font-semibold">20/11/2024</p>
+                </div>
+            </div>
+
+            <!-- Proposal Link Section -->
+            <div class="mt-6 bg-brand-purple/20 rounded-lg p-4 flex items-center justify-between hover-scale">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-file-contract text-brand-purple text-xl"></i>
+                    <span class="text-white">Project Proposal Document</span>
+                </div>
+                <a href="#proposal-link" class="px-4 py-2 bg-brand-purple hover:bg-brand-purple/80 rounded-lg transition-colors duration-300 flex items-center space-x-2">
+                    <span>View Document</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+
+            <!-- Client and Project Details Grid -->
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Client Details -->
+                <div class="bg-white/5 rounded-lg p-6">
+                    <h2 class="text-lg font-semibold text-brand-purple mb-4">Client Details</h2>
+                    <div class="space-y-3">
+                        <div>
+                            <p class="text-gray-400 text-sm">Name</p>
+                            <p class="font-medium">Piyush Gupta</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 text-sm">Email</p>
+                            <p class="font-medium">Piyushtg@hotmail.com</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 text-sm">Phone</p>
+                            <p class="font-medium">+91 97739 12944</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Details -->
+                <div class="bg-white/5 rounded-lg p-6">
+                    <h2 class="text-lg font-semibold text-brand-purple mb-4">Project Details</h2>
+                    <div class="space-y-3">
+                        <div>
+                            <p class="text-gray-400 text-sm">Status</p>
+                            <span class="px-3 py-1 rounded-full bg-brand-purple/20 text-brand-purple text-sm">
+                                In Progress
+                            </span>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 text-sm">Start Date</p>
+                            <p class="font-medium">27/11/2024</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 text-sm">End Date</p>
+                            <p class="font-medium">17/01/2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Details -->
+            <div class="mt-8 bg-white/5 rounded-lg p-6">
+                <h2 class="text-lg font-semibold text-brand-purple mb-4">Payment Details</h2>
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4 pb-4 border-b border-white/10">
+                        <div>
+                            <p class="text-gray-400 text-sm">Total Amount</p>
+                            <p class="text-2xl font-bold">₹37,500</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-gray-400 text-sm">Remaining Balance</p>
+                            <p class="text-2xl font-bold text-brand-purple">₹18,750</p>
+                        </div>
+                    </div>
+                    <div class="bg-white/5 rounded-lg p-4">
+                        <p class="text-gray-400 text-sm mb-2">Payment History</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="font-medium">First Payment</p>
+                                <p class="text-sm text-gray-400">26/11/2024 via Bank Transfer</p>
+                            </div>
+                            <p class="text-green-400 font-semibold">₹18,750</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Actions -->
+            <div class="mt-8 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <button onclick="togglePaymentModal()" class="px-8 py-3 bg-brand-purple hover:bg-brand-purple/80 rounded-lg transition-colors duration-300 flex items-center justify-center space-x-2">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Pay Remaining Amount</span>
+                </button>
+                <button onclick="downloadInvoice()" class="px-8 py-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors duration-300 flex items-center justify-center space-x-2">
+                    <i class="fas fa-download"></i>
+                    <span>Download Invoice</span>
+                </button>
+            </div>
+
+            <!-- Footer -->
+            <div class="mt-8 pt-6 border-t border-white/20">
+                <div class="text-center space-y-4">
+                    <div class="flex justify-center space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-brand-purple transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-brand-purple transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-brand-purple transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <p class="text-sm text-gray-400">© 2024 FLY YOUR TECH. All rights reserved.</p>
+                    <div class="flex justify-center space-x-4 text-xs">
+                        <a href="#" class="text-gray-400 hover:text-brand-purple transition-colors">Terms</a>
+                        <a href="#" class="text-gray-400 hover:text-brand-purple transition-colors">Privacy</a>
+                        <a href="#" class="text-gray-400 hover:text-brand-purple transition-colors">Support</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4 relative">
+            <!-- Close Button -->
+            <button onclick="togglePaymentModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- Modal Header -->
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-800">Bank Transfer Details</h3>
+                <p class="text-gray-500 mt-2">Amount to Pay: ₹18,750</p>
+            </div>
+
+            <!-- Bank Details -->
+            <div class="space-y-4">
+                <!-- Account Holder -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-sm text-gray-500">Account Holder Name</p>
+                            <p class="font-semibold text-gray-800">Abhay Gupta</p>
+                        </div>
+                        <button onclick="copyText('Abhay Gupta')" class="copy-btn px-3 py-1 bg-brand-purple text-white rounded-lg hover:bg-brand-purple/80">
+                            Copy
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Account Number -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-sm text-gray-500">Account Number</p>
+                            <p class="font-semibold text-gray-800">41130556076</p>
+                        </div>
+                        <button onclick="copyText('41130556076')" class="copy-btn px-3 py-1 bg-brand-purple text-white rounded-lg hover:bg-brand-purple/80">
+                            Copy
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CIF Number -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-sm text-gray-500">CIF Number</p>
+                            <p class="font-semibold text-gray-800">90995352802</p>
+                        </div>
+                        <button onclick="copyText('90995352802')" class="copy-btn px-3 py-1 bg-brand-purple text-white rounded-lg hover:bg-brand-purple/80">
+                            Copy
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Branch Code -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-sm text-gray-500">Branch Code</p>
+                            <p class="font-semibold text-gray-800">13109</p>
+                        </div>
+                        <button onclick="copyText('13109')" class="copy-btn px-3 py-1 bg-brand-purple text-white rounded-lg hover:bg-brand-purple/80">
+                            Copy
+                        </button>
+                    </div>
+                </div>
+
+                <!-- IFSC Code -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-sm text-gray-500">IFSC Code</p>
+                            <p class="font-semibold text-gray-800">SBIN0013109</p>
+                        </div>
+                        <button onclick="copyText('SBIN0013109')" class="copy-btn px-3 py-1 bg-brand-purple text-white rounded-lg hover:bg-brand-purple/80">
+                            Copy
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Important Note -->
+            <div class="mt-6 p-4 bg-yellow-50 rounded-lg">
+                <p class="text-sm text-yellow-800">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    Please share the payment screenshot after completing the transaction.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg hidden">
+        Payment processed successfully!
+    </div>
+
+    <script>
+        function togglePaymentModal() {
+            const modal = document.getElementById('paymentModal');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const buttons = document.getElementsByClassName('copy-btn');
+                Array.from(buttons).forEach(button => {
+                    button.textContent = 'Copy';
+                });
+                const clickedButton = event.target;
+                clickedButton.textContent = 'Copied!';
+                setTimeout(() => {
+                    clickedButton.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+
+        function downloadInvoice() {
+            const invoiceContent = `
+FLY Your Tech - Invoice
+----------------------
+Invoice Date: 20/11/2024
+Invoice #: INV-2024-112
+
+Client Details:
+Name: Piyush Gupta
+Email: Piyushtg@hotmail.com
+Phone: +91 97739 12944
+
+Project Details:
+Status: In Progress
+Start Date: 27/11/2024
+End Date: 17/01/2025
+
+Payment Details:
+Total Amount: ₹37,500
+Amount Paid: ₹18,750
+Remaining Balance: ₹18,750
+
+Bank Details:
+Account Holder: Abhay Gupta
+Account Number: 41130556076
+CIF Number: 90995352802
+Branch Code: 13109
+IFSC Code: SBIN0013109
+
+© 2024 FLY YOUR TECH
+            `;
+
+            const blob = new Blob([invoiceContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'FLY_Your_Tech_Invoice.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earth Animation</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #87CEEB; /* light blue background */
+        }
+        #earth-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="earth-container"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Create the scene, camera, and renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({
+            canvas: document.createElement('canvas'),
+            antialias: true
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('earth-container').appendChild(renderer.domElement);
+
+        // Create the Earth mesh
+        const earthGeometry = new THREE.SphereGeometry(0.5, 32, 32);
+        const earthMaterial = new THREE.MeshPhongMaterial({
+            map: new THREE.TextureLoader().load('https://s3-us-west-2.amazonaws.com/s.cdpn.io/141552/4096_earth.jpg'),
+            bumpMap: new THREE.TextureLoader().load('https://s3-us-west-2.amazonaws.com/s.cdpn.io/141552/4096_bump.jpg'),
+            bumpScale: 0.05,
+            specular: new THREE.Color('grey')
+        });
+        const earthMesh = new THREE.Mesh(earthGeometry, earthMaterial);
+        scene.add(earthMesh);
+
+        // Create the ambient light
+        const ambientLight = new THREE.AmbientLight(0x333333, 1);
+        scene.add(ambientLight);
+
+        // Create the point light
+        const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+        pointLight.position.set(5, 5, 5);
+        scene.add(pointLight);
+
+        // Set up the camera position
+        camera.position.z = 2;
+
+        // Animate the scene
+        function animate() {
+            requestAnimationFrame(animate);
+            earthMesh.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+</body>
+</html>
