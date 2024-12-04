@@ -1,684 +1,1278 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LoveAlign - Modern Relationship Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
-        :root {
-            --primary: #FF3366;
-            --secondary: #7209B7;
+      :root {
+        --primary: #ff3366;
+        --secondary: #7209b7;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #0a0a0a;
+        color: #fff;
+        overflow-x: hidden;
+      }
+
+      .gradient-text {
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .gradient-bg {
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+      }
+
+      .typewriter-container {
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .typewriter {
+        overflow: hidden;
+        border-right: 0.15em solid var(--primary);
+        white-space: nowrap;
+        margin: 0 auto;
+        letter-spacing: 0.15em;
+        animation: blink-caret 0.75s step-end infinite;
+      }
+
+      .floating-element {
+        position: absolute;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .floating-bg-1 {
+        animation: float 8s ease-in-out infinite;
+      }
+
+      .floating-bg-2 {
+        animation: float 12s ease-in-out infinite;
+      }
+
+      .floating-bg-3 {
+        animation: float 10s ease-in-out infinite;
+      }
+
+      .geometric-shape {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        opacity: 0.1;
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      }
+
+      .section-wrapper {
+        position: relative;
+        z-index: 1;
+      }
+
+      .section-content {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease;
+      }
+
+      .section-content.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .nav-blur {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(255, 51, 102, 0.1);
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
         }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #0A0A0A;
-            color: #fff;
-            overflow-x: hidden;
+        50% {
+          transform: translateY(-20px) rotate(5deg);
         }
+      }
 
-        .gradient-text {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
         }
-
-        .gradient-bg {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        50% {
+          border-color: var(--primary);
         }
+      }
 
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #0a0a0a;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        border-radius: 4px;
+      }
+
+      /* Responsive Adjustments */
+      @media (max-width: 768px) {
         .typewriter-container {
-            min-height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .typewriter {
-            overflow: hidden;
-            border-right: .15em solid var(--primary);
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: .15em;
-            animation: blink-caret .75s step-end infinite;
-        }
-
-        .floating-element {
-            position: absolute;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .floating-bg-1 {
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .floating-bg-2 {
-            animation: float 12s ease-in-out infinite;
-        }
-
-        .floating-bg-3 {
-            animation: float 10s ease-in-out infinite;
+          min-height: 80px;
         }
 
         .geometric-shape {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            opacity: 0.1;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+          width: 60px;
+          height: 60px;
         }
-
-        .section-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-
-        .section-content {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-
-        .section-content.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .nav-blur {
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-
-        .card-hover:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.1);
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(5deg);
-            }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--primary) }
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #0A0A0A;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            border-radius: 4px;
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .typewriter-container {
-                min-height: 80px;
-            }
-            
-            .geometric-shape {
-                width: 60px;
-                height: 60px;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+
+  </head>
+  <body>
     <!-- Navigation -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-300">
-        <div class="container mx-auto px-6">
-            <div class="flex items-center justify-between py-4">
-                <h1 class="text-2xl font-bold">
-                    Love<span class="text-[#FF3366]">Align</span>
-                </h1>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#hero" class="hover:text-[#FF3366] transition">Home</a>
-                    <a href="#genz" class="hover:text-[#FF3366] transition">GenZ</a>
-                    <a href="#compatibility" class="hover:text-[#FF3366] transition">Compatibility</a>
-                    <a href="#marriage" class="hover:text-[#FF3366] transition">Marriage</a>
-                    <a href="#contact" class="hover:text-[#FF3366] transition">Contact</a>
-                </div>
-                <button class="md:hidden text-2xl" onclick="toggleMobileMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
+      <div class="container mx-auto px-6">
+        <div class="flex items-center justify-between py-4">
+          <h1 class="text-2xl font-bold">
+            Love<span class="text-[#FF3366]">Align</span>
+          </h1>
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="#hero" class="hover:text-[#FF3366] transition">Home</a>
+            <a href="#genz" class="hover:text-[#FF3366] transition">GenZ</a>
+            <a href="#compatibility" class="hover:text-[#FF3366] transition"
+              >Compatibility</a
+            >
+            <a href="#marriage" class="hover:text-[#FF3366] transition"
+              >Marriage</a
+            >
+            <a href="#contact" class="hover:text-[#FF3366] transition"
+              >Contact</a
+            >
+          </div>
+          <button class="md:hidden text-2xl" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+          </button>
         </div>
+      </div>
     </nav>
 
     <!-- Mobile Menu -->
     <div id="mobileMenu" class="fixed inset-0 bg-black/95 z-40 hidden">
-        <div class="flex flex-col items-center justify-center h-full space-y-8">
-            <a href="#hero" class="text-2xl hover:text-[#FF3366] transition">Home</a>
-            <a href="#genz" class="text-2xl hover:text-[#FF3366] transition">GenZ</a>
-            <a href="#compatibility" class="text-2xl hover:text-[#FF3366] transition">Compatibility</a>
-            <a href="#marriage" class="text-2xl hover:text-[#FF3366] transition">Marriage</a>
-            <a href="#contact" class="text-2xl hover:text-[#FF3366] transition">Contact</a>
-        </div>
+      <div class="flex flex-col items-center justify-center h-full space-y-8">
+        <a href="#hero" class="text-2xl hover:text-[#FF3366] transition"
+          >Home</a
+        >
+        <a href="#genz" class="text-2xl hover:text-[#FF3366] transition"
+          >GenZ</a
+        >
+        <a
+          href="#compatibility"
+          class="text-2xl hover:text-[#FF3366] transition"
+          >Compatibility</a
+        >
+        <a href="#marriage" class="text-2xl hover:text-[#FF3366] transition"
+          >Marriage</a
+        >
+        <a href="#contact" class="text-2xl hover:text-[#FF3366] transition"
+          >Contact</a
+        >
+      </div>
     </div>
 
     <!-- Main Content -->
     <div class="relative">
-        <!-- Hero Section -->
-        <section id="hero" class="sticky top-0 h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-b from-[#FF3366]/20 to-[#7209B7]/20 opacity-50"></div>
-            
-            <!-- Floating Elements -->
-            <div class="floating-element floating-bg-1" style="top: 20%; left: 10%;">
-                <div class="geometric-shape"></div>
-            </div>
-            <div class="floating-element floating-bg-2" style="top: 40%; right: 15%;">
-                <div class="geometric-shape" style="border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;"></div>
-            </div>
-            <div class="floating-element floating-bg-3" style="bottom: 15%; left: 20%;">
-                <div class="geometric-shape" style="border-radius: 50% 50% 70% 30% / 30% 70% 30% 70%;"></div>
-            </div>
+      <!-- Hero Section -->
+      <section
+        id="hero"
+        class="top-0 min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-[#FF3366]/20 to-[#7209B7]/20 opacity-50"
+        ></div>
 
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="max-w-4xl mx-auto text-center">
-                    <div class="inline-block px-6 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-8 fade-up">
-                        <span class="text-[#FF3366]">✨ Transform Your Love Journey</span>
-                    </div>
-                    <div class="typewriter-container mb-8">
-                        <h1 id="typewriter" class="text-4xl md:text-6xl lg:text-7xl font-bold gradient-text"></h1>
-                    </div>
-                    <p class="text-xl text-white/70 mb-8 section-content">
-                        Navigate modern relationships with clarity and confidence
-                    </p>
-                    <div class="section-content">
-                        <a href="#contact" class="gradient-bg px-8 py-4 rounded-xl inline-block hover:opacity-90 transition">
-                            Book Love Read Session
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-<!-- GenZ Section -->
-<section id="genz" class="sticky top-0 h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#1a0f1f] via-[#2a1229] to-[#3a162f] overflow-hidden">
-    <!-- Animated Background Elements -->
-    <div class="absolute inset-0 opacity-20">
-        <div class="floating-element floating-bg-1" style="top: 15%; left: 10%;">
-            <div class="geometric-shape" style="background: linear-gradient(45deg, #FF3366, #FF6B6B);"></div>
+        <!-- Floating Elements -->
+        <div class="floating-element floating-bg-1" style="top: 20%; left: 10%">
+          <div class="geometric-shape"></div>
         </div>
-        <div class="floating-element floating-bg-2" style="bottom: 20%; right: 10%;">
-            <div class="geometric-shape" style="border-radius: 30% 70% 50% 50% / 50% 50% 70% 30%; background: linear-gradient(45deg, #7209B7, #FF3366);"></div>
+        <div
+          class="floating-element floating-bg-2"
+          style="top: 40%; right: 15%"
+        >
+          <div
+            class="geometric-shape"
+            style="border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%"
+          ></div>
         </div>
-        <div class="floating-element floating-bg-3" style="top: 40%; right: 30%;">
-            <div class="geometric-shape" style="border-radius: 50% 30% 70% 40% / 40% 60% 30% 50%; background: linear-gradient(45deg, #FF3366, #7209B7);"></div>
+        <div
+          class="floating-element floating-bg-3"
+          style="bottom: 15%; left: 20%"
+        >
+          <div
+            class="geometric-shape"
+            style="border-radius: 50% 50% 70% 30% / 30% 70% 30% 70%"
+          ></div>
         </div>
+ 
+
+<!-- Popup Modal -->
+<div id="popup" class="fixed inset-0 bg-black/70 flex justify-center items-center hidden z-50">
+  <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+    <h2 class="text-2xl font-bold mb-6 text-center text-[#FF3366]">Select Your Status</h2>
+    <div class="grid grid-cols-1 gap-4">
+      <button onclick="updateContent('inRelation')" class=" px-4 py-3 bg-[#FF3366] text-white rounded-lg shadow-md hover:opacity-90 transition">I AM IN RELATION</button>
+      <button onclick="updateContent('married')" class=" px-4 py-3 bg-[#FF3366] text-white rounded-lg shadow-md hover:opacity-90 transition">I AM MARRIED</button>
+      <button  onclick="updateContent('dating');"  class=" px-4 py-3 bg-[#FF3366] text-white rounded-lg shadow-md hover:opacity-90 transition">I AM DATING</button>
     </div>
+    <button onclick="closePopup()" class="mt-6 w-full text-black bg-gray-300 py-2 rounded-lg">Close</button>
+  </div>
+</div>
 
-    <div class="container mx-auto px-6 relative z-10">
-        <div class="max-w-4xl mx-auto text-center section-content">
+        <div class="container mx-auto px-6 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <div
+              class="inline-block px-6 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-8 fade-up"
+            >
+              <span onclick="openPopup()" class="text-[#FF3366]">✨ Transform Your Love Journey</span>
+            </div>
+            <div class="typewriter-container mb-8">
+              <h1
+                id="typewriter"
+                class="text-4xl md:text-6xl lg:text-7xl font-bold gradient-text"
+              ></h1>
+            </div>
+            <p id="mainSectionPara" class="text-xl text-white/70 mb-8 section-content">
+              Navigate modern relationships with clarity and confidence
+            </p>
+            <div class="section-content">
+              <a
+                href="#contact"
+                class="gradient-bg px-8 py-4 rounded-xl inline-block hover:opacity-90 transition"
+              >
+                Book Love Read Session
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+<!-- Marriage Guidance Section imported -->
+<section class="py-20 relative overflow-hidden section-reveal" <sup class="inline select-none [&>a]:rounded-2xl [&>a]:border [&>a]:px-1.5 [&>a]:py-0.5 [&>a]:transition-colors shadow [&>a]:bg-ds-bg-subtle [&>a]:text-xs [&>svg]:w-4 [&>svg]:h-4 relative -top-[2px]">3</sup>>
+  <div class="absolute inset-0">
+      <div class="absolute w-full h-full bg-gradient-to-b from-transparent via-[#B2A4FF]/10 to-transparent"></div>
+  </div>
+  
+  <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-5xl mx-auto">
+          <h2 class="text-4xl font-bold text-center mb-16">
+              <span id="marriageheading" class="gradient-text">Modern Marriage Harmony</span>
+          </h2>
+          
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+              <div class="space-y-6">
+                  <h3 class="text-2xl font-bold text-[#FFB4B4]">Beyond Traditional Matching</h3>
+                  <p class="text-gray-300 leading-relaxed">
+                      We've researched countless marriage scenarios and combined ancient wisdom with modern science. 
+                      Our approach considers 50+ parameters for optimal compatibility and relationship success.
+                  </p>
+                  
+                  <div class="bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-[#B2A4FF]/20">
+                      <h4 class="text-lg font-bold mb-4 text-[#FFDEB4]">Comprehensive Analysis</h4>
+                      <ul class="space-y-3">
+                          <li class="flex items-start space-x-3">
+                              <i class="fas fa-star text-[#B2A4FF] mt-1"></i>
+                              <span class="text-gray-300">Cosmic coordinates alignment</span>
+                          </li>
+                          <li class="flex items-start space-x-3">
+                              <i class="fas fa-star text-[#B2A4FF] mt-1"></i>
+                              <span class="text-gray-300">Energy and karmic level assessment</span>
+                          </li>
+                          <li class="flex items-start space-x-3">
+                              <i class="fas fa-star text-[#B2A4FF] mt-1"></i>
+                              <span class="text-gray-300">Personality compatibility metrics</span>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              
+              <div class="relative">
+                  <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-[#FFB4B4] rounded-full blur-3xl opacity-20"></div>
+                  <img src="./images/WhatsApp Image04.jpeg" 
+                       class="rounded-3xl transform hover:-rotate-3 transition-all duration-500 shadow-2xl"
+                       alt="Marriage Harmony">
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+      <!-- GenZ Section -->
+      <section
+        id="genz"
+        class="top-0 min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#1a0f1f] via-[#2a1229] to-[#3a162f] overflow-hidden"
+      >
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 opacity-20">
+          <div
+            class="floating-element floating-bg-1"
+            style="top: 15%; left: 10%"
+          >
+            <div
+              class="geometric-shape"
+              style="background: linear-gradient(45deg, #ff3366, #ff6b6b)"
+            ></div>
+          </div>
+          <div
+            class="floating-element floating-bg-2"
+            style="bottom: 20%; right: 10%"
+          >
+            <div
+              class="geometric-shape"
+              style="
+                border-radius: 30% 70% 50% 50% / 50% 50% 70% 30%;
+                background: linear-gradient(45deg, #7209b7, #ff3366);
+              "
+            ></div>
+          </div>
+          <div
+            class="floating-element floating-bg-3"
+            style="top: 40%; right: 30%"
+          >
+            <div
+              class="geometric-shape"
+              style="
+                border-radius: 50% 30% 70% 40% / 40% 60% 30% 50%;
+                background: linear-gradient(45deg, #ff3366, #7209b7);
+              "
+            ></div>
+          </div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+          <div class="max-w-4xl mx-auto text-center section-content">
             <div class="typewriter-container">
-                <h2 id="typewriter-genz" class="text-3xl md:text-4xl font-bold mb-6 text-white"></h2>
+              <h2
+                id="typewriter-genz"
+                class="text-3xl md:text-4xl font-bold mb-6 text-white"
+              ></h2>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8 mt-12">
-                <!-- Card 1 -->
-                <div class="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-[#FF3366]/30 transition-all duration-300 card-hover">
-                    <div class="bg-gradient-to-br from-[#FF3366]/10 to-[#FF3366]/5 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-heart text-4xl text-[#FF3366] group-hover:text-white transition-colors duration-300"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-white group-hover:text-[#FF3366] transition-colors duration-300">Modern Dating</h3>
-                    <p class="text-white/70 group-hover:text-white/90 transition-colors duration-300">
-                        Navigate the complexities of modern relationships with confidence
-                    </p>
+              <!-- Card 1 -->
+              <div
+                class="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-[#FF3366]/30 transition-all duration-300 card-hover"
+              >
+                <div
+                  class="bg-gradient-to-br from-[#FF3366]/10 to-[#FF3366]/5 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300"
+                >
+                  <i
+                    class="fas fa-heart text-4xl text-[#FF3366] group-hover:text-white transition-colors duration-300"
+                  ></i>
                 </div>
+                <h3
+                  class="text-xl font-bold mb-4 text-white group-hover:text-[#FF3366] transition-colors duration-300"
+                >
+                  Modern Dating
+                </h3>
+                <p
+                  class="text-white/70 group-hover:text-white/90 transition-colors duration-300"
+                >
+                  Navigate the complexities of modern relationships with
+                  confidence
+                </p>
+              </div>
 
-                <!-- Card 2 -->
-                <div class="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-[#FF3366]/30 transition-all duration-300 card-hover">
-                    <div class="bg-gradient-to-br from-[#FF3366]/10 to-[#FF3366]/5 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-mobile-alt text-4xl text-[#FF3366] group-hover:text-white transition-colors duration-300"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-white group-hover:text-[#FF3366] transition-colors duration-300">Digital Romance</h3>
-                    <p class="text-white/70 group-hover:text-white/90 transition-colors duration-300">
-                        Master the art of connection in the digital age
-                    </p>
+              <!-- Card 2 -->
+              <div
+                class="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-[#FF3366]/30 transition-all duration-300 card-hover"
+              >
+                <div
+                  class="bg-gradient-to-br from-[#FF3366]/10 to-[#FF3366]/5 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300"
+                >
+                  <i
+                    class="fas fa-mobile-alt text-4xl text-[#FF3366] group-hover:text-white transition-colors duration-300"
+                  ></i>
                 </div>
+                <h3
+                  class="text-xl font-bold mb-4 text-white group-hover:text-[#FF3366] transition-colors duration-300"
+                >
+                  Digital Romance
+                </h3>
+                <p
+                  class="text-white/70 group-hover:text-white/90 transition-colors duration-300"
+                >
+                  Master the art of connection in the digital age
+                </p>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
 
-    <!-- Optional: Add a subtle overlay gradient -->
-    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none"></div>
-</section>
+        <!-- Optional: Add a subtle overlay gradient -->
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none"
+        ></div>
+      </section>
 
-<style>
-    /* Add these additional styles to your existing stylesheet */
-    .card-hover {
-        transform: translateY(0);
-        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+      <style>
+        /* Add these additional styles to your existing stylesheet */
+        .card-hover {
+          transform: translateY(0);
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    .card-hover:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(255, 51, 102, 0.15);
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 51, 102, 0.05));
-    }
+        .card-hover:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 20px 40px rgba(255, 51, 102, 0.15);
+          background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 51, 102, 0.05)
+          );
+        }
 
-    .floating-element {
-        pointer-events: none;
-        filter: blur(2px);
-    }
+        .floating-element {
+          pointer-events: none;
+          filter: blur(2px);
+        }
 
-    @keyframes float {
-        0%, 100% {
+        @keyframes float {
+          0%,
+          100% {
             transform: translateY(0) rotate(0deg);
-        }
-        50% {
+          }
+          50% {
             transform: translateY(-20px) rotate(5deg);
+          }
         }
-    }
-</style>
+      </style>
 
+      <!-- Compatibility Section -->
+      <section
+        id="compatibility"
+        class="top-0 min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#1f1228] via-[#2a1535] to-[#321840] overflow-hidden"
+      >
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 opacity-20">
+          <div
+            class="floating-element floating-bg-1"
+            style="top: 15%; left: 15%"
+          >
+            <div
+              class="geometric-shape"
+              style="background: linear-gradient(45deg, #7209b7, #ff3366)"
+            ></div>
+          </div>
+          <div
+            class="floating-element floating-bg-2"
+            style="bottom: 25%; right: 15%"
+          >
+            <div
+              class="geometric-shape"
+              style="
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+                background: linear-gradient(45deg, #ff3366, #7209b7);
+              "
+            ></div>
+          </div>
+          <div
+            class="floating-element floating-bg-3"
+            style="top: 40%; right: 25%"
+          >
+            <div
+              class="geometric-shape"
+              style="
+                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+                background: linear-gradient(45deg, #9932cc, #ff3366);
+              "
+            ></div>
+          </div>
+        </div>
 
-   <!-- Compatibility Section -->
-<section id="compatibility" class="sticky top-0 h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#1f1228] via-[#2a1535] to-[#321840] overflow-hidden">
-    <!-- Animated Background Elements -->
-    <div class="absolute inset-0 opacity-20">
-        <div class="floating-element floating-bg-1" style="top: 15%; left: 15%;">
-            <div class="geometric-shape" style="background: linear-gradient(45deg, #7209B7, #FF3366);"></div>
-        </div>
-        <div class="floating-element floating-bg-2" style="bottom: 25%; right: 15%;">
-            <div class="geometric-shape" style="border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; background: linear-gradient(45deg, #FF3366, #7209B7);"></div>
-        </div>
-        <div class="floating-element floating-bg-3" style="top: 40%; right: 25%;">
-            <div class="geometric-shape" style="border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; background: linear-gradient(45deg, #9932CC, #FF3366);"></div>
-        </div>
-    </div>
-
-    <div class="container mx-auto px-6 relative z-10">
-        <div class="max-w-4xl mx-auto text-center section-content">
+        <div class="container mx-auto px-6 relative z-10">
+          <div class="max-w-4xl mx-auto text-center section-content">
             <div class="typewriter-container">
-                <h2 id="typewriter-compatibility" class="text-3xl md:text-4xl font-bold mb-6 text-white"></h2>
+              <h2
+                id="typewriter-compatibility"
+                class="text-3xl md:text-4xl font-bold mb-6 text-white"
+              ></h2>
             </div>
 
             <div class="grid md:grid-cols-3 gap-6 mt-12">
-                <!-- Card 1 -->
-                <div class="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-[#7209B7]/30 transition-all duration-300 card-hover">
-                    <div class="bg-gradient-to-br from-[#7209B7]/10 to-[#FF3366]/5 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-star text-3xl text-[#FF3366] group-hover:text-white transition-colors duration-300"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-white group-hover:text-[#FF3366] transition-colors duration-300">Love Match</h3>
-                    <p class="text-white/70 group-hover:text-white/90 transition-colors duration-300">
-                        Find your perfect match through cosmic alignment
-                    </p>
+              <!-- Card 1 -->
+              <div
+                class="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-[#7209B7]/30 transition-all duration-300 card-hover"
+              >
+                <div
+                  class="bg-gradient-to-br from-[#7209B7]/10 to-[#FF3366]/5 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300"
+                >
+                  <i
+                    class="fas fa-star text-3xl text-[#FF3366] group-hover:text-white transition-colors duration-300"
+                  ></i>
                 </div>
+                <h3
+                  class="text-xl font-bold mb-2 text-white group-hover:text-[#FF3366] transition-colors duration-300"
+                >
+                  Love Match
+                </h3>
+                <p
+                  class="text-white/70 group-hover:text-white/90 transition-colors duration-300"
+                >
+                  Find your perfect match through cosmic alignment
+                </p>
+              </div>
 
-                <!-- Card 2 -->
-                <div class="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-[#7209B7]/30 transition-all duration-300 card-hover">
-                    <div class="bg-gradient-to-br from-[#7209B7]/10 to-[#FF3366]/5 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-infinity text-3xl text-[#FF3366] group-hover:text-white transition-colors duration-300"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-white group-hover:text-[#FF3366] transition-colors duration-300">Soul Connection</h3>
-                    <p class="text-white/70 group-hover:text-white/90 transition-colors duration-300">
-                        Deep compatibility analysis for lasting bonds
-                    </p>
+              <!-- Card 2 -->
+              <div
+                class="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-[#7209B7]/30 transition-all duration-300 card-hover"
+              >
+                <div
+                  class="bg-gradient-to-br from-[#7209B7]/10 to-[#FF3366]/5 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300"
+                >
+                  <i
+                    class="fas fa-infinity text-3xl text-[#FF3366] group-hover:text-white transition-colors duration-300"
+                  ></i>
                 </div>
+                <h3
+                  class="text-xl font-bold mb-2 text-white group-hover:text-[#FF3366] transition-colors duration-300"
+                >
+                  Soul Connection
+                </h3>
+                <p
+                  class="text-white/70 group-hover:text-white/90 transition-colors duration-300"
+                >
+                  Deep compatibility analysis for lasting bonds
+                </p>
+              </div>
 
-                <!-- Card 3 -->
-                <div class="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-[#7209B7]/30 transition-all duration-300 card-hover">
-                    <div class="bg-gradient-to-br from-[#7209B7]/10 to-[#FF3366]/5 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-heart text-3xl text-[#FF3366] group-hover:text-white transition-colors duration-300"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-white group-hover:text-[#FF3366] transition-colors duration-300">Future Vision</h3>
-                    <p class="text-white/70 group-hover:text-white/90 transition-colors duration-300">
-                        Relationship forecasting with spiritual insight
-                    </p>
+              <!-- Card 3 -->
+              <div
+                class="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-[#7209B7]/30 transition-all duration-300 card-hover"
+              >
+                <div
+                  class="bg-gradient-to-br from-[#7209B7]/10 to-[#FF3366]/5 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300"
+                >
+                  <i
+                    class="fas fa-heart text-3xl text-[#FF3366] group-hover:text-white transition-colors duration-300"
+                  ></i>
                 </div>
+                <h3
+                  class="text-xl font-bold mb-2 text-white group-hover:text-[#FF3366] transition-colors duration-300"
+                >
+                  Future Vision
+                </h3>
+                <p
+                  class="text-white/70 group-hover:text-white/90 transition-colors duration-300"
+                >
+                  Relationship forecasting with spiritual insight
+                </p>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
 
-    <!-- Subtle overlay gradient -->
-    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none"></div>
-</section>
+        <!-- Subtle overlay gradient -->
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none"
+        ></div>
+      </section>
 
-<style>
-    /* Add these additional styles for enhanced effects */
-    .card-hover {
-        transform: translateY(0);
-        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(114, 9, 183, 0.05));
-    }
+      <style>
+        /* Add these additional styles for enhanced effects */
+        .card-hover {
+          transform: translateY(0);
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.05),
+            rgba(114, 9, 183, 0.05)
+          );
+        }
 
-    .card-hover:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(114, 9, 183, 0.2);
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(114, 9, 183, 0.1));
-    }
+        .card-hover:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 20px 40px rgba(114, 9, 183, 0.2);
+          background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.1),
+            rgba(114, 9, 183, 0.1)
+          );
+        }
 
-    .geometric-shape {
-        width: 150px;
-        height: 150px;
-        filter: blur(3px);
-        animation: float 8s infinite ease-in-out;
-    }
+        .geometric-shape {
+          width: 150px;
+          height: 150px;
+          filter: blur(3px);
+          animation: float 8s infinite ease-in-out;
+        }
 
-    @keyframes float {
-        0%, 100% { transform: translateY(0) rotate(0deg); }
-        50% { transform: translateY(-20px) rotate(5deg); }
-    }
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-20px) rotate(5deg);
+          }
+        }
 
-    .floating-bg-1 { animation-delay: 0s; }
-    .floating-bg-2 { animation-delay: -2s; }
-    .floating-bg-3 { animation-delay: -4s; }
-</style>
-
-     <!-- Marriage Section -->
-<section id="marriage" class="sticky top-0 h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#1a0f1f] via-[#2a1229] to-[#3a162f] overflow-hidden">
-    <!-- Animated Background Elements -->
-    <div class="absolute inset-0 opacity-20">
-        <div class="floating-element floating-bg-1" style="top: 20%; left: 15%;">
-            <div class="geometric-shape" style="background: linear-gradient(45deg, #FF3366, #FF6B6B);"></div>
+        .floating-bg-1 {
+          animation-delay: 0s;
+        }
+        .floating-bg-2 {
+          animation-delay: -2s;
+        }
+        .floating-bg-3 {
+          animation-delay: -4s;
+        }
+      </style>
+<!-- imported-- -->
+      <section class="py-20 relative">
+        <div class="container mx-auto px-6">
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+              <h2 class="text-4xl font-bold text-white">
+                Hey GenZ & Alpha: Wanna Escape "Linear Relationship Escalator"?
+              </h2>
+              <p class="text-white/70">
+                The Dating among GenZ is clear casual approach towards love and
+                Physical intimacy but break-ups, trauma, lowering self-worth
+                Stress, inconsistent emotions, abuse and toxication is a data
+                backed result.
+              </p>
+              <div class="space-y-4">
+                <div class="flex items-start gap-4">
+                  <div
+                    class="w-12 h-12 rounded-xl bg-[#FF3366]/20 flex items-center justify-center flex-shrink-0"
+                  >
+                    <i class="fas fa-heart text-[#FF3366]"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-white font-medium mb-2">
+                      Emotional Protection
+                    </h3>
+                    <p class="text-white/70">
+                      Your Feelings are important because if hurt they are not
+                      easily repairable.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4">
+                  <div
+                    class="w-12 h-12 rounded-xl bg-[#7209B7]/20 flex items-center justify-center flex-shrink-0"
+                  >
+                    <i class="fas fa-clock text-[#7209B7]"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-white font-medium mb-2">Modern Pace</h3>
+                    <p class="text-white/70">
+                      People choose People but they are fast timed to meet the
+                      pace of the Competitive world.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="relative">
+              <img
+                src="./images/whatsappimage01.jpeg"
+                alt="Modern Dating"
+                class="rounded-2xl shadow-2xl"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-2xl"
+              ></div>
+            </div>
+          </div>
         </div>
-        <div class="floating-element floating-bg-2" style="bottom: 20%; right: 15%;">
-            <div class="geometric-shape" style="border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; background: linear-gradient(45deg, #FF3366, #7209B7);"></div>
-        </div>
-        <div class="floating-element floating-bg-3" style="top: 50%; right: 30%;">
-            <div class="geometric-shape" style="border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; background: linear-gradient(45deg, #7209B7, #FF3366);"></div>
-        </div>
-    </div>
+      </section>
 
-    <div class="container mx-auto px-6 relative z-10">
-        <div class="max-w-4xl mx-auto text-center section-content">
-            <div class="typewriter-container mb-12">
-                <h2 id="typewriter-marriage" class="text-3xl md:text-4xl font-bold mb-6 text-white"></h2>
+      <!-- Marriage Section -->
+      <section
+        id="marriage"
+        class="top-0 min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#1a0f1f] via-[#2a1229] to-[#3a162f] overflow-hidden"
+      >
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 opacity-20">
+          <div
+            class="floating-element floating-bg-1"
+            style="top: 20%; left: 15%"
+          >
+            <div
+              class="geometric-shape"
+              style="background: linear-gradient(45deg, #ff3366, #ff6b6b)"
+            ></div>
+          </div>
+          <div
+            class="floating-element floating-bg-2"
+            style="bottom: 20%; right: 15%"
+          >
+            <div
+              class="geometric-shape"
+              style="
+                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+                background: linear-gradient(45deg, #ff3366, #7209b7);
+              "
+            ></div>
+          </div>
+          <div
+            class="floating-element floating-bg-3"
+            style="top: 50%; right: 30%"
+          >
+            <div
+              class="geometric-shape"
+              style="
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+                background: linear-gradient(45deg, #7209b7, #ff3366);
+              "
+            ></div>
+          </div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+          <div class="max-w-4xl mx-auto text-center section-content">
+            
+              <div class="typewriter-container">
+                <h2
+                  id="typewriter-marriage"
+                  class="text-3xl md:text-4xl font-bold mb-6 text-white"
+                ></h2>
+              
             </div>
 
             <div class="grid md:grid-cols-2 gap-8 mt-12">
-                <!-- Left Column -->
-                <div class="space-y-6">
-                    <div class="group bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-[#FF3366]/30 transition-all duration-300 card-hover">
-                        <div class="flex items-center gap-4">
-                            <div class="bg-gradient-to-br from-[#FF3366]/10 to-[#FF3366]/5 rounded-full w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                <i class="fas fa-comments text-[#FF3366] group-hover:text-white transition-colors duration-300"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-white group-hover:text-[#FF3366] transition-colors duration-300">Communication</h3>
-                                <p class="text-white/70 group-hover:text-white/90 transition-colors duration-300">Improve understanding & connection</p>
-                            </div>
-                        </div>
+              <!-- Left Column -->
+              <div class="space-y-6">
+                <div
+                  class="group bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-[#FF3366]/30 transition-all duration-300 card-hover"
+                >
+                  <div class="flex items-center gap-4">
+                    <div
+                      class="bg-gradient-to-br from-[#FF3366]/10 to-[#FF3366]/5 rounded-full w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                    >
+                      <i
+                        class="fas fa-comments text-[#FF3366] group-hover:text-white transition-colors duration-300"
+                      ></i>
                     </div>
-
-                    <div class="group bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-[#FF3366]/30 transition-all duration-300 card-hover">
-                        <div class="flex items-center gap-4">
-                            <div class="bg-gradient-to-br from-[#FF3366]/10 to-[#FF3366]/5 rounded-full w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                <i class="fas fa-shield-alt text-[#FF3366] group-hover:text-white transition-colors duration-300"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-white group-hover:text-[#FF3366] transition-colors duration-300">Stability</h3>
-                                <p class="text-white/70 group-hover:text-white/90 transition-colors duration-300">Build lasting foundations</p>
-                            </div>
-                        </div>
+                    <div>
+                      <h3
+                        class="font-bold text-white group-hover:text-[#FF3366] transition-colors duration-300"
+                      >
+                        Communication
+                      </h3>
+                      <p
+                        class="text-white/70 group-hover:text-white/90 transition-colors duration-300"
+                      >
+                        Improve understanding & connection
+                      </p>
                     </div>
-
-                    <div class="group bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-[#FF3366]/30 transition-all duration-300 card-hover">
-                        <div class="flex items-center gap-4">
-                            <div class="bg-gradient-to-br from-[#FF3366]/10 to-[#FF3366]/5 rounded-full w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                <i class="fas fa-balance-scale text-[#FF3366] group-hover:text-white transition-colors duration-300"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-white group-hover:text-[#FF3366] transition-colors duration-300">Resolution</h3>
-                                <p class="text-white/70 group-hover:text-white/90 transition-colors duration-300">Navigate conflicts wisely</p>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
 
-                <!-- Right Column -->
-                <div class="space-y-6">
-                    <div class="group bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-[#FF3366]/30 transition-all duration-300 card-hover">
-                        <div class="flex items-center gap-4">
-                            <div class="bg-gradient-to-br from-[#FF3366]/10 to-[#FF3366]/5 rounded-full w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                <i class="fas fa-heart text-[#FF3366] group-hover:text-white transition-colors duration-300"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-white group-hover:text-[#FF3366] transition-colors duration-300">Trust</h3>
-                                <p class="text-white/70 group-hover:text-white/90 transition-colors duration-300">Strengthen your bond</p>
-                            </div>
-                        </div>
+                <div
+                  class="group bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-[#FF3366]/30 transition-all duration-300 card-hover"
+                >
+                  <div class="flex items-center gap-4">
+                    <div
+                      class="bg-gradient-to-br from-[#FF3366]/10 to-[#FF3366]/5 rounded-full w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                    >
+                      <i
+                        class="fas fa-shield-alt text-[#FF3366] group-hover:text-white transition-colors duration-300"
+                      ></i>
                     </div>
-
-                    <div class="group bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-[#FF3366]/30 transition-all duration-300 card-hover">
-                        <div class="flex items-center gap-4">
-                            <div class="bg-gradient-to-br from-[#FF3366]/10 to-[#FF3366]/5 rounded-full w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                <i class="fas fa-road text-[#FF3366] group-hover:text-white transition-colors duration-300"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-white group-hover:text-[#FF3366] transition-colors duration-300">Future</h3>
-                                <p class="text-white/70 group-hover:text-white/90 transition-colors duration-300">Plan your journey together</p>
-                            </div>
-                        </div>
+                    <div>
+                      <h3
+                        class="font-bold text-white group-hover:text-[#FF3366] transition-colors duration-300"
+                      >
+                        Stability
+                      </h3>
+                      <p
+                        class="text-white/70 group-hover:text-white/90 transition-colors duration-300"
+                      >
+                        Build lasting foundations
+                      </p>
                     </div>
-
-                    <div class="group bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-[#FF3366]/30 transition-all duration-300 card-hover">
-                        <div class="flex items-center gap-4">
-                            <div class="bg-gradient-to-br from-[#FF3366]/10 to-[#FF3366]/5 rounded-full w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                <i class="fas fa-infinity text-[#FF3366] group-hover:text-white transition-colors duration-300"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-white group-hover:text-[#FF3366] transition-colors duration-300">Connection</h3>
-                                <p class="text-white/70 group-hover:text-white/90 transition-colors duration-300">Deepen emotional bonds</p>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+
+                <div
+                  class="group bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-[#FF3366]/30 transition-all duration-300 card-hover"
+                >
+                  <div class="flex items-center gap-4">
+                    <div
+                      class="bg-gradient-to-br from-[#FF3366]/10 to-[#FF3366]/5 rounded-full w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                    >
+                      <i
+                        class="fas fa-balance-scale text-[#FF3366] group-hover:text-white transition-colors duration-300"
+                      ></i>
+                    </div>
+                    <div>
+                      <h3
+                        class="font-bold text-white group-hover:text-[#FF3366] transition-colors duration-300"
+                      >
+                        Resolution
+                      </h3>
+                      <p
+                        class="text-white/70 group-hover:text-white/90 transition-colors duration-300"
+                      >
+                        Navigate conflicts wisely
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="space-y-6">
+                <div
+                  class="group bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-[#FF3366]/30 transition-all duration-300 card-hover"
+                >
+                  <div class="flex items-center gap-4">
+                    <div
+                      class="bg-gradient-to-br from-[#FF3366]/10 to-[#FF3366]/5 rounded-full w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                    >
+                      <i
+                        class="fas fa-heart text-[#FF3366] group-hover:text-white transition-colors duration-300"
+                      ></i>
+                    </div>
+                    <div>
+                      <h3
+                        class="font-bold text-white group-hover:text-[#FF3366] transition-colors duration-300"
+                      >
+                        Trust
+                      </h3>
+                      <p
+                        class="text-white/70 group-hover:text-white/90 transition-colors duration-300"
+                      >
+                        Strengthen your bond
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="group bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-[#FF3366]/30 transition-all duration-300 card-hover"
+                >
+                  <div class="flex items-center gap-4">
+                    <div
+                      class="bg-gradient-to-br from-[#FF3366]/10 to-[#FF3366]/5 rounded-full w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                    >
+                      <i
+                        class="fas fa-road text-[#FF3366] group-hover:text-white transition-colors duration-300"
+                      ></i>
+                    </div>
+                    <div>
+                      <h3
+                        class="font-bold text-white group-hover:text-[#FF3366] transition-colors duration-300"
+                      >
+                        Future
+                      </h3>
+                      <p
+                        class="text-white/70 group-hover:text-white/90 transition-colors duration-300"
+                      >
+                        Plan your journey together
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="group bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-[#FF3366]/30 transition-all duration-300 card-hover"
+                >
+                  <div class="flex items-center gap-4">
+                    <div
+                      class="bg-gradient-to-br from-[#FF3366]/10 to-[#FF3366]/5 rounded-full w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                    >
+                      <i
+                        class="fas fa-infinity text-[#FF3366] group-hover:text-white transition-colors duration-300"
+                      ></i>
+                    </div>
+                    <div>
+                      <h3
+                        class="font-bold text-white group-hover:text-[#FF3366] transition-colors duration-300"
+                      >
+                        Connection
+                      </h3>
+                      <p
+                        class="text-white/70 group-hover:text-white/90 transition-colors duration-300"
+                      >
+                        Deepen emotional bonds
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
 
-    <!-- Subtle overlay gradient -->
-    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none"></div>
+        <!-- Subtle overlay gradient -->
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none"
+        ></div>
+      </section>
+
+      <style>
+        .card-hover {
+          transform: translateY(0);
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 20px 40px rgba(255, 51, 102, 0.15);
+          background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 51, 102, 0.05)
+          );
+        }
+
+        .geometric-shape {
+          width: 200px;
+          height: 200px;
+          filter: blur(4px);
+          animation: float 10s infinite ease-in-out;
+        }
+
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-20px) rotate(5deg);
+          }
+        }
+      </style>
+
+
+<!-- GenZ & Alpha Section with 3D Cards -->
+<section class="py-20 relative overflow-hidden section-reveal" <sup class="inline select-none [&>a]:rounded-2xl [&>a]:border [&>a]:px-1.5 [&>a]:py-0.5 [&>a]:transition-colors shadow [&>a]:bg-ds-bg-subtle [&>a]:text-xs [&>svg]:w-4 [&>svg]:h-4 relative -top-[2px]">1</sup>>
+  <div class="absolute inset-0 bg-gradient-to-r from-[#B2A4FF]/10 to-[#FFB4B4]/10 skew-y-3"></div>
+  
+  <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-5xl mx-auto">
+          <h2 class="text-4xl font-bold mb-16 gradient-text text-center">
+              Hey GenZ & Alpha: Wanna Escape "Linear Relationship Escalator"?
+          </h2>
+          
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+              <div class="space-y-6">
+                  <div class="bg-white/5 backdrop-blur-xl rounded-3xl p-8 transform hover:scale-105 transition-all hover:rotate-1">
+                      <h3 class="text-xl font-bold mb-4 text-[#FFB4B4]">Your Feelings Matter</h3>
+                      <p class="text-gray-300">
+                          Your feelings are important because if hurt they are not easily repairable. In today's competitive world, 
+                          romance often takes a backseat to fast-paced living.
+                      </p>
+                  </div>
+                  
+                  <div class="bg-white/5 backdrop-blur-xl rounded-3xl p-8 transform hover:scale-105 transition-all hover:-rotate-1">
+                      <h3 class="text-xl font-bold mb-4 text-[#FFDEB4]">Modern Love Navigation</h3>
+                      <p class="text-gray-300">
+                          We help daters navigate relationships with ease, providing psychological and cosmic energy guidance 
+                          for your best shot at love while protecting your emotional well-being.
+                      </p>
+                  </div>
+              </div>
+              
+              <div class="relative">
+                  <div class="absolute -top-10 -left-10 w-40 h-40 bg-[#B2A4FF] rounded-full blur-3xl opacity-20"></div>
+                  <img src="./images/WhatsApp Image02.jpeg" 
+                       class="rounded-3xl transform hover:rotate-3 transition-all duration-500 shadow-2xl"
+                       alt="Modern Dating">
+              </div>
+          </div>
+      </div>
+  </div>
 </section>
-
-<style>
-    .card-hover {
-        transform: translateY(0);
-        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .card-hover:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(255, 51, 102, 0.15);
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 51, 102, 0.05));
-    }
-
-    .geometric-shape {
-        width: 200px;
-        height: 200px;
-        filter: blur(4px);
-        animation: float 10s infinite ease-in-out;
-    }
-
-    @keyframes float {
-        0%, 100% { transform: translateY(0) rotate(0deg); }
-        50% { transform: translateY(-20px) rotate(5deg); }
-    }
-</style>
-
-
-        <!-- Contact Section -->
-        <section id="contact" class="sticky top-0 h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
-            <div class="floating-element floating-bg-2" style="top: 10%; right: 20%;">
-                <div class="geometric-shape"></div>
+      <!-- Contact Section -->
+      <section
+        id="contact"
+        class="top-0 min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden"
+      >
+        <div
+          class="floating-element floating-bg-2"
+          style="top: 10%; right: 20%"
+        >
+          <div class="geometric-shape"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+          <div
+            class="max-w-4xl mx-auto bg-white/5 backdrop-blur-xl rounded-2xl p-8 md:p-12 border border-white/10 section-content"
+          >
+            <div class="typewriter-container">
+              <h2
+                id="typewriter-contact"
+                class="text-3xl font-bold text-center mb-8"
+              ></h2>
             </div>
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="max-w-4xl mx-auto bg-white/5 backdrop-blur-xl rounded-2xl p-8 md:p-12 border border-white/10 section-content">
-                    <div class="typewriter-container">
-                        <h2 id="typewriter-contact" class="text-3xl font-bold text-center mb-8"></h2>
-                    </div>
-                    <form id="contactForm" class="space-y-4">
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <input type="text" placeholder="Your Name" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-[#FF3366]/50 transition">
-                            <input type="email" placeholder="Your Email" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-[#FF3366]/50 transition">
-                        </div>
-                        <select class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-[#FF3366]/50 transition">
-                            <option value="">Select Session Type</option>
-                            <option value="love-read">1:1 Love Read Session</option>
-                            <option value="compatibility">Compatibility Analysis</option>
-                            <option value="marriage">Marriage Guidance</option>
-                        </select>
-                        <textarea rows="4" placeholder="Your Message" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-[#FF3366]/50 transition"></textarea>
-                        <button type="submit" class="w-full gradient-bg px-8 py-4 rounded-xl text-white hover:opacity-90 transition">
-                            Book Session Now
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
+            <form id="contactForm" class="space-y-4">
+              <div class="grid md:grid-cols-2 gap-4">
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-[#FF3366]/50 transition"
+                />
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-[#FF3366]/50 transition"
+                />
+              </div>
+              <select
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-[#FF3366]/50 transition"
+              >
+                <option value="">Select Session Type</option>
+                <option value="love-read">1:1 Love Read Session</option>
+                <option value="compatibility">Compatibility Analysis</option>
+                <option value="marriage">Marriage Guidance</option>
+              </select>
+              <textarea
+                rows="4"
+                placeholder="Your Message"
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-[#FF3366]/50 transition"
+              ></textarea>
+              <button
+                type="submit"
+                class="w-full gradient-bg px-8 py-4 rounded-xl text-white hover:opacity-90 transition"
+              >
+                Book Session Now
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
     </div>
 
     <script>
-        // Typewriter text configurations
-        const headings = {
-            'typewriter': ['Situationship or Dating?', 'Find Your Soulmate', 'Love Compatible?', 'Ready for Marriage?'],
-            'typewriter-genz': ['GenZ Dating Guide', 'Modern Love Stories', 'Digital Romance', 'Future of Dating'],
-            'typewriter-compatibility': ['Perfect Match Analysis', 'Love Compatibility', 'Relationship Goals', 'Soul Connection'],
-            'typewriter-marriage': ['Marriage Guidance', 'Build Forever Love', 'Strengthen Bonds', 'Growing Together'],
-            'typewriter-contact': ['Book Your Session', 'Start Your Journey', 'Transform Your Love Life', 'Find The One']
-        };
+        // Function to open popup
 
-        // Typewriter effect function
-        function typeWriter(elementId, texts, index = 0) {
-            const element = document.getElementById(elementId);
-            if (!element) return;
+        const contentData = {
+  inRelation: {
+    hero: "Navigating Your Relationship Journey with Confidence and Joy!",
+    genz: "Relationship tips for modern couples.",
+    compatibility: "Understanding your compatibility dynamics.",
+    marriage: "Preparing for the future together."
+  },
+  married: {
+    hero: "Strengthen Your Marriage and Keep Love Alive!",
+    genz: "Advice on maintaining a strong marriage.",
+    compatibility: "Tools to enhance marital harmony.",
+    marriage: "Rediscover the joy of marriage."
+  },
+  dating: {
+    hero: "Enjoy and Grow in Your Dating Journey!",
+    genz: "Dating tips for a meaningful connection.",
+    compatibility: "How to check relationship potential.",
+    marriage: "Looking ahead in your dating life."
+  }
+};
 
-            let textIndex = index % texts.length;
-            let charIndex = 0;
-            let currentText = texts[textIndex];
 
-            element.innerHTML = '';
-            
-            function type() {
-                if (charIndex < currentText.length) {
-                    element.innerHTML += currentText.charAt(charIndex);
-                    charIndex++;
-                    setTimeout(type, 100);
-                } else {
-                    setTimeout(() => {
-                        erase();
-                    }, 2000);
-                }
-            }
+  function openPopup() { 
+    console.log("clicked")
+    document.getElementById('popup').classList.remove('hidden');
+  }
 
-            function erase() {
-                if (charIndex > 0) {
-                    element.innerHTML = currentText.substring(0, charIndex-1);
-                    charIndex--;
-                    setTimeout(erase, 50);
-                } else {
-                    textIndex = (textIndex + 1) % texts.length;
-                    currentText = texts[textIndex];
-                    setTimeout(() => {
-                        type();
-                    }, 500);
-                }
-            }
+  // Function to close popup
+  function closePopup() {
+    document.getElementById('popup').classList.add('hidden');
+  }
 
-            type();
+  // Function to update content based on selection
+  function updateContent(status) {
+    // Update the hero section
+    document.getElementById('mainSectionPara').innerText = contentData[status].hero;
+document.getElementById("marriageheading").innerText=contentData[status].genz
+    // Similarly, update other sections
+    // Example:
+    // document.getElementById('genzContent').innerText = contentData[status].genz;
+
+    closePopup();  // Close the popup after selection
+  }
+      // Typewriter text configurations
+      const headings = {
+        typewriter: [
+          "Situationship or Dating?",
+          "Find Your Soulmate",
+          "Love Compatible?",
+          "Ready for Marriage?",
+        ],
+        "typewriter-genz": [
+          "GenZ Dating Guide",
+          "Modern Love Stories",
+          "Digital Romance",
+          "Future of Dating",
+        ],
+        "typewriter-compatibility": [
+          "Perfect Match Analysis",
+          "Love Compatibility",
+          "Relationship Goals",
+          "Soul Connection",
+        ],
+        "typewriter-marriage": [
+          "Marriage Guidance",
+          "Build Forever Love",
+          "Strengthen Bonds",
+          "Growing Together",
+        ],
+        "typewriter-contact": [
+          "Book Your Session",
+          "Start Your Journey",
+          "Transform Your Love Life",
+          "Find The One",
+        ],
+      };
+
+      // Typewriter effect function
+      function typeWriter(elementId, texts, index = 0) {
+        const element = document.getElementById(elementId);
+        if (!element) return;
+
+        let textIndex = index % texts.length;
+        let charIndex = 0;
+        let currentText = texts[textIndex];
+
+        element.innerHTML = "";
+
+        function type() {
+          if (charIndex < currentText.length) {
+            element.innerHTML += currentText.charAt(charIndex);
+            charIndex++;
+            setTimeout(type, 100);
+          } else {
+            setTimeout(() => {
+              erase();
+            }, 2000);
+          }
         }
 
-        // Initialize typewriter effects
-        Object.keys(headings).forEach(id => {
-            typeWriter(id, headings[id]);
-        });
-
-        // Section visibility handler
-        function handleSectionVisibility() {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                const rect = section.getBoundingClientRect();
-                const contents = section.querySelectorAll('.section-content');
-                contents.forEach(content => {
-                    if (rect.top < window.innerHeight * 0.75 && rect.bottom > 0) {
-                        content.classList.add('visible');
-                    } else {
-                        content.classList.remove('visible');
-                    }
-                });
-            });
+        function erase() {
+          if (charIndex > 0) {
+            element.innerHTML = currentText.substring(0, charIndex - 1);
+            charIndex--;
+            setTimeout(erase, 50);
+          } else {
+            textIndex = (textIndex + 1) % texts.length;
+            currentText = texts[textIndex];
+            setTimeout(() => {
+              type();
+            }, 500);
+          }
         }
 
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        }
+        type();
+      }
 
-        // Scroll handler
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('bg-black/50', 'nav-blur');
+      // Initialize typewriter effects
+      Object.keys(headings).forEach((id) => {
+        typeWriter(id, headings[id]);
+      });
+
+      // Section visibility handler
+      function handleSectionVisibility() {
+        const sections = document.querySelectorAll("section");
+        sections.forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          const contents = section.querySelectorAll(".section-content");
+          contents.forEach((content) => {
+            if (rect.top < window.innerHeight * 0.75 && rect.bottom > 0) {
+              content.classList.add("visible");
             } else {
-                navbar.classList.remove('bg-black/50', 'nav-blur');
+              content.classList.remove("visible");
             }
-            handleSectionVisibility();
+          });
         });
+      }
 
-        // Form submission handler
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const submitButton = this.querySelector('button[type="submit"]');
-                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                
-                setTimeout(() => {
-                    submitButton.innerHTML = '<i class="fas fa-check"></i> Sent Successfully!';
-                    submitButton.classList.add('bg-green-500');
-                    
-                    setTimeout(() => {
-                        this.reset();
-                        submitButton.innerHTML = 'Book Session Now';
-                        submitButton.classList.remove('bg-green-500');
-                    }, 2000);
-                }, 1500);
-            });
+      // Mobile menu toggle
+      function toggleMobileMenu() {
+        const menu = document.getElementById("mobileMenu");
+        menu.classList.toggle("hidden");
+      }
+
+      // Scroll handler
+      window.addEventListener("scroll", function () {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("bg-black/50", "nav-blur");
+        } else {
+          navbar.classList.remove("bg-black/50", "nav-blur");
         }
-
-        // Initialize visibility check
         handleSectionVisibility();
+      });
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-                if (window.innerWidth < 768) {
-                    toggleMobileMenu();
-                }
-            });
+      // Form submission handler
+      const contactForm = document.getElementById("contactForm");
+      if (contactForm) {
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const submitButton = this.querySelector('button[type="submit"]');
+          submitButton.innerHTML =
+            '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+          setTimeout(() => {
+            submitButton.innerHTML =
+              '<i class="fas fa-check"></i> Sent Successfully!';
+            submitButton.classList.add("bg-green-500");
+
+            setTimeout(() => {
+              this.reset();
+              submitButton.innerHTML = "Book Session Now";
+              submitButton.classList.remove("bg-green-500");
+            }, 2000);
+          }, 1500);
         });
+      }
+
+      // Initialize visibility check
+      handleSectionVisibility();
+
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+          if (window.innerWidth < 768) {
+            toggleMobileMenu();
+          }
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
