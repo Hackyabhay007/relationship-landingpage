@@ -335,7 +335,7 @@
               
               <div class="relative">
                   <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-[#FFB4B4] rounded-full blur-3xl opacity-20"></div>
-                  <img src="./images/WhatsApp Image04.jpeg" 
+                  <img id="img01" src="./images/WhatsApp Image02.jpeg" 
                        class="rounded-3xl transform hover:-rotate-3 transition-all duration-500 shadow-2xl"
                        alt="Marriage Harmony">
               </div>
@@ -722,8 +722,8 @@
               </div>
             </div>
             <div class="relative">
-              <img
-                src="./images/whatsappimage01.jpeg"
+              <img id="img02"
+                src="./images/WhatsApp Image03.jpeg"
                 alt="Modern Dating"
                 class="rounded-2xl shadow-2xl"
               />
@@ -1033,7 +1033,7 @@
               
               <div class="relative">
                   <div class="absolute -top-10 -left-10 w-40 h-40 bg-[#B2A4FF] rounded-full blur-3xl opacity-20"></div>
-                  <img src="./images/WhatsApp Image02.jpeg" 
+                  <img id="img03" src="./images/WhatsApp Image04.jpeg" 
                        class="rounded-3xl transform hover:rotate-3 transition-all duration-500 shadow-2xl"
                        alt="Modern Dating">
               </div>
@@ -1121,6 +1121,7 @@
       button: "Book Love Read Session",
     },
     second: {
+      image01:"./images/pexelrelationimg01.jpg",
         heading: "Modern Relationship Insights",
     subheading: "Beyond Conventional Advice",
     paragraph: "Discover personalized strategies that blend wisdom and modern science, tailored to strengthen your bond.",
@@ -1150,7 +1151,9 @@ thirdCardpara2:"Master the art of connection in the digital age",
       imageAlt: "Future Vision"
     }
 
-    },fifth:{heading: "Hey GenZ & Alpha: Wanna Escape 'Linear Relationship Escalator'?",
+    },fifth:{
+      image02:"./images/pexelrelationimg02.jpg",
+      heading: "Hey GenZ & Alpha: Wanna Escape 'Linear Relationship Escalator'?",
     description: "The Dating among GenZ is clear casual approach towards love and Physical intimacy but break-ups, trauma, lowering self-worth, stress, inconsistent emotions, abuse, and toxication is a data backed result.",
     features: [
       {
@@ -1169,7 +1172,9 @@ thirdCardpara2:"Master the art of connection in the digital age",
       }
     ],
 
-    },sixth:{},seventh:{heading: "In a Relationship",
+    },sixth:{},seventh:{
+      image03:"./images/pexelrelationimg03.jpg",
+      heading: "In a Relationship",
     feelingsMatter: {
       title: "Your Feelings Matter",
       description: "Your feelings are important because if hurt they are not easily repairable. In today's competitive world, romance often takes a backseat to fast-paced living."
@@ -1186,6 +1191,7 @@ thirdCardpara2:"Master the art of connection in the digital age",
       button: "Book Marriage Session",
     },
     second: {
+      image01:"./images/marriage01.png",
         heading: "Modern Marriage Harmony",
     subheading: "Beyond Traditional Matching",
     paragraph: "We've researched countless marriage scenarios and combined ancient wisdom with modern science. Our approach considers 50+ parameters for optimal compatibility and relationship success.",
@@ -1214,7 +1220,7 @@ thirdCardpara2:"Master the art of connection in the digital age",
       subheading: "Relationship forecasting with spiritual insight",
       imageAlt: "Future Vision"
     }
-    },fifth:{
+    },fifth:{image02:"./images/pexelmarriageimg1.jpg",
         heading: "Hey GenZ & Alpha: Wanna Escape 'Linear Relationship Escalator'?",
     description: "The Dating among GenZ is clear casual approach towards love and Physical intimacy but break-ups, trauma, lowering self-worth, stress, inconsistent emotions, abuse, and toxication is a data backed result.",
     features: [
@@ -1233,7 +1239,8 @@ thirdCardpara2:"Master the art of connection in the digital age",
         iconBgColor: "#7209B7/20"
       }
     ],
-    },sixth:{},seventh:{heading: "Marriage",
+    },sixth:{},seventh:{ 
+      image03:"./images/pexelmarriageimg2.jpg",heading: "Marriage",
     feelingsMatter: {
       title: "Marriage & Emotional Health",
       description: "Marriage is a lifelong commitment where emotional support and understanding are key. Protecting your emotional bond is essential for long-term happiness."
@@ -1249,7 +1256,7 @@ thirdCardpara2:"Master the art of connection in the digital age",
       paragraph: "Tips for a meaningful and fun dating experience.",
       button: "Book Dating Insights",
     },
-    second: {
+    second: {image01:"./images/WhatsApp Image02.jpeg",
         heading: "Enhance Your Dating Experience",
     subheading: "More Than Just Compatibility",
     paragraph: "Our scientific and intuitive approach helps you understand deeper connections and potential future compatibility with your date.",
@@ -1278,7 +1285,7 @@ thirdCardpara2:"Master the art of connection in the digital age",
       subheading: "Relationship forecasting with spiritual insight",
       imageAlt: "Future Vision"
     }
-    },fifth:{ heading: "Hey GenZ & Alpha: Wanna Escape 'Linear Relationship Escalator'?",
+    },fifth:{image02:"./images/WhatsApp Image03.jpeg", heading: "Hey GenZ & Alpha: Wanna Escape 'Linear Relationship Escalator'?",
     description: "The Dating among GenZ is clear casual approach towards love and Physical intimacy but break-ups, trauma, lowering self-worth, stress, inconsistent emotions, abuse, and toxication is a data backed result.",
     features: [
       {
@@ -1297,7 +1304,7 @@ thirdCardpara2:"Master the art of connection in the digital age",
       }
     ],
         
-    },sixth:{},seventh:{heading: "Dating",
+    },sixth:{},seventh:{image03:"./images/WhatsApp Image04.jpeg",heading: "Dating",
     feelingsMatter: {
       title: "Your Feelings in Dating",
       description: "Dating is an exploration of compatibility. Your feelings should always be considered and respected, no matter the stage of the relationship."
@@ -1333,7 +1340,7 @@ thirdCardpara2:"Master the art of connection in the digital age",
         openPopup();
         // Mark the popup as shown for this section
         
-       
+  
       }
     }
   });
@@ -1341,13 +1348,15 @@ thirdCardpara2:"Master the art of connection in the digital age",
   // Function to update content based on selection
   function updateContent(status) {
     // Update the hero section
-     localStorage.setItem('popupShownSection', 'true');
+    localStorage.setItem('popupShownSection', 'true');
     document.getElementById('mainSectionPara').innerText = contentData[status].hero.paragraph;
     document.getElementById("heroHeading").innerText=contentData[status].hero.heading
     document.getElementById("heroButton").innerText=contentData[status].hero.button
     document.getElementById("heroButton01").innerText=contentData[status].hero.button
     document.getElementById("heroButton02").innerText=contentData[status].hero.button
     //second section
+    
+    document.getElementById("img01").src=contentData[status].second.image01
 document.getElementById("secondHeading").innerText=contentData[status].second.heading
 document.getElementById("secondSideHeading").innerText=contentData[status].second.subheading
 document.getElementById("secondPara").innerText=contentData[status].second.paragraph
@@ -1368,7 +1377,7 @@ document.getElementById("fourthp1").innerText=contentData[status].fourth.loveMat
 document.getElementById("fourthp2").innerText=contentData[status].fourth.soulConnection.subheading
 document.getElementById("fourthp3").innerText=contentData[status].fourth.futureVision.subheading
 //fifth section
-
+document.getElementById("img02").src=contentData[status].fifth.image02
 document.getElementById("fifthh1").innerText=contentData[status].fifth.heading
 document.getElementById("fifthp1").innerText=contentData[status].fifth.description
 document.getElementById("fifthft1").innerText=contentData[status].fifth.features[0].title
@@ -1378,6 +1387,7 @@ document.getElementById("fifthfp2").innerText=contentData[status].fifth.features
 //sixth secthion no element right now
 
 //seventh section 
+document.getElementById("img03").src=contentData[status].seventh.image03
 document.getElementById("seventhh1").innerText=contentData[status].seventh.heading
 document.getElementById("seventhft1").innerText=contentData[status].seventh.feelingsMatter.title
 document.getElementById("seventhmlt1").innerText=contentData[status].seventh.modernLoveNavigation.title
