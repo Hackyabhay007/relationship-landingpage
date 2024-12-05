@@ -115,6 +115,13 @@
         box-shadow: 0 10px 30px rgba(255, 51, 102, 0.1);
       }
 
+      .active {
+  color: #FF3366; /* Highlight color */
+  font-weight: bold;
+  
+}
+
+
       @keyframes float {
         0%,
         100% {
@@ -265,9 +272,9 @@
     <div class=" bg-white p-8 rounded-lg shadow-lg max-w-md w-full backdrop-blur-md bg-opacity-20">
     <h2 class="text-2xl font-bold mb-6 text-center text-[#FF3366]">Select Your Status</h2>
     <div class="flex gap-4 ">
-      <button onclick="updateContent('inRelation')" class=" backdrop-blur-md font-bold bg-opacity-10 px-4 min-h-24  py-3  text-white rounded-lg shadow-md hover:opacity-90 transition">IN RELATION</button>
-      <button onclick="updateContent('married')" class="backdrop-blur-md font-bold bg-opacity-10 px-4 min-h-24 grow py-3 text-white  rounded-lg shadow-md hover:opacity-90 transition">MARRIED</button>
-      <button onclick="updateContent('dating');" class="backdrop-blur-md font-bold bg-opacity-10 px-4 min-h-24 grow py-3  text-white rounded-lg shadow-md hover:opacity-90 transition">DATING</button>
+      <button onclick="updateContent('inRelation')" class=" backdrop-blur-md font-bold bg-opacity-10 px-2 min-h-24  py-3  text-white rounded-lg shadow-md hover:opacity-90 hover:bg-[#FF3366] transition">IN RELATION</button>
+      <button onclick="updateContent('married')" class="backdrop-blur-md font-bold bg-opacity-10 px-4 min-h-24 grow py-3 text-white  rounded-lg shadow-md hover:opacity-90 hover:bg-[#FF3366] transition">MARRIED</button>
+      <button onclick="updateContent('dating');" class="backdrop-blur-md font-bold bg-opacity-10 px-4 min-h-24 grow py-3  text-white rounded-lg shadow-md hover:opacity-90 hover:bg-[#FF3366] transition">DATING</button>
     </div>
     <button onclick="closePopup()" class="mt-6 w-full text-black bg-gray-300 py-2 rounded-lg">Close</button>
   </div></div>
@@ -1121,6 +1128,37 @@
     </div>
 
     <script>
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const navLinks = document.querySelectorAll('#navbar a');
+  const sections = document.querySelectorAll('section');
+
+  const options = {
+    root: null, // viewport
+    threshold: 0.1, // Trigger when 60% of the section is visible
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Remove 'active' class from all links
+        navLinks.forEach((link) => link.classList.remove('active'));
+        
+        // Add 'active' class to the current link
+        const activeLink = document.querySelector(`#navbar a[href="#${entry.target.id}"]`);
+        if (activeLink) {
+          activeLink.classList.add('active');
+        }
+      }
+    });
+  }, options);
+
+  // Observe each section
+  sections.forEach((section) => observer.observe(section));
+});
+
+
         // Function to open popup
 
         const contentData = {
@@ -1140,10 +1178,10 @@
   sp3: "Communication style assessment"
     },
     third:{
-thirdCardheading1:"Modern Dating",
-thirdCardpara1:"Navigate the complexities of modern relationships with confidence",
-thirdCardheading2:"Digital Romance",
-thirdCardpara2:"Master the art of connection in the digital age",
+thirdCardheading1: "Building Strong Foundations",
+thirdCardpara1: "Learn essential skills to strengthen and grow your relationship.",
+thirdCardheading2:"Keeping the Spark Alive",
+thirdCardpara2:"Discover ways to maintain excitement and deepen your emotional connection.",
     },
     fourth:{loveMatch: {
       heading: "Love Match",
@@ -1209,10 +1247,10 @@ thirdCardpara2:"Master the art of connection in the digital age",
   sp2:"Energy and karmic level assessment",
   sp3: "Personality compatibility metrics", },
   third:{
-thirdCardheading1:"Modern Dating",
-thirdCardpara1:"Navigate the complexities of modern relationships with confidence",
-thirdCardheading2:"Digital Romance",
-thirdCardpara2:"Master the art of connection in the digital age",
+thirdCardheading1: "Strengthening Your Bond",
+thirdCardpara1:"Explore ways to deepen your connection and build a lasting partnership.",
+thirdCardheading2:"Nurturing Love",
+thirdCardpara2:"Rediscover intimacy and keep the spark alive in your marriage.",
     },
     fourth:{
         loveMatch: {
