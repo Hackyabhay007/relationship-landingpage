@@ -155,7 +155,7 @@
     </style>
 
   </head>
-  <body>
+  <body >
     <!-- Navigation -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-300">
       <div class="container mx-auto px-6">
@@ -164,6 +164,9 @@
             Love<span class="text-[#FF3366]">Align</span>
           </h1>
           <div class="hidden md:flex items-center space-x-8">
+            <span onclick="openPopup()" class="hover:text-[#FF3366] transition inline-block px-6 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10  fade-up"
+              >Select Status</span
+            >
             <a href="#hero" class="hover:text-[#FF3366] transition">Home</a>
             <a href="#genz" class="hover:text-[#FF3366] transition">GenZ</a>
             <a href="#compatibility" class="hover:text-[#FF3366] transition"
@@ -191,7 +194,9 @@
         >
         <a href="#genz" class="text-2xl hover:text-[#FF3366] transition"
           >GenZ</a
-        >
+        ><span onclick="openPopup()" class="hover:text-[#FF3366] transition inline-block px-6 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10  fade-up"
+        >Select Status</span
+      >
         <a
           href="#compatibility"
           class="text-2xl hover:text-[#FF3366] transition"
@@ -247,23 +252,24 @@
 
 <!-- Popup Modal -->
 <div id="popup" class="fixed inset-0 bg-black/70 flex justify-center items-center hidden z-50">
-  <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+  <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full backdrop-blur-md bg-opacity-30">
     <h2 class="text-2xl font-bold mb-6 text-center text-[#FF3366]">Select Your Status</h2>
     <div class="grid grid-cols-1 gap-4">
-      <button onclick="updateContent('inRelation')" class=" px-4 py-3 bg-[#FF3366] text-white rounded-lg shadow-md hover:opacity-90 transition">I AM IN RELATION</button>
-      <button onclick="updateContent('married')" class=" px-4 py-3 bg-[#FF3366] text-white rounded-lg shadow-md hover:opacity-90 transition">I AM MARRIED</button>
-      <button  onclick="updateContent('dating');"  class=" px-4 py-3 bg-[#FF3366] text-white rounded-lg shadow-md hover:opacity-90 transition">I AM DATING</button>
+      <button onclick="updateContent('inRelation')" class="px-4 py-3 bg-[#FF3366] text-white rounded-lg shadow-md hover:opacity-90 transition">IN RELATION</button>
+      <button onclick="updateContent('married')" class="px-4 py-3 bg-[#FF3366] text-white rounded-lg shadow-md hover:opacity-90 transition">MARRIED</button>
+      <button onclick="updateContent('dating');" class="px-4 py-3 bg-[#FF3366] text-white rounded-lg shadow-md hover:opacity-90 transition">DATING</button>
     </div>
     <button onclick="closePopup()" class="mt-6 w-full text-black bg-gray-300 py-2 rounded-lg">Close</button>
   </div>
 </div>
+
 
         <div class="container mx-auto px-6 relative z-10">
           <div class="max-w-4xl mx-auto text-center">
             <div
               class="inline-block px-6 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-8 fade-up"
             >
-              <span id="heroHeading" onclick="openPopup()" class="text-[#FF3366]">✨ Transform Your Love Journey</span>
+              <span id="heroHeading"  class="text-[#FF3366]">✨ Transform Your Love Journey</span>
             </div>
             <div class="typewriter-container mb-8">
               <h1
@@ -381,7 +387,16 @@
         </div>
 
         <div class="container mx-auto px-6 relative z-10">
+            
           <div class="max-w-4xl mx-auto text-center section-content">
+            <div class="section-content">
+                <a id="heroButton01"
+                  href="#contact"
+                  class="gradient-bg px-8 py-4 rounded-xl inline-block hover:opacity-90 transition"
+                >
+                  Book Love Read Session
+                </a>
+              </div>
             <div class="typewriter-container">
               <h2
                 id="typewriter-genz"
@@ -523,6 +538,7 @@
 
         <div class="container mx-auto px-6 relative z-10">
           <div class="max-w-4xl mx-auto text-center section-content">
+            
             <div class="typewriter-container">
               <h2
                 id="typewriter-compatibility"
@@ -763,7 +779,14 @@
 
         <div class="container mx-auto px-6 relative z-10">
           <div class="max-w-4xl mx-auto text-center section-content">
-            
+            <div class="section-content">
+                <a id="heroButton02"
+                  href="#contact"
+                  class="gradient-bg px-8 py-4 rounded-xl inline-block hover:opacity-90 transition"
+                >
+                  Book Love Read Session
+                </a>
+              </div>
               <div class="typewriter-container">
                 <h2
                   id="typewriter-marriage"
@@ -1051,14 +1074,24 @@
                   placeholder="Your Email"
                   class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-[#FF3366]/50 transition"
                 />
+                <input
+                type="text"
+                placeholder="Your Contact number"
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-[#FF3366]/50 transition"
+              />
+              <input
+                type="text"
+                placeholder="Your Age"
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-[#FF3366]/50 transition"
+              />
               </div>
               <select
-                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-[#FF3366]/50 transition"
+                class="w-full  bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-[#FF3366]/50 transition"
               >
-                <option value="">Select Session Type</option>
-                <option value="love-read">1:1 Love Read Session</option>
-                <option value="compatibility">Compatibility Analysis</option>
-                <option value="marriage">Marriage Guidance</option>
+                <option  class="text-black rounded-xl" value="">Select Session Type</option>
+                <option class="text-black rounded-xl" value="love-read">1:1 Love Read Session</option>
+                <option  class="text-black rounded-xl" value="compatibility">Compatibility Analysis</option>
+                <option class="text-black rounded-xl" value="marriage">Marriage Guidance</option>
               </select>
               <textarea
                 rows="4"
@@ -1289,12 +1322,31 @@ thirdCardpara2:"Master the art of connection in the digital age",
     document.getElementById('popup').classList.add('hidden');
   }
 
+  window.addEventListener('scroll', function() {
+    const section2 = document.getElementById('secondHeading');
+    const section2Position = section2.getBoundingClientRect();
+    
+    // Check if the second section is in the viewport
+    if (section2Position.top <= window.innerHeight && section2Position.bottom >= 0) {
+      if (!localStorage.getItem('popupShownSection')) {
+        // Show the popup for the second section (first time)
+        openPopup();
+        // Mark the popup as shown for this section
+        
+       
+      }
+    }
+  });
+
   // Function to update content based on selection
   function updateContent(status) {
     // Update the hero section
+     localStorage.setItem('popupShownSection', 'true');
     document.getElementById('mainSectionPara').innerText = contentData[status].hero.paragraph;
     document.getElementById("heroHeading").innerText=contentData[status].hero.heading
     document.getElementById("heroButton").innerText=contentData[status].hero.button
+    document.getElementById("heroButton01").innerText=contentData[status].hero.button
+    document.getElementById("heroButton02").innerText=contentData[status].hero.button
     //second section
 document.getElementById("secondHeading").innerText=contentData[status].second.heading
 document.getElementById("secondSideHeading").innerText=contentData[status].second.subheading
