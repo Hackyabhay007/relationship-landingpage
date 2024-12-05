@@ -272,9 +272,15 @@
     <div class=" bg-white p-8 rounded-lg shadow-lg max-w-md w-full backdrop-blur-md bg-opacity-20">
     <h2 class="text-2xl font-bold mb-6 text-center text-[#FF3366]">Select Your Status</h2>
     <div class="flex gap-4 ">
-      <button onclick="updateContent('inRelation')" class=" backdrop-blur-md font-bold bg-opacity-10 px-2 min-h-24  py-3  text-white rounded-lg shadow-md hover:opacity-90 hover:bg-[#FF3366] transition">IN RELATION</button>
-      <button onclick="updateContent('married')" class="backdrop-blur-md font-bold bg-opacity-10 px-4 min-h-24 grow py-3 text-white  rounded-lg shadow-md hover:opacity-90 hover:bg-[#FF3366] transition">MARRIED</button>
-      <button onclick="updateContent('dating');" class="backdrop-blur-md font-bold bg-opacity-10 px-4 min-h-24 grow py-3  text-white rounded-lg shadow-md hover:opacity-90 hover:bg-[#FF3366] transition">DATING</button>
+      <div onclick="updateContent('inRelation')" class="flex flex-col justify-end items-center backdrop-blur-md font-bold bg-opacity-10 px-2 min-h-24 grow py-3  text-white rounded-lg shadow-md hover:opacity-90 hover:bg-[#FF3366] transition">
+        <img src="./images/removebgrelationicon.png" class="w-20 " alt="icon"/><p>IN RELATION</p></div>
+      <div onclick="updateContent('married')" class="flex flex-col justify-end items-center backdrop-blur-md font-bold bg-opacity-10 px-4 min-h-24 grow py-3 text-white  rounded-lg shadow-md hover:opacity-90 hover:bg-[#FF3366] transition"> 
+        <img src="./images/removebgmarriageicon.png" class="w-20 " alt="icon"/><p>MARRIED</p></div>
+      
+      <div onclick="updateContent('dating');" class="flex flex-col justify-end items-center backdrop-blur-md font-bold bg-opacity-10 px-2 min-h-24  grow py-3  text-white rounded-lg shadow-md hover:opacity-90 hover:bg-[#FF3366] transition">
+        <img src="./images/removebgdatingicon.png" class="w-20 " alt="icon"/><p>DATING</p></div>
+      
+     
     </div>
     <button onclick="closePopup()" class="mt-6 w-full text-black bg-gray-300 py-2 rounded-lg">Close</button>
   </div></div>
