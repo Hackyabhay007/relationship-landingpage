@@ -57,6 +57,14 @@
         z-index: 0;
       }
 
+      .bagImg {
+  background-image: url("https://i.pinimg.com/236x/ca/46/60/ca46605a21f2ccf67cd2fb7136cd35ab.jpg");
+  background-size: cover;        /* Ensures the image covers the entire element */
+  background-position: center;   /* Centers the image */
+  background-repeat: no-repeat;  /* Prevents the image from repeating */
+}
+
+
       .floating-bg-1 {
         animation: float 8s ease-in-out infinite;
       }
@@ -251,16 +259,18 @@
  
 
 <!-- Popup Modal -->
+
 <div id="popup" class="fixed inset-0 bg-black/70 flex justify-center items-center hidden z-50">
-  <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full backdrop-blur-md bg-opacity-30">
+  <div class="bagImg rounded">
+    <div class=" bg-white p-8 rounded-lg shadow-lg max-w-md w-full backdrop-blur-md bg-opacity-20">
     <h2 class="text-2xl font-bold mb-6 text-center text-[#FF3366]">Select Your Status</h2>
-    <div class="grid grid-cols-1 gap-4">
-      <button onclick="updateContent('inRelation')" class="px-4 py-3 bg-[#FF3366] text-white rounded-lg shadow-md hover:opacity-90 transition">IN RELATION</button>
-      <button onclick="updateContent('married')" class="px-4 py-3 bg-[#FF3366] text-white rounded-lg shadow-md hover:opacity-90 transition">MARRIED</button>
-      <button onclick="updateContent('dating');" class="px-4 py-3 bg-[#FF3366] text-white rounded-lg shadow-md hover:opacity-90 transition">DATING</button>
+    <div class="flex gap-4 ">
+      <button onclick="updateContent('inRelation')" class=" backdrop-blur-md font-bold bg-opacity-10 px-4 min-h-24  py-3  text-white rounded-lg shadow-md hover:opacity-90 transition">IN RELATION</button>
+      <button onclick="updateContent('married')" class="backdrop-blur-md font-bold bg-opacity-10 px-4 min-h-24 grow py-3 text-white  rounded-lg shadow-md hover:opacity-90 transition">MARRIED</button>
+      <button onclick="updateContent('dating');" class="backdrop-blur-md font-bold bg-opacity-10 px-4 min-h-24 grow py-3  text-white rounded-lg shadow-md hover:opacity-90 transition">DATING</button>
     </div>
     <button onclick="closePopup()" class="mt-6 w-full text-black bg-gray-300 py-2 rounded-lg">Close</button>
-  </div>
+  </div></div>
 </div>
 
 
