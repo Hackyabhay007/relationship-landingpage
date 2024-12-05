@@ -179,7 +179,7 @@
             Love<span class="text-[#FF3366]">Align</span>
           </h1>
           <div class="hidden md:flex items-center space-x-8">
-            <span onclick="openPopup()" class="hover:text-[#FF3366] transition inline-block px-6 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10  fade-up"
+            <span  onclick="openPopup()" class="hover:text-[#FF3366] transition inline-block px-6 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10  fade-up"
               >Select Status</span
             >
             <a href="#hero" class="hover:text-[#FF3366] transition">Home</a>
@@ -209,7 +209,7 @@
         >
         <a href="#genz" class="text-2xl hover:text-[#FF3366] transition"
           >GenZ</a
-        ><span onclick="openPopup()" class="hover:text-[#FF3366] transition inline-block px-6 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10  fade-up"
+        ><span   onclick="openPopup()" class="hover:text-[#FF3366] transition inline-block px-6 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10  fade-up"
         >Select Status</span
       >
         <a
@@ -268,22 +268,24 @@
 <!-- Popup Modal -->
 
 <div id="popup" class="fixed inset-0 bg-black/70 flex justify-center items-center hidden z-50">
-  <div class="bagImg rounded">
-    <div class=" bg-white p-8 rounded-lg shadow-lg max-w-md w-full backdrop-blur-md bg-opacity-20">
-    <h2 class="text-2xl font-bold mb-6 text-center text-[#FF3366]">Select Your Status</h2>
+  
+    <div class=" bg-white p-8 rounded-lg shadow-lg max-w-md w-full backdrop-blur-md bg-opacity-60">
+    <h2 class="text-3xl font-bold text-center mb-4 gradient-text">Select Your Status</h2>
     <div class="flex gap-4 ">
-      <div onclick="updateContent('inRelation')" class="flex flex-col justify-end items-center backdrop-blur-md font-bold bg-opacity-10 px-2 min-h-24 grow py-3  text-white rounded-lg shadow-md hover:opacity-90 hover:bg-[#FF3366] transition">
-        <img src="./images/removebgrelationicon.png" class="w-20 " alt="icon"/><p>IN RELATION</p></div>
-      <div onclick="updateContent('married')" class="flex flex-col justify-end items-center backdrop-blur-md font-bold bg-opacity-10 px-4 min-h-24 grow py-3 text-white  rounded-lg shadow-md hover:opacity-90 hover:bg-[#FF3366] transition"> 
+      <div onclick="updateContent('inRelation')" class="flex flex-col justify-end items-center backdrop-blur-md font-bold  px-4 min-h-24 grow py-3  text-white hover:text-[#FF3366] rounded-lg shadow-md hover:opacity-90 hover:bg-opacity-10 hover:bg-white bg-[#FF3366] transition">
+        <img src="./images/removebgrelationicon.png" class="w-20 " alt="icon"/><p >RELATION</p></div>
+      <div onclick="updateContent('married')" class="flex flex-col justify-end items-center backdrop-blur-md font-bold  px-4 min-h-24 grow py-3  text-white hover:text-[#FF3366] rounded-lg shadow-md hover:opacity-90 hover:bg-opacity-10 hover:bg-white bg-[#FF3366] transition"> 
         <img src="./images/removebgmarriageicon.png" class="w-20 " alt="icon"/><p>MARRIED</p></div>
       
-      <div onclick="updateContent('dating');" class="flex flex-col justify-end items-center backdrop-blur-md font-bold bg-opacity-10 px-2 min-h-24  grow py-3  text-white rounded-lg shadow-md hover:opacity-90 hover:bg-[#FF3366] transition">
+      <div onclick="updateContent('dating');" class="flex flex-col justify-end items-center backdrop-blur-md font-bold  px-4 min-h-24 grow py-3  text-white hover:text-[#FF3366] rounded-lg shadow-md hover:opacity-90 hover:bg-opacity-10 hover:bg-white bg-[#FF3366] transition">
         <img src="./images/removebgdatingicon.png" class="w-20 " alt="icon"/><p>DATING</p></div>
       
      
     </div>
-    <button onclick="closePopup()" class="mt-6 w-full text-black bg-gray-300 py-2 rounded-lg">Close</button>
-  </div></div>
+    <div class="text-center ">
+    <button onclick="closePopup()" class="gradient-bg mt-3 px-8 py-4 rounded-xl inline-block hover:opacity-90 transition ">Close</button>
+ </div>
+ </div>
 </div>
 
 
@@ -1402,6 +1404,7 @@ thirdCardpara2:"Master the art of connection in the digital age",
 
   // Function to update content based on selection
   function updateContent(status) {
+    
     // Update the hero section
     localStorage.setItem('popupShownSection', 'true');
     document.getElementById('mainSectionPara').innerText = contentData[status].hero.paragraph;
@@ -1450,8 +1453,8 @@ document.getElementById("seventhmlt1").innerText=contentData[status].seventh.mod
 document.getElementById("seventhfp1").innerText=contentData[status].seventh.feelingsMatter.description
 document.getElementById("seventhmlp1").innerText=contentData[status].seventh.modernLoveNavigation.description
 
-
 closePopup();  // Close the popup after selection
+
   }
       // Typewriter text configurations
       const headings = {
