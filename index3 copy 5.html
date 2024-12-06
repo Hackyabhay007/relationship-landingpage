@@ -267,23 +267,23 @@
 
 <!-- Popup Modal -->
 
-<div id="popup" class="fixed inset-0 bg-black/70 flex justify-center items-center hidden z-50">
+<div id="popup" class="fixed inset-0 bg-black/70 flex justify-center items-center hidden z-50  backdrop-blur-md ">
   
-    <div class=" bg-white p-8 rounded-lg shadow-lg max-w-md w-full backdrop-blur-md bg-opacity-60">
+    <div class=" bg-white p-8 rounded-lg shadow-lg max-w-md w-full backdrop-blur-md bg-opacity-60 blur-sm/2 hover:blur-none">
     <h2 class="text-3xl font-bold text-center mb-4 gradient-text">Select Your Status</h2>
     <div class="flex gap-4 ">
-      <div onclick="updateContent('inRelation')" class="flex flex-col justify-end items-center backdrop-blur-md font-bold  px-4 min-h-24 grow py-3  text-white hover:text-[#FF3366] rounded-lg shadow-md hover:opacity-90 hover:bg-opacity-10 hover:bg-white bg-[#FF3366] transition">
+      <div onclick="updateContent('inRelation')" class="flex flex-col justify-end items-center backdrop-blur-md blur-sm hover:blur-none font-bold  px-4 min-h-24 grow py-3  text-white hover:text-[#FF3366] rounded-lg shadow-md hover:opacity-90 hover:bg-opacity-10 hover:bg-white bg-[#FF3366] transition">
         <img src="./images/removebgrelationicon.png" class="w-20 " alt="icon"/><p >RELATION</p></div>
-      <div onclick="updateContent('married')" class="flex flex-col justify-end items-center backdrop-blur-md font-bold  px-4 min-h-24 grow py-3  text-white hover:text-[#FF3366] rounded-lg shadow-md hover:opacity-90 hover:bg-opacity-10 hover:bg-white bg-[#FF3366] transition"> 
+      <div onclick="updateContent('married')" class="flex flex-col justify-end items-center backdrop-blur-md blur-sm hover:blur-none font-bold  px-4 min-h-24 grow py-3  text-white hover:text-[#FF3366] rounded-lg shadow-md hover:opacity-90 hover:bg-opacity-10 hover:bg-white bg-[#FF3366] transition"> 
         <img src="./images/removebgmarriageicon.png" class="w-20 " alt="icon"/><p>MARRIED</p></div>
       
-      <div onclick="updateContent('dating');" class="flex flex-col justify-end items-center backdrop-blur-md font-bold  px-4 min-h-24 grow py-3  text-white hover:text-[#FF3366] rounded-lg shadow-md hover:opacity-90 hover:bg-opacity-10 hover:bg-white bg-[#FF3366] transition">
+      <div onclick="updateContent('dating');" class="flex flex-col justify-end items-center backdrop-blur-md blur-sm hover:blur-none font-bold  px-4 min-h-24 grow py-3  text-white hover:text-[#FF3366] rounded-lg shadow-md hover:opacity-90 hover:bg-opacity-10 hover:bg-white bg-[#FF3366] transition">
         <img src="./images/removebgdatingicon.png" class="w-20 " alt="icon"/><p>DATING</p></div>
       
      
     </div>
     <div class="text-center ">
-    <button onclick="closePopup()" class="gradient-bg mt-3 px-8 py-4 rounded-xl inline-block hover:opacity-90 transition ">Close</button>
+    <button onclick="closePopup()" class="fixed right-2 top-2 gradient-bg  px-2 py-2 rounded inline-block hover:opacity-90 transition ">X</button>
  </div>
  </div>
 </div>
@@ -1135,7 +1135,7 @@
         </div>
       </section>
     </div>
-
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti"></script>
     <script>
 
 
@@ -1404,7 +1404,15 @@ thirdCardpara2:"Master the art of connection in the digital age",
 
   // Function to update content based on selection
   function updateContent(status) {
-    
+    // Trigger confetti
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+
+    // Optional: Close popup after celebration
+  
     // Update the hero section
     localStorage.setItem('popupShownSection', 'true');
     document.getElementById('mainSectionPara').innerText = contentData[status].hero.paragraph;
@@ -1453,7 +1461,7 @@ document.getElementById("seventhmlt1").innerText=contentData[status].seventh.mod
 document.getElementById("seventhfp1").innerText=contentData[status].seventh.feelingsMatter.description
 document.getElementById("seventhmlp1").innerText=contentData[status].seventh.modernLoveNavigation.description
 
-closePopup();  // Close the popup after selection
+  setTimeout(closePopup, 2000);  // Close the popup after selection
 
   }
       // Typewriter text configurations
