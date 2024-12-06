@@ -272,12 +272,12 @@
     <div class=" bg-white p-8 rounded-lg shadow-lg max-w-md w-full backdrop-blur-md bg-opacity-60 blur-sm/2 hover:blur-none">
     <h2 class="text-3xl font-bold text-center mb-4 gradient-text">Select Your Status</h2>
     <div class="flex gap-4 ">
-      <div onclick="updateContent('inRelation')" class="flex flex-col justify-end items-center backdrop-blur-md blur-sm hover:blur-none font-bold  px-4 min-h-24 grow py-3  text-white hover:text-[#FF3366] rounded-lg shadow-md hover:opacity-90 hover:bg-opacity-10 hover:bg-white bg-[#FF3366] transition">
+      <div onclick="updateContent('inRelation')" class="flex flex-col justify-end items-center backdrop-blur-md  font-bold  px-4 min-h-24 grow py-3  text-white hover:text-[#FF3366] rounded-lg shadow-md hover:opacity-90 hover:bg-opacity-10 hover:bg-white bg-[#FF3366] transition">
         <img src="./images/removebgrelationicon.png" class="w-20 " alt="icon"/><p >RELATION</p></div>
-      <div onclick="updateContent('married')" class="flex flex-col justify-end items-center backdrop-blur-md blur-sm hover:blur-none font-bold  px-4 min-h-24 grow py-3  text-white hover:text-[#FF3366] rounded-lg shadow-md hover:opacity-90 hover:bg-opacity-10 hover:bg-white bg-[#FF3366] transition"> 
+      <div onclick="updateContent('married')" class="flex flex-col justify-end items-center backdrop-blur-md  font-bold  px-4 min-h-24 grow py-3  text-white hover:text-[#FF3366] rounded-lg shadow-md hover:opacity-90 hover:bg-opacity-10 hover:bg-white bg-[#FF3366] transition"> 
         <img src="./images/removebgmarriageicon.png" class="w-20 " alt="icon"/><p>MARRIED</p></div>
       
-      <div onclick="updateContent('dating');" class="flex flex-col justify-end items-center backdrop-blur-md blur-sm hover:blur-none font-bold  px-4 min-h-24 grow py-3  text-white hover:text-[#FF3366] rounded-lg shadow-md hover:opacity-90 hover:bg-opacity-10 hover:bg-white bg-[#FF3366] transition">
+      <div onclick="updateContent('dating');" class="flex flex-col justify-end items-center backdrop-blur-md  font-bold  px-4 min-h-24 grow py-3  text-white hover:text-[#FF3366] rounded-lg shadow-md hover:opacity-90 hover:bg-opacity-10 hover:bg-white bg-[#FF3366] transition">
         <img src="./images/removebgdatingicon.png" class="w-20 " alt="icon"/><p>DATING</p></div>
       
      
@@ -1373,7 +1373,9 @@ thirdCardpara2:"Master the art of connection in the digital age",
 
   }
 };
-
+ window.onload = function() {
+      document.getElementById('popup').classList.remove('hidden');
+    };
 
 
   function openPopup() { 
