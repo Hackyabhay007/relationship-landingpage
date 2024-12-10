@@ -1545,6 +1545,218 @@
       </div>
   </div>
 </section>
+
+
+<!-- Video Section -->
+<section id="video-section" class="relative min-h-screen flex items-center justify-center overflow-hidden py-20">
+  <!-- Background Gradient -->
+  <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50 z-10"></div>
+  
+  <!-- Video Container -->
+  <div class="container mx-auto px-4 relative z-20">
+      <div class="max-w-5xl mx-auto">
+          <!-- Section Header -->
+          <div class="text-center mb-12">
+              <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+                  Experience Love Reading
+              </h2>
+              <p class="text-white/70 text-lg max-w-2xl mx-auto">
+                  Watch how our unique love reading process helps people find clarity in their relationships
+              </p>
+          </div>
+          
+          <!-- Video Wrapper -->
+          <div class="video-wrapper">
+              <!-- Video Thumbnail (shown before play) -->
+              <div class="video-thumbnail active">
+                  <img src="https://t3.ftcdn.net/jpg/05/72/35/70/360_F_572357029_Cz853Lul004pX8S6CEdnmBMMNGqfRiwB.jpg" alt="Video Thumbnail" 
+                       class="w-full h-full object-cover rounded-2xl">
+                  <button class="play-button" onclick="playVideo()">
+                      <svg class="play-icon" viewBox="0 0 24 24" fill="none">
+                          <path d="M8 5v14l11-7z" fill="currentColor"/>
+                      </svg>
+                  </button>
+              </div>
+              
+              <!-- Actual Video -->
+              <div class="video-container">
+                  <video id="mainVideo" class="main-video" controls>
+                      <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                  </video>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+<style>
+  /* Video Section Styles */
+#video-section {
+    background: linear-gradient(to bottom, 
+        rgba(0,0,0,0.8), 
+        rgba(255,51,102,0.1), 
+        rgba(0,0,0,0.8)
+    );
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #FF3366, #7209b7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
+}
+
+/* Video Wrapper */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.video-wrapper:hover {
+    transform: translateY(-5px);
+}
+
+/* Video Thumbnail */
+.video-thumbnail {
+    position: relative;
+    aspect-ratio: 16/9;
+    cursor: pointer;
+    display: none;
+}
+
+.video-thumbnail.active {
+    display: block;
+}
+
+.video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Play Button */
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #FF3366, #7209b7);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.play-button::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF3366, #7209b7);
+    opacity: 0.5;
+    filter: blur(10px);
+    transition: opacity 0.3s ease;
+}
+
+.play-button:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.play-button:hover::before {
+    opacity: 0.8;
+}
+
+.play-icon {
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Video Container */
+.video-container {
+    position: relative;
+    aspect-ratio: 16/9;
+    width: 100%;
+    display: none;
+}
+
+.video-container.active {
+    display: block;
+}
+
+.main-video {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+/* Custom Video Controls */
+.main-video::-webkit-media-controls-panel {
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.main-video::-webkit-media-controls-play-button {
+    background: linear-gradient(135deg, #FF3366, #7209b7);
+    border-radius: 50%;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .play-button {
+        width: 60px;
+        height: 60px;
+    }
+
+    .play-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .video-wrapper {
+        border-radius: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gradient-text {
+        font-size: 2rem;
+    }
+    
+    .play-button {
+        width: 50px;
+        height: 50px;
+    }
+
+    .play-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+</style>
+
      <!-- Contact Section -->
 <!-- Form Section -->
 <div class="form-container">
@@ -1619,8 +1831,8 @@
                       <small>Current relationship guidance</small>
                   </div>
                   <div class="choice-option" data-value="finance">
-                      <span>Finance Reading</span>
-                      <small>Financial relationship insights</small>
+                      <span>Fiance Reading</span>
+                      <small>Fiance Reading</small>
                   </div>
                   <div class="choice-option" data-value="spouse">
                       <span>Spouse Reading</span>
@@ -1755,7 +1967,56 @@
 
 </style>
 
+
+
+
     </div>
+
+
+    <!-- video -->
+
+    <script>
+      // Video Functionality
+function playVideo() {
+    const thumbnail = document.querySelector('.video-thumbnail');
+    const videoContainer = document.querySelector('.video-container');
+    const video = document.getElementById('mainVideo');
+    
+    thumbnail.classList.remove('active');
+    videoContainer.classList.add('active');
+    
+    video.play();
+}
+
+// Optional: Add video ended event to show thumbnail again
+document.getElementById('mainVideo').addEventListener('ended', function() {
+    const thumbnail = document.querySelector('.video-thumbnail');
+    const videoContainer = document.querySelector('.video-container');
+    
+    videoContainer.classList.remove('active');
+    thumbnail.classList.add('active');
+});
+
+// Optional: Lazy loading for video
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('mainVideo');
+    video.setAttribute('loading', 'lazy');
+});
+
+// Optional: Intersection Observer for autoplay on scroll
+const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.play();
+        } else {
+            entry.target.pause();
+        }
+    });
+}, { threshold: 0.5 });
+
+videoObserver.observe(document.getElementById('mainVideo'));
+
+    </script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti"></script>
     <script>
 
