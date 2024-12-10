@@ -203,30 +203,141 @@
       </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="fixed inset-0 bg-black/95 z-40 hidden">
+ <!-- Mobile Menu -->
+<div id="mobileMenu" class="fixed inset-0 bg-black/95 backdrop-blur-lg z-40 hidden opacity-0 transition-opacity duration-300">
+  <div class="relative h-full">
+      <!-- Close Button -->
+      <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-white p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+      </button>
+
+      <!-- Menu Items -->
       <div class="flex flex-col items-center justify-center h-full space-y-8">
-        <a href="#hero" class="text-2xl hover:text-[#FF3366] transition"
-          >Home</a
-        >
-        <a href="#genz" class="text-2xl hover:text-[#FF3366] transition"
-          >GenZ</a
-        ><span   onclick="openPopup()" class="hover:text-[#FF3366] transition inline-block px-6 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10  fade-up"
-        >Select Status</span
-      >
-        <a
-          href="#compatibility"
-          class="text-2xl hover:text-[#FF3366] transition"
-          >Compatibility</a
-        >
-        <a href="#marriage" class="text-2xl hover:text-[#FF3366] transition"
-          >Marriage</a
-        >
-        <a href="#contact" class="text-2xl hover:text-[#FF3366] transition"
-          >Contact</a
-        >
+          <a href="#hero" class="mobile-menu-item">Home</a>
+          <a href="#genz" class="mobile-menu-item">GenZ</a>
+          
+          <!-- Status Button -->
+          <div class="mobile-status-button" onclick="openMobilePopup()">
+              <span id="mobileStatusText">Select Status</span>
+              <div class="status-indicator"></div>
+          </div>
+          
+          <a href="#compatibility" class="mobile-menu-item">Compatibility</a>
+          <a href="#marriage" class="mobile-menu-item">Marriage</a>
+          <a href="#contact" class="mobile-menu-item">Contact</a>
       </div>
-    </div>
+  </div>
+</div>
+
+<style>
+  /* Mobile Menu Styles */
+#mobileMenu {
+    transform: translateY(0);
+    transition: all 0.3s ease-in-out;
+}
+
+#mobileMenu.hidden {
+    transform: translateY(100%);
+}
+
+.mobile-menu-item {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
+    padding: 0.5rem 2rem;
+    border-radius: 100px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.mobile-menu-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #FF3366, #7209b7);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    border-radius: 100px;
+}
+
+.mobile-menu-item:hover {
+    color: white;
+}
+
+.mobile-menu-item:hover::after {
+    opacity: 1;
+}
+
+/* Mobile Status Button */
+.mobile-status-button {
+    padding: 0.875rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mobile-status-button:hover {
+    background: rgba(255, 51, 102, 0.1);
+    border-color: #FF3366;
+}
+
+.mobile-status-button.selected {
+    background: linear-gradient(135deg, #FF3366, #7209b7);
+    border: none;
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #FF3366;
+    position: relative;
+}
+
+.status-indicator::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: #FF3366;
+    opacity: 0.5;
+    animation: pulse 1.5s infinite;
+}
+
+/* Animation for menu items */
+.mobile-menu-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideIn 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger animation for menu items */
+.mobile-menu-item:nth-child(1) { animation-delay: 0.1s; }
+.mobile-menu-item:nth-child(2) { animation-delay: 0.2s; }
+.mobile-menu-item:nth-child(3) { animation-delay: 0.3s; }
+.mobile-menu-item:nth-child(4) { animation-delay: 0.4s; }
+.mobile-menu-item:nth-child(5) { animation-delay: 0.5s; }
+
+</style>
 
     <!-- Main Content -->
     <div class="relative">
@@ -510,7 +621,6 @@
                   <h3 id="secondSideHeading" class="text-2xl font-bold text-[#FFB4B4]">Beyond Traditional Matching</h3>
                   <p id="secondPara" class="text-gray-300 leading-relaxed">
                       We've researched countless marriage scenarios and combined ancient wisdom with modern science. 
-                      Our approach considers 50+ parameters for optimal compatibility and relationship success.
                   </p>
                   
                   <div class="bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-[#B2A4FF]/20">
@@ -588,14 +698,7 @@
         <div class="container mx-auto px-6 relative z-10">
             
           <div class="max-w-4xl mx-auto text-center section-content">
-            <div class="section-content">
-                <a id="heroButton01"
-                  href="#contact"
-                  class="gradient-bg px-8 py-4 rounded-xl inline-block hover:opacity-90 transition"
-                >
-                  Book Love Read Session
-                </a>
-              </div>
+       
             <div class="typewriter-container">
               <h2
                 id="typewriter-genz"
@@ -1087,7 +1190,7 @@
           <div class="grid md:grid-cols-2 gap-12 items-center">
             <div class="space-y-6">
               <h2 id="fifthh1" class="text-4xl font-bold text-white">
-                Hey GenZ & Alpha: Wanna Escape "Linear Relationship Escalator"?
+                Hey GenZ & Alpha?
               </h2>
               <p id="fifthp1" class="text-white/70">
                 The Dating among GenZ is clear casual approach towards love and
@@ -1187,14 +1290,7 @@
 
         <div class="container mx-auto px-6 relative z-10">
           <div class="max-w-4xl mx-auto text-center section-content">
-            <div class="section-content">
-                <a id="heroButton02"
-                  href="#contact"
-                  class="gradient-bg px-8 py-4 rounded-xl inline-block hover:opacity-90 transition"
-                >
-                  Book Love Read Session
-                </a>
-              </div>
+    
               <div class="typewriter-container">
                 <h2
                   id="typewriter-marriage"
@@ -1776,7 +1872,7 @@ thirdCardpara2:"Discover ways to maintain excitement and deepen your emotional c
       image01:"./images/marriage01.png",
         heading: "Modern Marriage Harmony",
     subheading: "Beyond Traditional Matching",
-    paragraph: "We've researched countless marriage scenarios and combined ancient wisdom with modern science. Our approach considers 50+ parameters for optimal compatibility and relationship success.",
+    paragraph: "We've researched countless marriage scenarios and combined ancient wisdom with modern science.",
     sp1:"Cosmic coordinates alignment",
   sp2:"Energy and karmic level assessment",
   sp3: "Personality compatibility metrics", },
@@ -1938,8 +2034,7 @@ thirdCardpara2:"Master the art of connection in the digital age",
       origin: { y: 0.6 }
     });
 
-    // Optional: Close popup after celebration
-  
+
     // Update the hero section
     localStorage.setItem('popupShownSection', 'true');
     document.getElementById('mainSectionPara').innerText = contentData[status].hero.paragraph;
@@ -2086,11 +2181,57 @@ document.getElementById("seventhmlp1").innerText=contentData[status].seventh.mod
         });
       }
 
-      // Mobile menu toggle
-      function toggleMobileMenu() {
-        const menu = document.getElementById("mobileMenu");
-        menu.classList.toggle("hidden");
-      }
+    // Mobile Menu Functions
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    if (menu.classList.contains('hidden')) {
+        // Open menu
+        menu.classList.remove('hidden');
+        setTimeout(() => menu.classList.remove('opacity-0'), 10);
+        document.body.style.overflow = 'hidden';
+    } else {
+        // Close menu
+        menu.classList.add('opacity-0');
+        setTimeout(() => {
+            menu.classList.add('hidden');
+            document.body.style.overflow = '';
+        }, 300);
+    }
+}
+
+// Mobile Status Functions
+function openMobilePopup() {
+    toggleMobileMenu(); // Close mobile menu
+    setTimeout(() => {
+        openPopup(); // Open status popup
+    }, 300);
+}
+
+// Update both desktop and mobile status
+function updateContent(status) {
+    // Update desktop status (from previous code)
+    selectedStatus = status;
+    const statusButton = document.getElementById('statusButton');
+    statusButton.textContent = status;
+    statusButton.classList.add('selected');
+    
+    // Update mobile status
+    const mobileStatusText = document.getElementById('mobileStatusText');
+    const mobileStatusButton = document.querySelector('.mobile-status-button');
+    mobileStatusText.textContent = status;
+    mobileStatusButton.classList.add('selected');
+    
+    // Close popup
+    closePopup();
+}
+
+// Close mobile menu when clicking menu items
+document.querySelectorAll('.mobile-menu-item').forEach(item => {
+    item.addEventListener('click', () => {
+        toggleMobileMenu();
+    });
+});
+
 
       // Scroll handler
       window.addEventListener("scroll", function () {
