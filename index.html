@@ -207,11 +207,11 @@
 <div id="mobileMenu" class="fixed inset-0 bg-black/95 backdrop-blur-lg z-40 hidden opacity-0 transition-opacity duration-300">
   <div class="relative h-full">
       <!-- Close Button -->
-      <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-white p-2">
+      <!-- <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-white p-2">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
-      </button>
+      </button> -->
 
       <!-- Menu Items -->
       <div class="flex flex-col items-center justify-center h-full space-y-8">
@@ -2271,21 +2271,7 @@ thirdCardpara2:"Master the art of connection in the digital age",
     document.getElementById('popup').classList.add('hidden');
   }
 
-  window.addEventListener('scroll', function() {
-    const section2 = document.getElementById('secondHeading');
-    const section2Position = section2.getBoundingClientRect();
-    
-    // Check if the second section is in the viewport
-    if (section2Position.top <= window.innerHeight && section2Position.bottom >= 0) {
-      if (!localStorage.getItem('popupShownSection')) {
-        // Show the popup for the second section (first time)
-        openPopup();
-        // Mark the popup as shown for this section
-        
-  
-      }
-    }
-  });
+
 
   // Function to update content based on selection
   function updateContent(status) {
