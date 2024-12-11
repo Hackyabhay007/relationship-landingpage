@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmony Path - Discover Deep Connection</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+     <!-- Required GSAP Scripts -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollSmoother.min.js"></script>
+ 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary: #7C3AED;
+            --secondary: #C084FC;
+            --accent: #F0ABFC;
+            --background: #FAF5FF;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--background);
+        }
+
+        .font-display {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .cosmic-gradient {
+            background: linear-gradient(135deg, #7C3AED 0%, #C084FC 50%, #F0ABFC 100%);
+        }
+
+        .cosmic-text {
+            background: linear-gradient(135deg, #7C3AED 0%, #C084FC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .floating-card {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .stars-bg {
+            background-image: radial-gradient(circle at 50% 50%, #FAF5FF 0%, #F3E8FF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stars-bg::before {
+            content: '✧';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            color: rgba(124, 58, 237, 0.1);
+            font-size: 24px;
+            line-height: 24px;
+            letter-spacing: 20px;
+        }
+    </style>
+
+
+
+<style>
+    .cosmic-orb {
+        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(124, 58, 237, 0.3));
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .question-path {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease;
+    }
+
+    .question-path.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .floating-orb {
+        animation: floatOrb 8s ease-in-out infinite;
+    }
+
+    .glow-effect {
+        animation: glow 4s ease-in-out infinite;
+    }
+
+    @keyframes floatOrb {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        25% { transform: translate(10px, -10px) rotate(5deg); }
+        50% { transform: translate(0, -20px) rotate(0deg); }
+        75% { transform: translate(-10px, -10px) rotate(-5deg); }
+    }
+
+    @keyframes glow {
+        0%, 100% { filter: brightness(1) blur(0px); }
+        50% { filter: brightness(1.2) blur(4px); }
+    }
+
+    .connection-line {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        animation: drawLine 2s ease forwards;
+    }
+
+    @keyframes drawLine {
+        to { stroke-dashoffset: 0; }
+    }
+
+    .spiral-bg {
+        background: 
+            radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 60%),
+            radial-gradient(circle at 70% 30%, rgba(192, 132, 252, 0.1) 0%, transparent 50%);
+    }
+
+    /* Mobile-specific animations */
+    @media (max-width: 768px) {
+        .mobile-float {
+            animation: mobileFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes mobileFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    }
+</style>
+
+<!-- footer -->
+<style>
+    .footer-gradient {
+        background: linear-gradient(to bottom, #1a1a2e, #0f0f1a);
+    }
+    
+    .cosmic-border {
+        border-image: linear-gradient(to right, #7C3AED, #C084FC) 1;
+    }
+    
+    .cosmic-input {
+        background: rgba(124, 58, 237, 0.1);
+        backdrop-filter: blur(4px);
+        transition: all 0.3s ease;
+    }
+    
+    .cosmic-input:focus {
+        background: rgba(124, 58, 237, 0.2);
+        box-shadow: 0 0 15px rgba(124, 58, 237, 0.2);
+    }
+
+    .footer-link {
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .footer-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: linear-gradient(to right, #7C3AED, #C084FC);
+        transition: width 0.3s ease;
+    }
+
+    .footer-link:hover::after {
+        width: 100%;
+    }
+</style>
+
+<!-- stories -->
+
+<style>
+    .story-card {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+    }
+
+    .story-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
+    }
+
+    .quote-bg {
+        background: linear-gradient(135deg, rgba(124, 58, 237, 0.03) 0%, rgba(192, 132, 252, 0.03) 100%);
+    }
+
+    .story-image {
+        transition: all 0.3s ease;
+    }
+
+    .story-card:hover .story-image {
+        transform: scale(1.1);
+    }
+
+    .indicator-dot {
+        transition: all 0.3s ease;
+    }
+
+    .indicator-dot.active {
+        background: linear-gradient(135deg, #7C3AED 0%, #C084FC 100%);
+    }
+
+    @media (max-width: 768px) {
+        .mobile-scroll {
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .mobile-scroll > div {
+            scroll-snap-align: center;
+        }
+    }
+
+    .cosmic-quote {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cosmic-quote::before {
+        content: '"';
+        position: absolute;
+        top: -20px;
+        left: -10px;
+        font-size: 120px;
+        opacity: 0.1;
+        font-family: 'Playfair Display', serif;
+        background: linear-gradient(135deg, #7C3AED 0%, #C084FC 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+</style>
+
+<style>
+    .cosmic-orb {
+        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(124, 58, 237, 0.3));
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .question-path {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease;
+    }
+
+    .question-path.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .floating-orb {
+        animation: floatOrb 8s ease-in-out infinite;
+    }
+
+    .glow-effect {
+        animation: glow 4s ease-in-out infinite;
+    }
+
+    @keyframes floatOrb {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        25% { transform: translate(10px, -10px) rotate(5deg); }
+        50% { transform: translate(0, -20px) rotate(0deg); }
+        75% { transform: translate(-10px, -10px) rotate(-5deg); }
+    }
+
+    @keyframes glow {
+        0%, 100% { filter: brightness(1) blur(0px); }
+        50% { filter: brightness(1.2) blur(4px); }
+    }
+
+    .connection-line {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        animation: drawLine 2s ease forwards;
+    }
+
+    @keyframes drawLine {
+        to { stroke-dashoffset: 0; }
+    }
+
+    .spiral-bg {
+        background: 
+            radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 60%),
+            radial-gradient(circle at 70% 30%, rgba(192, 132, 252, 0.1) 0%, transparent 50%);
+    }
+
+    /* Mobile-specific animations */
+    @media (max-width: 768px) {
+        .mobile-float {
+            animation: mobileFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes mobileFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    }
+</style>
+
+<!-- journey -->
+
+<style>
+    .journey-section {
+        padding: 8rem 0;
+        background: linear-gradient(135deg, #FAF5FF 0%, #F3E8FF 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Floating particles */
+    .particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+    }
+
+    .particle {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: rgba(124, 58, 237, 0.2);
+        border-radius: 50%;
+        pointer-events: none;
+        animation: floatParticle 15s infinite linear;
+    }
+
+    @keyframes floatParticle {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0;
+        }
+        50% {
+            opacity: 0.8;
+        }
+        100% {
+            transform: translateY(-1000%) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    /* Card hover effects */
+    .journey-card {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 1rem;
+        padding: 2rem;
+        position: relative;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .journey-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, transparent 0%, rgba(124, 58, 237, 0.1) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .journey-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
+    }
+
+    .journey-card:hover::before {
+        opacity: 1;
+    }
+
+    /* Number indicator animation */
+    .number-indicator {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 1.5rem;
+        position: relative;
+        background: linear-gradient(135deg, #C084FC, #7C3AED);
+    }
+
+    .number-indicator::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 2px solid rgba(124, 58, 237, 0.3);
+        animation: pulseRing 2s infinite;
+    }
+
+    @keyframes pulseRing {
+        0% {
+            transform: scale(1);
+            opacity: 0.8;
+        }
+        50% {
+            transform: scale(1.2);
+            opacity: 0;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 0;
+        }
+    }
+
+    /* Glowing line connector */
+    .journey-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        position: relative;
+        padding: 2rem 0;
+    }
+
+    .journey-grid::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, 
+            transparent 0%, 
+            rgba(124, 58, 237, 0.3) 50%,
+            transparent 100%
+        );
+        animation: glowLine 2s infinite;
+    }
+
+    @keyframes glowLine {
+        0%, 100% {
+            opacity: 0.3;
+        }
+        50% {
+            opacity: 0.8;
+        }
+    }
+
+    /* Typography */
+    .section-title {
+        font-size: 2.5rem;
+        color: #1F2937;
+        margin-bottom: 1rem;
+        text-align: center;
+        background: linear-gradient(to right, #7C3AED, #C084FC);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .section-subtitle {
+        font-size: 1.125rem;
+        color: #4B5563;
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto 4rem auto;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        color: #1F2937;
+        margin-bottom: 1rem;
+        position: relative;
+    }
+
+    .card-title::after {
+        content: '';
+        position: absolute;
+        bottom: -0.5rem;
+        left: 0;
+        width: 2rem;
+        height: 2px;
+        background: linear-gradient(to right, #7C3AED, #C084FC);
+        transition: width 0.3s ease;
+    }
+
+    .journey-card:hover .card-title::after {
+        width: 4rem;
+    }
+
+    .card-description {
+        color: #4B5563;
+        line-height: 1.6;
+    }
+
+    /* Container */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .journey-grid::before {
+            display: none;
+        }
+        .journey-card {
+            margin-bottom: 2rem;
+        }
+    }
+</style>
+
+
+<!-- questions -->
+<style>
+    /* Main Container */
+    .cosmic-container {
+        background: linear-gradient(135deg, #1a103d 0%, #2d1b5b 100%);
+        min-height: 100vh;
+        padding: 4rem 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Heading Styles */
+    .cosmic-main-heading {
+        text-align: center;
+        font-size: 3.5rem;
+        font-weight: bold;
+        margin-bottom: 2rem;
+        color: #fff;
+        text-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+        position: relative;
+    }
+
+    .cosmic-main-heading::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 4px;
+        background: linear-gradient(90deg, #7C3AED, #C084FC);
+        border-radius: 2px;
+    }
+
+    .cosmic-sub-heading {
+        text-align: center;
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 4rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Interactive Background */
+    .cosmic-energy-field {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        opacity: 0.3;
+        background: 
+            radial-gradient(circle at var(--x, 50%) var(--y, 50%), 
+            rgba(124, 58, 237, 0.4) 0%,
+            transparent 60%);
+        transition: opacity 0.3s ease;
+    }
+
+    /* Enhanced Cards */
+    .cosmic-journey-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 24px;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+        transform-style: preserve-3d;
+        transform: perspective(1000px);
+        transition: all 0.4s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .cosmic-journey-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(124, 58, 237, 0.3);
+        border-color: rgba(124, 58, 237, 0.5);
+    }
+
+    .cosmic-card-glow {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 50% 0%, 
+            rgba(124, 58, 237, 0.5), 
+            transparent 70%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .cosmic-journey-card:hover .cosmic-card-glow {
+        opacity: 1;
+    }
+
+    /* Step Indicators */
+    .cosmic-step-circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #7C3AED, #C084FC);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        position: relative;
+        box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+    }
+
+    .cosmic-step-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Pulse Animation */
+    .cosmic-pulse-ring {
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        border: 2px solid rgba(124, 58, 237, 0.5);
+        animation: cosmicPulse 2s infinite;
+    }
+
+    @keyframes cosmicPulse {
+        0% { transform: scale(1); opacity: 0.8; }
+        100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    /* Grid Layout */
+    .cosmic-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    /* Card Content */
+    .cosmic-card-title {
+        font-size: 1.8rem;
+        color: white;
+        margin: 1rem 0;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .cosmic-card-description {
+        color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        line-height: 1.6;
+        font-size: 1.1rem;
+    }
+
+    /* Connection Lines */
+    .cosmic-connection-lines {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, 
+            transparent 0%,
+            rgba(124, 58, 237, 0.5) 50%,
+            transparent 100%
+        );
+        animation: cosmicGlow 2s infinite alternate;
+    }
+
+    @keyframes cosmicGlow {
+        0% { opacity: 0.3; }
+        100% { opacity: 0.8; }
+    }
+
+    /* Floating Elements */
+    .cosmic-float {
+        animation: cosmicFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes cosmicFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .cosmic-main-heading {
+            font-size: 2.5rem;
+        }
+
+        .cosmic-sub-heading {
+            font-size: 1.2rem;
+        }
+
+        .cosmic-step-circle {
+            width: 80px;
+            height: 80px;
+        }
+
+        .cosmic-step-number {
+            font-size: 2rem;
+        }
+    }
+</style>
+
+
+<!-- snooth -->
+ <style>
+    html {
+    scroll-behavior: smooth; /* For browsers that support it */
+}
+
+/* Optional: Style for back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    background: #7C3AED;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    transform: translateY(100px);
+}
+
+.back-to-top.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: #6D28D9;
+}
+
+/* Optional: Add smooth transition for navigation links */
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #7C3AED;
+}
+
+/* Optional: Style for sections */
+section {
+    min-height: 100vh;
+    padding: 60px 20px;
+}
+ </style>
+
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-lg z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-20 items-center">
+                <div class="font-display text-2xl cosmic-text">HarmonyPath</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#journey" class="text-gray-600 hover:text-purple-600 transition-colors">Your Journey</a>
+                    <a href="#insights" class="text-gray-600 hover:text-purple-600 transition-colors">Insights</a>
+                    <a href="#stories" class="text-gray-600 hover:text-purple-600 transition-colors">Stories</a>
+                    <a href="#guidance" class="text-gray-600 hover:text-purple-600 transition-colors">Guidance</a>
+                </div>
+               <a href="#guidance">
+                <button class="px-6 py-2 rounded-full cosmic-gradient text-white hover:opacity-90 transition-opacity">
+                    Begin Your Journey
+                </button>
+               </a>
+            </div>
+        </div>
+    </nav>
+
+<!-- Enhanced Hero Section -->
+<section class="stars-bg min-h-screen pt-20 relative overflow-hidden">
+    <!-- Decorative Floating Elements -->
+    <div class="absolute top-1/4 left-10 w-20 h-20 cosmic-orb rounded-full floating-slow opacity-50"></div>
+    <div class="absolute bottom-1/4 right-10 w-16 h-16 cosmic-orb rounded-full floating-fast opacity-40"></div>
+    <div class="absolute top-1/3 right-1/4 w-12 h-12 cosmic-orb rounded-full floating-element opacity-30"></div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 pt-20 pb-10 relative">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Left Column -->
+            <div class="relative z-10" data-aos="fade-right">
+                <div class="absolute -top-20 -left-20 w-40 h-40 cosmic-gradient rounded-full opacity-10 rotating"></div>
+                <h1 class="font-display text-5xl md:text-7xl mb-6 leading-tight bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
+                    Unlock the Secrets to Deeper Connection
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 relative">
+                    Every relationship has its unique celestial pattern. Discover yours through timeless wisdom.
+                    <span class="absolute -right-8 top-0 text-2xl rotating inline-block">✨</span>
+                </p>
+
+                <!-- Enhanced Feature List -->
+                <div class="space-y-6 mb-8">
+                    <div class="flex items-center space-x-4 transform hover:translate-x-2 transition-transform">
+                        <div class="w-12 h-12 rounded-full cosmic-gradient flex items-center justify-center text-white shadow-lg pulse">
+                            <span class="text-xl">✧</span>
+                        </div>
+                        <span class="text-lg">Personal Growth Through Understanding</span>
+                    </div>
+                    <div class="flex items-center space-x-4 transform hover:translate-x-2 transition-transform">
+                        <div class="w-12 h-12 rounded-full cosmic-gradient flex items-center justify-center text-white shadow-lg pulse">
+                            <span class="text-xl">♥</span>
+                        </div>
+                        <span class="text-lg">Deep Insight into Relationship Patterns</span>
+                    </div>
+                    <div class="flex items-center space-x-4 transform hover:translate-x-2 transition-transform">
+                        <div class="w-12 h-12 rounded-full cosmic-gradient flex items-center justify-center text-white shadow-lg pulse">
+                            <span class="text-xl">∞</span>
+                        </div>
+                        <span class="text-lg">Timeless Wisdom for Modern Love</span>
+                    </div>
+                </div>
+
+                <!-- Enhanced CTA Button -->
+                <div class="relative">
+                  <a href="#guidance">
+                    <button class="px-10 py-5 rounded-full cosmic-gradient text-white text-xl hover:opacity-90 transition-all transform hover:scale-105 shadow-xl">
+                        Discover Your Path
+                        <span class="ml-2">→</span>
+                    </button>
+                  </a>
+                    <div class="absolute -right-4 -bottom-4 w-20 h-20 cosmic-gradient rounded-full opacity-20 pulse"></div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="relative" data-aos="fade-left">
+                <!-- Main Image Container -->
+                <div class="relative">
+                    <img src="https://lovedate.jwsuperthemes.com/wp-content/uploads/2024/09/Imgs-min.png" alt="Cosmic Connection" class="rounded-3xl  floating-element">
+                    
+                    <!-- Decorative Circles -->
+                    <div class="absolute -top-4 -right-4 w-32 h-32 cosmic-gradient rounded-full opacity-20 rotating"></div>
+                    <div class="absolute -bottom-4 -left-4 w-40 h-40 cosmic-gradient rounded-full opacity-20 rotating"></div>
+                    
+                    <!-- Floating Stats Cards -->
+                    <div class="absolute -bottom-8 -left-8 bg-white p-6 rounded-2xl shadow-xl floating-slow">
+                        <div class="text-3xl font-bold cosmic-text mb-2">15K+</div>
+                        <div class="text-gray-600">Relationships Transformed</div>
+                    </div>
+                    
+                    <div class="absolute -top-8 -right-8 bg-white p-6 rounded-2xl shadow-xl floating-fast">
+                        <div class="text-3xl font-bold cosmic-text mb-2">98%</div>
+                        <div class="text-gray-600">Success Rate</div>
+                    </div>
+                    
+                    <!-- Small Floating Elements -->
+                    <div class="absolute top-1/4 -right-4 w-8 h-8 cosmic-gradient rounded-full floating-element flex items-center justify-center text-white text-xl">✧</div>
+                    <div class="absolute bottom-1/4 -left-4 w-8 h-8 cosmic-gradient rounded-full floating-slow flex items-center justify-center text-white text-xl">♥</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Decorative Elements -->
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+</section>
+
+    <!-- Journey Section -->
+    <section class="journey-section" id="journey">
+        <!-- Floating particles -->
+        <div class="particles">
+            <script>
+                // Create floating particles
+                const particles = document.querySelector('.particles');
+                for (let i = 0; i < 50; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 15 + 's';
+                    particle.style.animationDuration = (Math.random() * 5 + 10) + 's';
+                    particles.appendChild(particle);
+                }
+            </script>
+        </div>
+
+        <div class="container">
+            <h2 class="section-title">Your Journey to Understanding</h2>
+            <p class="section-subtitle">
+                Every relationship has its own unique rhythm and pattern. Begin your journey of discovery through our guided path to deeper connections.
+            </p>
+
+            <div class="journey-grid">
+                <!-- Card 1 -->
+                <div class="journey-card" onmousemove="handleHover(event, this)">
+                    <div class="number-indicator">1</div>
+                    <h3 class="card-title">Personal Insight</h3>
+                    <p class="card-description">
+                        Understand the deeper patterns that influence your relationships and emotional connections. Discover your unique relationship style.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="journey-card" onmousemove="handleHover(event, this)">
+                    <div class="number-indicator">2</div>
+                    <h3 class="card-title">Relationship Dynamics</h3>
+                    <p class="card-description">
+                        Explore how different energies interact and create harmony or challenges in your relationships. Learn to navigate complexities.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="journey-card" onmousemove="handleHover(event, this)">
+                    <div class="number-indicator">3</div>
+                    <h3 class="card-title">Path to Harmony</h3>
+                    <p class="card-description">
+                        Discover practical solutions and insights to create lasting harmony in your relationships. Transform understanding into action.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="spiral-bg min-h-screen py-12 md:py-24 relative overflow-hidden">
+        <!-- Dynamic Background Elements -->
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 opacity-70"></div>
+        
+        <!-- Section Header -->
+        <div class="relative max-w-7xl mx-auto px-4 text-center mb-12 md:mb-20" data-aos="fade-up">
+            <h2 class="font-display text-4xl md:text-6xl mb-4 md:mb-6 bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
+                Life's Deeper Questions
+            </h2>
+            <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-4">
+                Explore the intricate patterns that shape your relationships
+            </p>
+        </div>
+    
+        <!-- Interactive Questions Section -->
+        <div class="relative max-w-6xl mx-auto px-4">
+            <!-- Central Element - Hidden on mobile, shown on desktop -->
+            <div class="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-72 md:w-96 h-72 md:h-96">
+                <div class="absolute inset-0 cosmic-gradient rounded-full opacity-10 glow-effect"></div>
+                <div class="absolute inset-4 cosmic-gradient rounded-full opacity-20 floating-orb"></div>
+                <div class="absolute inset-8 bg-white/90 rounded-full backdrop-blur-lg shadow-2xl flex items-center justify-center">
+                    <div class="text-center p-8">
+                        <span class="text-4xl mb-4 block">✨</span>
+                        <h3 class="font-display text-2xl mb-2 cosmic-text">Your Journey</h3>
+                        <p class="text-gray-600">Begin your path to understanding</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Mobile Journey Indicator - Shown only on mobile -->
+            <div class="md:hidden text-center mb-8 bg-white/90 backdrop-blur-lg p-6 rounded-2xl shadow-lg mobile-float">
+                <span class="text-3xl mb-2 block">✨</span>
+                <h3 class="font-display text-xl mb-1 cosmic-text">Your Journey</h3>
+                <p class="text-sm text-gray-600">Begin your path to understanding</p>
+            </div>
+    
+            <!-- Questions Container -->
+            <div class="relative md:h-[800px]">
+                <!-- Desktop SVG Connections - Hidden on mobile -->
+                <svg class="hidden md:block absolute inset-0 w-full h-full" style="pointer-events: none;">
+                    <path class="connection-line" d="M200,100 Q400,250 600,100" fill="none" stroke="url(#gradient)" stroke-width="2"/>
+                    <path class="connection-line" d="M200,700 Q400,550 600,700" fill="none" stroke="url(#gradient)" stroke-width="2"/>
+                    <path class="connection-line" d="M100,200 Q400,400 100,600" fill="none" stroke="url(#gradient)" stroke-width="2"/>
+                    <path class="connection-line" d="M700,200 Q400,400 700,600" fill="none" stroke="url(#gradient)" stroke-width="2"/>
+                    
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color: #7C3AED; stop-opacity: 0.3"/>
+                            <stop offset="100%" style="stop-color: #C084FC; stop-opacity: 0.3"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+    
+                <!-- Questions - Responsive Layout -->
+                <div class="md:absolute md:inset-0 space-y-6 md:space-y-0">
+                    <!-- Question 1 -->
+                    <div class="question-path md:absolute md:left-0 md:top-0 md:w-80 w-full transition-all duration-500 hover:transform hover:scale-[1.02]">
+                        <div class="bg-white/90 backdrop-blur-lg p-6 md:p-8 rounded-2xl shadow-xl">
+                            <div class="cosmic-orb w-12 md:w-16 h-12 md:h-16 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                                <span class="text-xl md:text-2xl">🔄</span>
+                            </div>
+                            <h3 class="font-display text-xl md:text-2xl mb-3 md:mb-4">Recurring Patterns</h3>
+                            <p class="text-gray-600 text-sm md:text-base mb-4">
+                                Why do certain situations keep appearing in your relationships?
+                            </p>
+                            <button class="text-purple-600 font-medium flex items-center gap-2 group text-sm md:text-base">
+                                Explore Deeper 
+                                <span class="group-hover:translate-x-1 transition-transform">→</span>
+                            </button>
+                        </div>
+                    </div>
+    
+                    <!-- Question 2 -->
+                    <div class="question-path md:absolute md:right-0 md:top-0 md:w-80 w-full transition-all duration-500 hover:transform hover:scale-[1.02]">
+                        <div class="bg-white/90 backdrop-blur-lg p-6 md:p-8 rounded-2xl shadow-xl">
+                            <div class="cosmic-orb w-12 md:w-16 h-12 md:h-16 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                                <span class="text-xl md:text-2xl">⭐</span>
+                            </div>
+                            <h3 class="font-display text-xl md:text-2xl mb-3 md:mb-4">Soul Connections</h3>
+                            <p class="text-gray-600 text-sm md:text-base mb-4">
+                                What makes certain bonds feel uniquely meaningful and destined?
+                            </p>
+                            <button class="text-purple-600 font-medium flex items-center gap-2 group text-sm md:text-base">
+                                Discover More 
+                                <span class="group-hover:translate-x-1 transition-transform">→</span>
+                            </button>
+                        </div>
+                    </div>
+    
+                    <!-- Question 3 -->
+                    <div class="question-path md:absolute md:left-0 md:bottom-0 md:w-80 w-full transition-all duration-500 hover:transform hover:scale-[1.02]">
+                        <div class="bg-white/90 backdrop-blur-lg p-6 md:p-8 rounded-2xl shadow-xl">
+                            <div class="cosmic-orb w-12 md:w-16 h-12 md:h-16 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                                <span class="text-xl md:text-2xl">🌱</span>
+                            </div>
+                            <h3 class="font-display text-xl md:text-2xl mb-3 md:mb-4">Personal Growth</h3>
+                            <p class="text-gray-600 text-sm md:text-base mb-4">
+                                How can relationship challenges lead to spiritual evolution?
+                            </p>
+                            <button class="text-purple-600 font-medium flex items-center gap-2 group text-sm md:text-base">
+                                Learn More 
+                                <span class="group-hover:translate-x-1 transition-transform">→</span>
+                            </button>
+                        </div>
+                    </div>
+    
+                    <!-- Question 4 -->
+                    <div class="question-path md:absolute md:right-0 md:bottom-0 md:w-80 w-full transition-all duration-500 hover:transform hover:scale-[1.02]">
+                        <div class="bg-white/90 backdrop-blur-lg p-6 md:p-8 rounded-2xl shadow-xl">
+                            <div class="cosmic-orb w-12 md:w-16 h-12 md:h-16 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                                <span class="text-xl md:text-2xl">⏳</span>
+                            </div>
+                            <h3 class="font-display text-xl md:text-2xl mb-3 md:mb-4">Divine Timing</h3>
+                            <p class="text-gray-600 text-sm md:text-base mb-4">
+                                Understanding the perfect moments in your relationship journey
+                            </p>
+                            <button class="text-purple-600 font-medium flex items-center gap-2 group text-sm md:text-base">
+                                Understand More 
+                                <span class="group-hover:translate-x-1 transition-transform">→</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Bottom Call to Action -->
+        <div class="relative max-w-2xl mx-auto mt-12 md:mt-20 px-4">
+            <div class="bg-white/90 backdrop-blur-lg p-6 md:p-10 rounded-3xl shadow-xl text-center">
+                <h3 class="font-display text-xl md:text-2xl mb-4 md:mb-6">Ready to Begin Your Journey?</h3>
+                <p class="text-gray-600 text-sm md:text-base mb-6 md:mb-8">
+                    Discover the deeper meaning behind your relationship patterns and unlock your path to authentic connection.
+                </p>
+                <button class="w-full md:w-auto px-8 py-3 md:px-10 md:py-4 rounded-full cosmic-gradient text-white text-base md:text-lg hover:opacity-90 transition-all transform hover:scale-105 shadow-lg">
+                    Start Your Discovery
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Questions Section -->
+    <section class="cosmic-container">
+        <div class="cosmic-energy-field"></div>
+
+        <!-- Enhanced Headings -->
+        <h1 class="cosmic-main-heading">
+            Journey to Inner Harmony
+            <div class="cosmic-pulse-ring"></div>
+        </h1>
+        <p class="cosmic-sub-heading">
+            Discover the profound connections that shape your relationships and guide your path to deeper understanding
+        </p>
+
+        <div class="cosmic-grid">
+            <!-- Journey Card 1 -->
+            <div class="cosmic-journey-card cosmic-float">
+                <div class="cosmic-card-glow"></div>
+                <div class="cosmic-step-circle">
+                    <span class="cosmic-step-number">1</span>
+                    <div class="cosmic-pulse-ring"></div>
+                </div>
+                <h3 class="cosmic-card-title">Self Discovery</h3>
+                <p class="cosmic-card-description">
+                    Begin your journey of understanding through deep personal reflection and guided wisdom.
+                </p>
+            </div>
+
+            <!-- Journey Card 2 -->
+            <div class="cosmic-journey-card cosmic-float" style="animation-delay: 0.2s;">
+                <div class="cosmic-card-glow"></div>
+                <div class="cosmic-step-circle">
+                    <span class="cosmic-step-number">2</span>
+                    <div class="cosmic-pulse-ring"></div>
+                </div>
+                <h3 class="cosmic-card-title">Deep Connection</h3>
+                <p class="cosmic-card-description">
+                    Explore the profound bonds that connect hearts and souls in meaningful relationships.
+                </p>
+            </div>
+
+            <!-- Journey Card 3 -->
+            <div class="cosmic-journey-card cosmic-float" style="animation-delay: 0.4s;">
+                <div class="cosmic-card-glow"></div>
+                <div class="cosmic-step-circle">
+                    <span class="cosmic-step-number">3</span>
+                    <div class="cosmic-pulse-ring"></div>
+                </div>
+                <h3 class="cosmic-card-title">Divine Harmony</h3>
+                <p class="cosmic-card-description">
+                    Achieve balance and understanding in all your relationships through timeless wisdom.
+                </p>
+            </div>
+        </div>
+
+        <div class="cosmic-connection-lines"></div>
+    </section>
+
+
+    <!-- Success Stories -->
+    <section id="stories" class="py-20 relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 quote-bg"></div>
+        <div class="absolute top-0 left-1/4 w-64 h-64 bg-purple-200 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
+        <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-pink-200 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
+    
+        <div class="max-w-7xl mx-auto px-4 relative">
+            <!-- Section Header -->
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-display text-5xl mb-6 bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
+                    Love Stories that Inspire
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Real couples sharing their transformational journey towards deeper connection
+                </p>
+            </div>
+    
+            <!-- Desktop Layout -->
+            <div class="hidden md:grid md:grid-cols-3 gap-8">
+                <!-- Story Card 1 -->
+                <div class="story-card rounded-2xl shadow-lg p-6" data-aos="fade-up">
+                    <div class="relative mb-8 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-purple-900 to-transparent opacity-0 group-hover:opacity-70 transition-opacity rounded-xl"></div>
+                        <div class="relative w-full h-48 rounded-xl overflow-hidden">
+                            <img src="https://images.pexels.com/photos/8819425/pexels-photo-8819425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                                 alt="Sarah & Michael" 
+                                 class="story-image w-full h-full object-cover">
+                        </div>
+                        <div class="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="font-display text-lg">Sarah & Michael</div>
+                            <div class="text-sm">Together for 5 years</div>
+                        </div>
+                    </div>
+                    <div class="cosmic-quote p-6 bg-white rounded-xl">
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            "The insights we gained transformed our relationship completely. We learned to see our challenges as opportunities for growth."
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-purple-600 font-medium">Found True Harmony</span>
+                            <div class="w-8 h-8 rounded-full cosmic-gradient flex items-center justify-center text-white">
+                                ♥
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Story Card 2 -->
+                <div class="story-card rounded-2xl shadow-lg p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative mb-8 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-purple-900 to-transparent opacity-0 group-hover:opacity-70 transition-opacity rounded-xl"></div>
+                        <div class="relative w-full h-48 rounded-xl overflow-hidden">
+                            <img src="https://images.pexels.com/photos/13162691/pexels-photo-13162691.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                                 alt="David & Emma" 
+                                 class="story-image w-full h-full object-cover">
+                        </div>
+                        <div class="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="font-display text-lg">David & Emma</div>
+                            <div class="text-sm">Found love again</div>
+                        </div>
+                    </div>
+                    <div class="cosmic-quote p-6 bg-white rounded-xl">
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            "Understanding our unique energies helped us appreciate our differences. Now we celebrate what makes us unique."
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-purple-600 font-medium">Rediscovered Love</span>
+                            <div class="w-8 h-8 rounded-full cosmic-gradient flex items-center justify-center text-white">
+                                ∞
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Story Card 3 -->
+                <div class="story-card rounded-2xl shadow-lg p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative mb-8 group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-purple-900 to-transparent opacity-0 group-hover:opacity-70 transition-opacity rounded-xl"></div>
+                        <div class="relative w-full h-48 rounded-xl overflow-hidden">
+                            <img src="https://images.pexels.com/photos/2532218/pexels-photo-2532218.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                                 alt="Lisa & James" 
+                                 class="story-image w-full h-full object-cover">
+                        </div>
+                        <div class="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="font-display text-lg">Lisa & James</div>
+                            <div class="text-sm">Perfect alignment</div>
+                        </div>
+                    </div>
+                    <div class="cosmic-quote p-6 bg-white rounded-xl">
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            "Learning about our relationship cycles brought us closer than ever. We now move through life in perfect harmony."
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-purple-600 font-medium">True Alignment</span>
+                            <div class="w-8 h-8 rounded-full cosmic-gradient flex items-center justify-center text-white">
+                                ✧
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Mobile Layout -->
+            <div class="md:hidden">
+                <div class="mobile-scroll overflow-x-auto flex snap-x snap-mandatory hide-scrollbar">
+                    <!-- Mobile Story Cards -->
+                    <div class="min-w-[300px] mx-2 snap-center">
+                        <div class="story-card rounded-2xl shadow-lg p-4">
+                            <div class="relative h-40 rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.pexels.com/photos/8819425/pexels-photo-8819425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                                     alt="Sarah & Michael" 
+                                     class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-purple-900 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4 text-white">
+                                    <div class="font-display text-lg">Sarah & Michael</div>
+                                    <div class="text-sm">Found harmony</div>
+                                </div>
+                            </div>
+                            <div class="cosmic-quote p-4 bg-white rounded-xl">
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    "The insights transformed our relationship completely. We learned to grow together."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Repeat for other mobile cards -->
+                    <!-- Similar structure for other two cards -->
+                </div>
+    
+                <!-- Mobile Indicators -->
+                <div class="flex justify-center space-x-2 mt-6">
+                    <button class="indicator-dot w-2 h-2 rounded-full bg-purple-200 active"></button>
+                    <button class="indicator-dot w-2 h-2 rounded-full bg-purple-200"></button>
+                    <button class="indicator-dot w-2 h-2 rounded-full bg-purple-200"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+   
+
+    <!-- Contact Form -->
+    <section id="guidance" class="py-20 stars-bg">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="bg-white p-8 rounded-2xl shadow-xl" data-aos="fade-up">
+                <h2 class="font-display text-3xl text-center mb-8">Begin Your Journey to Understanding</h2>
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Your Name</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-lg border border-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Birth Date</label>
+                            <input type="date" class="w-full px-4 py-3 rounded-lg border border-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Email Address</label>
+                        <input type="email" class="w-full px-4 py-3 rounded-lg border border-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">What challenges are you facing?</label>
+                        <select class="w-full px-4 py-3 rounded-lg border border-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option value="">Select a primary concern...</option>
+                            <option value="communication">Communication Issues</option>
+                            <option value="trust">Trust and Understanding</option>
+                            <option value="compatibility">Compatibility Concerns</option>
+                            <option value="timing">Timing and Life Cycles</option>
+                            <option value="personal">Personal Growth in Relationship</option>
+                            <option value="conflict">Conflict Resolution</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Share your story (optional)</label>
+                        <textarea rows="4" class="w-full px-4 py-3 rounded-lg border border-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Tell us more about your situation..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 rounded-full cosmic-gradient text-white text-lg hover:opacity-90 transition-opacity">
+                        Receive Your Personal Insights
+                    </button>
+                    <p class="text-sm text-gray-500 text-center">
+                        Your information is sacred to us. We respect your privacy and confidentiality.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl mb-6">Why Choose Our Guidance</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    We combine timeless wisdom with modern understanding to provide you with deep, meaningful insights.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center" data-aos="fade-up">
+                    <div class="w-16 h-16 cosmic-gradient rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-6">✧</div>
+                    <h3 class="font-display text-xl mb-4">Ancient Wisdom</h3>
+                    <p class="text-gray-600">Drawing from timeless knowledge passed down through generations</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 cosmic-gradient rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-6">♥</div>
+                    <h3 class="font-display text-xl mb-4">Modern Approach</h3>
+                    <p class="text-gray-600">Incorporating contemporary relationship psychology and dynamics</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 cosmic-gradient rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-6">☘</div>
+                    <h3 class="font-display text-xl mb-4">Personal Touch</h3>
+                    <p class="text-gray-600">Tailored guidance based on your unique situation and patterns</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 cosmic-gradient rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-6">⚡</div>
+                    <h3 class="font-display text-xl mb-4">Practical Solutions</h3>
+                    <p class="text-gray-600">Actionable insights you can apply to your relationship today</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-purple-50">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="font-display text-4xl text-center mb-16">Common Questions</h2>
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-2xl shadow-lg" data-aos="fade-up">
+                    <h3 class="font-display text-xl mb-4">How does your guidance work?</h3>
+                    <p class="text-gray-600">We combine traditional wisdom with modern relationship understanding to provide personalized insights into your relationship patterns and potential paths forward.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg" data-aos="fade-up">
+                    <h3 class="font-display text-xl mb-4">What makes your approach unique?</h3>
+                    <p class="text-gray-600">Our method considers both personal energies and universal patterns to provide deep, meaningful insights that go beyond surface-level advice.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg" data-aos="fade-up">
+                    <h3 class="font-display text-xl mb-4">How long until I see results?</h3>
+                    <p class="text-gray-600">Many clients report new understanding and insights from their very first session, with deeper transformation occurring over time as they apply the guidance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    
+    <footer class="footer-gradient relative overflow-hidden">
+        <!-- Decorative Elements -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-1/4 w-32 h-32 bg-purple-500 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-40 h-40 bg-pink-500 rounded-full blur-3xl"></div>
+        </div>
+    
+        <div class="relative max-w-7xl mx-auto px-4 py-16">
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand Section -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-full cosmic-gradient flex items-center justify-center text-white">✨</div>
+                        <div class="font-display text-2xl bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                            HarmonyPath
+                        </div>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">
+                        Guiding souls towards deeper understanding and meaningful connections through celestial wisdom.
+                    </p>
+                </div>
+    
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-display text-lg text-white mb-6">Explore Path</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="footer-link text-gray-400 hover:text-white">About Our Journey</a></li>
+                        <li><a href="#" class="footer-link text-gray-400 hover:text-white">Sacred Approach</a></li>
+                        <li><a href="#" class="footer-link text-gray-400 hover:text-white">Success Stories</a></li>
+                        <li><a href="#" class="footer-link text-gray-400 hover:text-white">Wisdom Blog</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Resources -->
+                <div>
+                    <h4 class="font-display text-lg text-white mb-6">Sacred Wisdom</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="footer-link text-gray-400 hover:text-white">Connection Guide</a></li>
+                        <li><a href="#" class="footer-link text-gray-400 hover:text-white">Pattern Insights</a></li>
+                        <li><a href="#" class="footer-link text-gray-400 hover:text-white">Harmony Tips</a></li>
+                        <li><a href="#" class="footer-link text-gray-400 hover:text-white">Common Questions</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Newsletter Section -->
+                <div class="space-y-6">
+                    <h4 class="font-display text-lg text-white mb-6">Join Our Circle</h4>
+                    <p class="text-gray-400 text-sm">Receive celestial insights and relationship wisdom in your inbox</p>
+                    <div class="space-y-3">
+                        <div class="flex">
+                            <input type="email" 
+                                   placeholder="Enter your email" 
+                                   class="w-full px-4 py-3 rounded-l-lg cosmic-input border border-purple-800 text-white bg-transparent focus:outline-none focus:border-purple-500">
+                            <button class="px-6 py-3 rounded-r-lg cosmic-gradient text-white hover:opacity-90 transition-opacity">
+                                Join →
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-500">By subscribing, you agree to receive relationship insights from us.</p>
+                    </div>
+    
+                    <!-- Social Links -->
+                    <div class="flex space-x-4 pt-4">
+                        <a href="#" class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:border-purple-500 hover:text-white hover:scale-110 transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:border-purple-500 hover:text-white hover:scale-110 transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:border-purple-500 hover:text-white hover:scale-110 transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.995 16.979H7.005v-1.773h9.99v1.773zm0-4.327H7.005v-1.773h9.99v1.773zm0-4.327H7.005V6.552h9.99v1.773z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Footer Bottom -->
+            <div class="pt-8 mt-8 border-t border-gray-800">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <p class="text-gray-400 text-sm">
+                        © 2024 HarmonyPath. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6 text-sm">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Initialize GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Animate elements on scroll
+        gsap.utils.toArray('.floating-card').forEach(card => {
+            gsap.to(card, {
+                y: 30,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "power1.inOut"
+            });
+        });
+    </script>
+
+<script>
+    // Activate question paths on scroll
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '50px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.question-path').forEach(path => {
+        observer.observe(path);
+    });
+</script>
+
+<script>
+    // Mobile scroll indicator functionality
+    const mobileScroll = document.querySelector('.mobile-scroll');
+    const indicators = document.querySelectorAll('.indicator-dot');
+    
+    if (mobileScroll) {
+        mobileScroll.addEventListener('scroll', () => {
+            const scrollPosition = mobileScroll.scrollLeft;
+            const cardWidth = mobileScroll.querySelector('div').offsetWidth;
+            const activeIndex = Math.round(scrollPosition / cardWidth);
+            
+            indicators.forEach((dot, index) => {
+                dot.classList.toggle('active', index === activeIndex);
+            });
+        });
+    }
+</script>
+
+
+<!-- journey -->
+
+<script>
+    function handleHover(e, element) {
+        const rect = element.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        element.style.background = `
+            radial-gradient(
+                circle at ${x}px ${y}px,
+                rgba(255, 255, 255, 0.98) 0%,
+                rgba(255, 255, 255, 0.9) 100%
+            )
+        `;
+    }
+</script>
+
+<!-- questions -->
+<script>
+    // Interactive Energy Field
+    document.addEventListener('mousemove', (e) => {
+        const field = document.querySelector('.cosmic-energy-field');
+        const x = (e.clientX / window.innerWidth) * 100;
+        const y = (e.clientY / window.innerHeight) * 100;
+        field.style.setProperty('--x', `${x}%`);
+        field.style.setProperty('--y', `${y}%`);
+    });
+
+    // Enhanced Card Interactions
+    document.querySelectorAll('.cosmic-journey-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            card.style.transform = `
+                perspective(1000px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                translateZ(20px)
+            `;
+
+            const glow = card.querySelector('.cosmic-card-glow');
+            glow.style.background = `
+                radial-gradient(circle at ${x}px ${y}px,
+                rgba(124, 58, 237, 0.6),
+                transparent 70%)
+            `;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+        });
+    });
+</script>
+
+<!-- smooth -->
+
+<script>
+    // Add this script at the end of your body tag or in your main JS file
+
+// Smooth scroll function for all links with hash (#) targets
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            // Get header height if you have a fixed header
+            const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+            
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Optional: Smooth scroll for navigation menu items
+function smoothScroll(targetId, duration = 1000) {
+    const target = document.querySelector(targetId);
+    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = ease(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    // Easing function
+    function ease(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+}
+
+// Example usage for navigation menu
+const navLinks = document.querySelectorAll('.nav-link');
+navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        smoothScroll(targetId);
+    });
+});
+
+// Optional: Scroll to section on page load if URL has hash
+window.addEventListener('load', () => {
+    if (window.location.hash) {
+        const targetId = window.location.hash;
+        setTimeout(() => {
+            smoothScroll(targetId);
+        }, 100);
+    }
+});
+
+// Optional: Back to top button functionality
+const backToTopButton = document.querySelector('.back-to-top');
+if (backToTopButton) {
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('active');
+        } else {
+            backToTopButton.classList.remove('active');
+        }
+    });
+
+    // Smooth scroll to top
+    backToTopButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+</script>
+</body>
+</html>
