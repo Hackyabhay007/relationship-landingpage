@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Marketing Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <style>
+        .heading-stroke {
+            -webkit-text-stroke: 2px #EAB308;
+            text-stroke: 2px #EAB308;
+            color: transparent;
+            text-shadow: 
+                3px 3px 0 #000,
+                -1px -1px 0 #000,  
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+        }
+
+        .heading-gradient {
+            background: linear-gradient(135deg, #FCD34D, #F59E0B, #EAB308);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientMove 3s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .text-glow {
+            text-shadow: 0 0 10px rgba(234, 179, 8, 0.3),
+                         0 0 20px rgba(234, 179, 8, 0.2),
+                         0 0 30px rgba(234, 179, 8, 0.1);
+        }
+
+        .border-glow {
+            border-right: 2px solid #EAB308;
+            border-bottom: 2px solid #EAB308;
+            box-shadow: 5px 5px 15px rgba(234, 179, 8, 0.2);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+        }
+
+        .video-thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(234, 179, 8, 0.2), transparent);
+        }
+
+        .play-btn {
+            transform: translate(-50%, -50%) scale(1);
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .timer-item {
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+        }
+
+        .pulse-btn {
+            animation: pulse-yellow 2s infinite;
+        }
+
+        @keyframes pulse-yellow {
+            0%, 100% { box-shadow: 0 0 15px rgba(234, 179, 8, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(234, 179, 8, 0.6); }
+        }
+
+        .main-heading {
+            position: relative;
+            display: inline-block;
+        }
+
+        .main-heading::after {
+            content: 'ELITE';
+            position: absolute;
+            top: -20px;
+            right: -30px;
+            font-size: 1rem;
+            background: #EAB308;
+            padding: 4px 12px;
+            border-radius: 20px;
+            transform: rotate(12deg);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: rotate(12deg) translateY(0px); }
+            50% { transform: rotate(12deg) translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 min-h-screen">
+
+<!-- Hero Section -->
+<div class="container mx-auto px-4 pt-20 pb-12">
+    <div class="text-center" data-aos="fade-down">
+        <div class="main-heading mb-2">
+            <h1 class="text-6xl md:text-8xl font-extrabold mb-4">
+                <span class="heading-stroke">MASTER</span>
+                <span class="heading-gradient block mt-2">MARKETING</span>
+            </h1>
+        </div>
+        <p class="text-yellow-200/80 text-2xl mb-4 text-glow">
+            <i class="fas fa-star mr-2"></i>
+            Transform Your Business With Elite Strategies
+        </p>
+        <div class="w-24 h-1 bg-yellow-500 mx-auto rounded-full mb-8"></div>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div class="max-w-2xl mx-auto my-12">
+        <p class="text-center text-yellow-500 mb-4 text-xl font-bold">
+            <i class="fas fa-clock mr-2"></i>
+            Special Offer Ends In:
+        </p>
+        <div class="flex justify-center gap-4" id="countdown">
+            <div class="timer-item p-4 rounded-lg text-center min-w-[80px]">
+                <div class="text-2xl font-bold text-yellow-500" id="days">00</div>
+                <div class="text-xs text-gray-400">DAYS</div>
+            </div>
+            <div class="timer-item p-4 rounded-lg text-center min-w-[80px]">
+                <div class="text-2xl font-bold text-yellow-500" id="hours">00</div>
+                <div class="text-xs text-gray-400">HOURS</div>
+            </div>
+            <div class="timer-item p-4 rounded-lg text-center min-w-[80px]">
+                <div class="text-2xl font-bold text-yellow-500" id="minutes">00</div>
+                <div class="text-xs text-gray-400">MINUTES</div>
+            </div>
+            <div class="timer-item p-4 rounded-lg text-center min-w-[80px]">
+                <div class="text-2xl font-bold text-yellow-500" id="seconds">00</div>
+                <div class="text-xs text-gray-400">SECONDS</div>
+            </div>
+        </div>
+    </div>
+    <!-- Video Section -->
+    <div class="max-w-4xl mx-auto mb-16 border-glow rounded-xl overflow-hidden">
+        <div class="video-thumbnail relative aspect-video">
+            <!-- Replace with your thumbnail image -->
+            <img src="https://placehold.co/1920x1080/111827/FCD34D?text=Marketing+Masterclass" 
+                 alt="Video Thumbnail" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/50"></div>
+            <button class="play-btn absolute top-1/2 left-1/2 group">
+                <div class="relative">
+                    <div class="w-20 h-20 bg-yellow-500 rounded-full opacity-20 absolute animate-ping"></div>
+                    <div class="w-20 h-20 bg-yellow-500/90 rounded-full flex items-center justify-center">
+                        <i class="fas fa-play text-black text-2xl ml-2"></i>
+                    </div>
+                </div>
+            </button>
+            <div class="absolute bottom-4 left-4 bg-black/70 px-4 py-2 rounded-lg">
+                <p class="text-yellow-500 text-sm font-medium">
+                    <i class="fas fa-clock mr-2"></i>
+                    11:34 mins
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="p-6 border-glow rounded-xl bg-gray-800/50 transform hover:-translate-y-2 transition-all duration-300" data-aos="fade-up">
+            <i class="fas fa-rocket text-yellow-500 text-3xl mb-4"></i>
+            <h3 class="text-white text-xl font-bold mb-2">Fast Growth Strategy</h3>
+            <p class="text-gray-400">Advanced techniques for rapid network expansion</p>
+        </div>
+
+        <div class="p-6 border-glow rounded-xl bg-gray-800/50 transform hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+            <i class="fas fa-chart-line text-yellow-500 text-3xl mb-4"></i>
+            <h3 class="text-white text-xl font-bold mb-2">Proven Systems</h3>
+            <p class="text-gray-400">Time-tested methods for consistent results</p>
+        </div>
+
+        <div class="p-6 border-glow rounded-xl bg-gray-800/50 transform hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+            <i class="fas fa-gem text-yellow-500 text-3xl mb-4"></i>
+            <h3 class="text-white text-xl font-bold mb-2">Elite Community</h3>
+            <p class="text-gray-400">Join top performers in the industry</p>
+        </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="text-center">
+        <button id="openModal" class="bg-yellow-500 hover:bg-yellow-600 text-black px-12 py-4 rounded-lg font-bold text-lg pulse-btn transform hover:scale-105 transition-all duration-300">
+            <i class="fas fa-lock-open mr-2"></i>
+            UNLOCK LIMITED TIME OFFER
+        </button>
+    </div>
+</div>
+
+<!-- Modal Form -->
+<div id="formModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/90" id="modalOverlay"></div>
+    
+    <div class="relative w-full max-w-md" data-aos="zoom-in">
+        <div class="bg-gray-800 rounded-xl border-glow p-8">
+            <button id="closeModal" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold heading-gradient mb-2">
+                    Claim Your Spot
+                </h2>
+                <p class="text-gray-400">
+                    <i class="fas fa-shield-alt mr-2"></i>
+                    Limited Time Special Pricing
+                </p>
+            </div>
+
+            <form class="space-y-6">
+                <div class="space-y-4">
+                    <div class="relative">
+                        <i class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                        <input type="text" placeholder="Full Name" required
+                            class="w-full bg-gray-700 text-white pl-12 pr-4 py-3 rounded-lg border-2 border-yellow-500/30 focus:border-yellow-500 outline-none transition-all">
+                    </div>
+                    
+                    <div class="relative">
+                        <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                        <input type="email" placeholder="Email Address" required
+                            class="w-full bg-gray-700 text-white pl-12 pr-4 py-3 rounded-lg border-2 border-yellow-500/30 focus:border-yellow-500 outline-none transition-all">
+                    </div>
+                    
+                    <div class="relative">
+                        <i class="fas fa-phone absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                        <input type="tel" placeholder="Phone Number" required
+                            class="w-full bg-gray-700 text-white pl-12 pr-4 py-3 rounded-lg border-2 border-yellow-500/30 focus:border-yellow-500 outline-none transition-all">
+                    </div>
+                </div>
+
+                <button type="submit" 
+                    class="w-full bg-yellow-500 hover:bg-yellow-600 text-black py-4 rounded-lg font-bold pulse-btn">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    SECURE YOUR SPOT NOW
+                </button>
+
+                <div class="text-center space-y-2">
+                    <p class="text-sm text-gray-400">
+                        <i class="fas fa-lock mr-2"></i>
+                        Your information is secure and encrypted
+                    </p>
+                    <p class="text-xs text-gray-500">
+                        <i class="fas fa-shield-alt mr-2"></i>
+                        No credit card required
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    AOS.init({
+        duration: 1000,
+        once: true
+    });
+
+   // Set the end date once when the page loads
+const endDate = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000); // 3 days from now
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = endDate - now;
+
+    // Check if countdown is finished
+    if (distance < 0) {
+        document.getElementById('days').innerText = '00';
+        document.getElementById('hours').innerText = '00';
+        document.getElementById('minutes').innerText = '00';
+        document.getElementById('seconds').innerText = '00';
+        clearInterval(timerInterval); // Stop the countdown
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById('days').innerText = String(days).padStart(2, '0');
+    document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+    document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+}
+
+// Initial call
+updateCountdown();
+
+// Update every second
+const timerInterval = setInterval(updateCountdown, 1000);
+
+// Optional: If you want to set a specific end date and time
+// const endDate = new Date("Dec 31, 2024 23:59:59").getTime();
+
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Video Handling
+    const videoThumbnail = document.querySelector('.video-thumbnail');
+    const playBtn = document.querySelector('.play-btn');
+
+    playBtn.addEventListener('click', () => {
+        // Replace thumbnail with video
+        const video = document.createElement('video');
+        video.src = 'video.mp4'; // Replace with your video URL
+        video.classList.add('w-full', 'h-full', 'object-cover');
+        video.controls = true;
+        video.autoplay = true;
+        
+        videoThumbnail.innerHTML = '';
+        videoThumbnail.appendChild(video);
+    });
+
+    // Modal Controls
+    const modal = document.getElementById('formModal');
+    const openBtn = document.getElementById('openModal');
+    const closeBtn = document.getElementById('closeModal');
+    const overlay = document.getElementById('modalOverlay');
+
+    function toggleModal() {
+        modal.classList.toggle('hidden');
+        modal.classList.toggle('flex');
+    }
+
+    openBtn.addEventListener('click', toggleModal);
+    closeBtn.addEventListener('click', toggleModal);
+    overlay.addEventListener('click', toggleModal);
+
+    // Form Submission
+    document.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for registering! We\'ll be in touch shortly.');
+        toggleModal();
+        e.target.reset();
+    });
+</script>
+
+</body>
+</html>
