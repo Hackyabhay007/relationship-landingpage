@@ -176,6 +176,7 @@
                     11:34 mins
                 </p>
             </div>
+
         </div>
     </div>
 
@@ -325,7 +326,7 @@ const timerInterval = setInterval(updateCountdown, 1000);
     playBtn.addEventListener('click', () => {
         // Replace thumbnail with video
         const video = document.createElement('video');
-        video.src = 'video.mp4'; // Replace with your video URL
+        video.src = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'; // Replace with your video URL
         video.classList.add('w-full', 'h-full', 'object-cover');
         video.controls = true;
         video.autoplay = true;
