@@ -156,27 +156,30 @@
     </div>
     <!-- Video Section -->
     <div class="max-w-4xl mx-auto mb-16 border-glow rounded-xl overflow-hidden">
-        <div class="video-thumbnail relative aspect-video">
-            <!-- Replace with your thumbnail image -->
-            <img src="https://placehold.co/1920x1080/111827/FCD34D?text=Marketing+Masterclass" 
-                 alt="Video Thumbnail" 
-                 class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black/50"></div>
-            <button class="play-btn absolute top-1/2 left-1/2 group">
-                <div class="relative">
-                    <div class="w-20 h-20 bg-yellow-500 rounded-full opacity-20 absolute animate-ping"></div>
-                    <div class="w-20 h-20 bg-yellow-500/90 rounded-full flex items-center justify-center">
-                        <i class="fas fa-play text-black text-2xl ml-2"></i>
+        <div class="video-container relative aspect-video">
+            <div id="videoThumbnail" class="video-thumbnail absolute inset-0 z-10 cursor-pointer">
+                <img src="https://img.youtube.com/vi/ricOBVnKNnI/maxresdefault.jpg" 
+                     alt="Video Thumbnail" 
+                     class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/50"></div>
+                <button class="play-btn absolute top-1/2 left-1/2 group">
+                    <div class="relative">
+                        <div class="w-20 h-20 bg-yellow-500 rounded-full opacity-20 absolute animate-ping"></div>
+                        <div class="w-20 h-20 bg-yellow-500/90 rounded-full flex items-center justify-center">
+                            <i class="fas fa-play text-black text-2xl ml-2"></i>
+                        </div>
                     </div>
-                </div>
-            </button>
-            <div class="absolute bottom-4 left-4 bg-black/70 px-4 py-2 rounded-lg">
-                <p class="text-yellow-500 text-sm font-medium">
-                    <i class="fas fa-clock mr-2"></i>
-                    11:34 mins
-                </p>
+                </button>
             </div>
-
+            <iframe 
+                id="youtubeVideo"
+                class="w-full h-full"
+                src="https://www.youtube.com/embed/ricOBVnKNnI?autoplay=0&mute=1"
+                title="Marketing Masterclass"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
         </div>
     </div>
 
@@ -319,22 +322,6 @@ const timerInterval = setInterval(updateCountdown, 1000);
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Video Handling
-    const videoThumbnail = document.querySelector('.video-thumbnail');
-    const playBtn = document.querySelector('.play-btn');
-
-    playBtn.addEventListener('click', () => {
-        // Replace thumbnail with video
-        const video = document.createElement('video');
-        video.src = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'; // Replace with your video URL
-        video.classList.add('w-full', 'h-full', 'object-cover');
-        video.controls = true;
-        video.autoplay = true;
-        
-        videoThumbnail.innerHTML = '';
-        videoThumbnail.appendChild(video);
-    });
-
     // Modal Controls
     const modal = document.getElementById('formModal');
     const openBtn = document.getElementById('openModal');
@@ -356,6 +343,15 @@ const timerInterval = setInterval(updateCountdown, 1000);
         alert('Thank you for registering! We\'ll be in touch shortly.');
         toggleModal();
         e.target.reset();
+    });
+
+    // Video thumbnail click handler
+    document.getElementById('videoThumbnail').addEventListener('click', function() {
+        const iframe = document.getElementById('youtubeVideo');
+        // Update src to force autoplay
+        iframe.src = "https://www.youtube.com/embed/ricOBVnKNnI?autoplay=1&mute=1";
+        // Hide thumbnail
+        this.style.display = 'none';
     });
 </script>
 
