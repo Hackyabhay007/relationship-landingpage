@@ -278,15 +278,17 @@
 
     <!-- CTA Button -->
     <div class="text-center">
-        <button id="openModal" class="bg-yellow-500 hover:bg-yellow-600 text-black px-12 py-4 rounded-lg font-bold text-lg pulse-btn transform hover:scale-105 transition-all duration-300">
-            <i class="fas fa-lock-open mr-2"></i>
-            UNLOCK LIMITED TIME OFFER
-        </button>
-    </div>
+    <a href="https://rzp.io/rzp/business01" target="_blank" 
+       class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black px-12 py-4 rounded-lg font-bold text-lg pulse-btn transform hover:scale-105 transition-all duration-300">
+        <i class="fas fa-lock-open mr-2"></i>
+        UNLOCK LIMITED TIME OFFER
+    </a>
+</div>
+
 </div>
 
 <!-- Modal Form -->
-<div id="formModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+<!-- <div id="formModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
     <div class="absolute inset-0 bg-black/90" id="modalOverlay"></div>
     
     <div class="relative w-full max-w-md" data-aos="zoom-in">
@@ -345,7 +347,7 @@
             </form>
         </div>
     </div>
-</div>
+</div> -->
 
 <script>
     AOS.init({
@@ -397,6 +399,7 @@ const timerInterval = setInterval(updateCountdown, 1000);
     updateCountdown();
 
     // Modal Controls
+    /*
     const modal = document.getElementById('formModal');
     const openBtn = document.getElementById('openModal');
     const closeBtn = document.getElementById('closeModal');
@@ -418,6 +421,7 @@ const timerInterval = setInterval(updateCountdown, 1000);
         toggleModal();
         e.target.reset();
     });
+    */
 
     // Video thumbnail click handler
     document.getElementById('videoThumbnail').addEventListener('click', function() {
