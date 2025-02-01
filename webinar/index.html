@@ -8,6 +8,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <style>
         .heading-stroke {
@@ -109,12 +110,83 @@
             0%, 100% { transform: rotate(12deg) translateY(0px); }
             50% { transform: rotate(12deg) translateY(-10px); }
         }
+
+        .particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .feature-card {
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) rotateY(5deg) rotateX(5deg);
+            box-shadow: 0 25px 50px rgba(234, 179, 8, 0.2);
+        }
+
+        .video-container {
+            position: relative;
+            animation: borderGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(234, 179, 8, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(234, 179, 8, 0.5); }
+        }
+
+        .reveal-text {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: revealText 0.8s ease forwards;
+        }
+
+        @keyframes revealText {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .float-icon {
+            animation: floatIcon 2s ease-in-out infinite;
+        }
+
+        .float-card {
+            animation: floatCard 3s ease-in-out infinite;
+        }
+
+        .float-timer {
+            animation: floatTimer 4s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes floatTimer {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
     </style>
 </head>
 <body class="bg-gray-900 min-h-screen">
+    <div id="particles-js" class="particles-js"></div>
 
 <!-- Hero Section -->
-<div class="container mx-auto px-4 pt-20 pb-12">
+<div class="container mx-auto px-4 pt-20 pb-12 relative">
     <div class="text-center" data-aos="fade-down">
         <div class="main-heading mb-2">
             <h1 class="text-6xl md:text-8xl font-extrabold mb-4">
@@ -123,7 +195,7 @@
             </h1>
         </div>
         <p class="text-yellow-200/80 text-2xl mb-4 text-glow">
-            <i class="fas fa-star mr-2"></i>
+            <i class="fas fa-star mr-2 float-icon"></i>
             Transform Your Business With Elite Strategies
         </p>
         <div class="w-24 h-1 bg-yellow-500 mx-auto rounded-full mb-8"></div>
@@ -136,26 +208,26 @@
             Special Offer Ends In:
         </p>
         <div class="flex justify-center gap-4" id="countdown">
-            <div class="timer-item p-4 rounded-lg text-center min-w-[80px]">
+            <div class="timer-item p-4 rounded-lg text-center min-w-[80px] float-timer" style="animation-delay: 0.1s">
                 <div class="text-2xl font-bold text-yellow-500" id="days">00</div>
                 <div class="text-xs text-gray-400">DAYS</div>
             </div>
-            <div class="timer-item p-4 rounded-lg text-center min-w-[80px]">
+            <div class="timer-item p-4 rounded-lg text-center min-w-[80px] float-timer" style="animation-delay: 0.2s">
                 <div class="text-2xl font-bold text-yellow-500" id="hours">00</div>
                 <div class="text-xs text-gray-400">HOURS</div>
             </div>
-            <div class="timer-item p-4 rounded-lg text-center min-w-[80px]">
+            <div class="timer-item p-4 rounded-lg text-center min-w-[80px] float-timer" style="animation-delay: 0.3s">
                 <div class="text-2xl font-bold text-yellow-500" id="minutes">00</div>
                 <div class="text-xs text-gray-400">MINUTES</div>
             </div>
-            <div class="timer-item p-4 rounded-lg text-center min-w-[80px]">
+            <div class="timer-item p-4 rounded-lg text-center min-w-[80px] float-timer" style="animation-delay: 0.4s">
                 <div class="text-2xl font-bold text-yellow-500" id="seconds">00</div>
                 <div class="text-xs text-gray-400">SECONDS</div>
             </div>
         </div>
     </div>
     <!-- Video Section -->
-    <div class="max-w-4xl mx-auto mb-16 border-glow rounded-xl overflow-hidden">
+    <div class="max-w-4xl mx-auto mb-16 video-container rounded-xl overflow-hidden">
         <div class="video-container relative aspect-video">
             <div id="videoThumbnail" class="video-thumbnail absolute inset-0 z-10 cursor-pointer">
                 <img src="https://img.youtube.com/vi/ricOBVnKNnI/maxresdefault.jpg" 
@@ -185,20 +257,20 @@
 
     <!-- Features Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        <div class="p-6 border-glow rounded-xl bg-gray-800/50 transform hover:-translate-y-2 transition-all duration-300" data-aos="fade-up">
-            <i class="fas fa-rocket text-yellow-500 text-3xl mb-4"></i>
+        <div class="feature-card p-6 border-glow rounded-xl bg-gray-800/50 float-card" style="animation-delay: 0.1s" data-aos="fade-up">
+            <i class="fas fa-rocket text-yellow-500 text-3xl mb-4 float-icon"></i>
             <h3 class="text-white text-xl font-bold mb-2">Fast Growth Strategy</h3>
             <p class="text-gray-400">Advanced techniques for rapid network expansion</p>
         </div>
 
-        <div class="p-6 border-glow rounded-xl bg-gray-800/50 transform hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
-            <i class="fas fa-chart-line text-yellow-500 text-3xl mb-4"></i>
+        <div class="feature-card p-6 border-glow rounded-xl bg-gray-800/50 float-card" style="animation-delay: 0.2s" data-aos="fade-up" data-aos-delay="100">
+            <i class="fas fa-chart-line text-yellow-500 text-3xl mb-4 float-icon"></i>
             <h3 class="text-white text-xl font-bold mb-2">Proven Systems</h3>
             <p class="text-gray-400">Time-tested methods for consistent results</p>
         </div>
 
-        <div class="p-6 border-glow rounded-xl bg-gray-800/50 transform hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
-            <i class="fas fa-gem text-yellow-500 text-3xl mb-4"></i>
+        <div class="feature-card p-6 border-glow rounded-xl bg-gray-800/50 float-card" style="animation-delay: 0.3s" data-aos="fade-up" data-aos-delay="200">
+            <i class="fas fa-gem text-yellow-500 text-3xl mb-4 float-icon"></i>
             <h3 class="text-white text-xl font-bold mb-2">Elite Community</h3>
             <p class="text-gray-400">Join top performers in the industry</p>
         </div>
@@ -277,8 +349,10 @@
 
 <script>
     AOS.init({
-        duration: 1000,
-        once: true
+        duration: 1200,
+        once: true,
+        offset: 100,
+        easing: 'ease-out-cubic'
     });
 
    // Set the end date once when the page loads
@@ -352,6 +426,65 @@ const timerInterval = setInterval(updateCountdown, 1000);
         iframe.src = "https://www.youtube.com/embed/ricOBVnKNnI?autoplay=1&mute=1";
         // Hide thumbnail
         this.style.display = 'none';
+    });
+
+    // Initialize particles
+    particlesJS("particles-js", {
+        particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: "#eab308" },
+            shape: { type: "circle" },
+            opacity: {
+                value: 0.5,
+                random: true,
+                animation: { enable: true, speed: 1, minimumValue: 0.1, sync: false }
+            },
+            size: {
+                value: 3,
+                random: true,
+                animation: { enable: true, speed: 2, minimumValue: 0.1, sync: false }
+            },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#eab308",
+                opacity: 0.4,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 1,
+                direction: "none",
+                random: false,
+                straight: false,
+                outModes: { default: "bounce" },
+                attract: { enable: false, rotateX: 600, rotateY: 1200 }
+            }
+        },
+        interactivity: {
+            detectsOn: "canvas",
+            events: {
+                onHover: { enable: true, mode: "repulse" },
+                onClick: { enable: true, mode: "push" },
+                resize: true
+            }
+        },
+        retina_detect: true
+    });
+
+    // Add reveal animation to text elements
+    document.querySelectorAll('p, h1, h2, h3').forEach((element, index) => {
+        element.style.animationDelay = `${index * 0.1}s`;
+        element.classList.add('reveal-text');
+    });
+
+    // Remove the old floating animation code and add this
+    const floatingIcons = document.querySelectorAll('.fas:not(.fa-times):not(.fa-play)');
+    floatingIcons.forEach((icon, index) => {
+        if (!icon.closest('.feature-card')) { // Don't add float to feature card icons
+            icon.classList.add('float-icon');
+            icon.style.animationDelay = `${index * 0.2}s`;
+        }
     });
 </script>
 
